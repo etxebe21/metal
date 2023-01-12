@@ -8,7 +8,7 @@ export class Level
 }
 
 //Datos del nivel 1
-export const level1 = 
+export const level1= 
 [
 [5,5,5,5,6,5,5,5],
 [5,6,2,2,1,2,6,5],
@@ -17,3 +17,4 @@ export const level1 =
 [5,6,2,1,2,2,6,5],
 [5,5,5,6,5,5,5,5]
 ];
+
