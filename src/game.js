@@ -1,7 +1,8 @@
 import globals from "./globals.js";
-import {initHTMLelements, loadAssets, initSprites, initVars, initLevel} from "./initialize.js";
+import {initHTMLelements, loadAssets, initSprites, initVars, initLevel, initTimers } from "./initialize.js";
 import update from "./gameLogic.js";
 import render from "./gameRender.js";
+
 
 //////////////////////////////////////////
 ///////  GAME INIT 
@@ -25,6 +26,9 @@ function init()
 
     //Inicializamos el mapa del juego
     initLevel();
+
+    //Inicializamos contador
+    initTimers();
 
     //Start the first frame request
     window.requestAnimationFrame(gameLoop);

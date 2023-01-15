@@ -2,7 +2,7 @@
 //Clase gestora de los sprites
 export default class Sprite
 {
-    constructor(id, state, xPos, yPos, imageSet, frames)
+    constructor(id, state, xPos, yPos, imageSet, frames, physics)
     {
         this.id                =id;           //Tipo de sprite
         this.state             =state;        //Estado de animación sprite
@@ -10,7 +10,6 @@ export default class Sprite
         this.yPos              =yPos;         //Posición en Y en Canvas
         this.imageSet          =imageSet;     //Datos de las imágenes del sprite
         this.frames            =frames;       //Datos de los frames de animación                  
-
+        this.physics           =physics; //Datos de las físicas
     }
-
 }

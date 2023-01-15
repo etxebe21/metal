@@ -4,6 +4,9 @@ import Sprite from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
 import {Level, level1} from "./Level.js";
+import Timer from "./Timers.js";
+import Physics from "./Physics.js";
+
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
 {
@@ -89,7 +92,10 @@ function initPlayer()
     const frames = new Frames(8);
 
     //Creamos nuestr sprite
-    const player = new Sprite(SpriteID.PLAYER, State.UP, 100, 70, imageSet, frames)
+    const player = new Sprite(SpriteID.PLAYER, State.UP, 100, 70, imageSet, frames,);
+
+    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
+    const physics = new Physics(40, 40, 0,98);
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
@@ -99,17 +105,17 @@ function initPlayer()
 function initPirate()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-<<<<<<< HEAD
+
     const imageSet = new ImageSet(5, 0, 33, 48, 64, 20, 16);
-=======
-    const imageSet = new ImageSet(0, 0, 32, 47, 64, 17, 16);
->>>>>>> b8a0d8967e9998673529099a990f2a1e3ec81498
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8);
+    const frames = new Frames(8, 5);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
 
     //Creamos nuestro sprite
-    const pirate = new Sprite(SpriteID.PIRATE, State.RIGHT_2, 100, 100, imageSet, frames);
+    const pirate = new Sprite(SpriteID.PIRATE, State.RIGHT_2, 100, 100, imageSet, frames, physics);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(pirate);
@@ -124,11 +130,18 @@ function initLevel()
     globals.level = new Level(level1, imageSet);
 }
 
+function initTimers()
+{
+    //Creamos timer de valor 200, con cambios cada 0,5 segundos
+    globals.levelTime = new Timer(200, 0,5);
+}
+
 //Exportar funciones
 export{
     initHTMLelements,
     initVars,
     loadAssets,
     initSprites,
-    initLevel
+    initLevel,
+    initTimers
 }

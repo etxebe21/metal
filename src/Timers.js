@@ -1,4 +1,4 @@
-export default class time
+export default class Time
 {
     constructor(value, timeChangeValue)
     {

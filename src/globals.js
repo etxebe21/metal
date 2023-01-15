@@ -34,6 +34,9 @@ assetsToLoad: [],
 sprites: [],
 
 //Datos del nivel
-level: {}
+level: {},
+
+//Temporizador nivel
+levelTime: {}
 
 };
