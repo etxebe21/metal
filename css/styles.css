@@ -14,6 +14,7 @@
     height: 64px;
     margin-left: -39px;
     margin-bottom: -5px;
+    margin-left: -39px;
     background-color: black;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-crisp-edges;
@@ -25,6 +26,12 @@
 {
     font-family: emulogic;
     src:url("../fonts/emulogic.ttf");
+}
+
+body{
+
+    text-align: center;
+
 
 }
 

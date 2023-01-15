@@ -99,7 +99,11 @@ function initPlayer()
 function initPirate()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+<<<<<<< HEAD
     const imageSet = new ImageSet(5, 0, 33, 48, 64, 20, 16);
+=======
+    const imageSet = new ImageSet(0, 0, 32, 47, 64, 17, 16);
+>>>>>>> b8a0d8967e9998673529099a990f2a1e3ec81498
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8);
