@@ -48,7 +48,7 @@ function loadAssets()
     //Load de bricks image
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/bricks.png";
+    tileSet.src = "./images/mapa.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 }
@@ -83,7 +83,7 @@ function initSprites()
 function initPlayer()
 {
     //Creamos las propiedades de las imagenes: xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(0, 0, 44, 57, 64, 10, 6);
+    const imageSet = new ImageSet(1, 1, 40, 55, 64, 10, 9);
 
     //Creamos los datos de la animación. 8 frmaes / state
     const frames = new Frames(8);
@@ -99,7 +99,7 @@ function initPlayer()
 function initPirate()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(5, 0, 32, 47, 64, 17, 16);
+    const imageSet = new ImageSet(5, 0, 33, 48, 64, 20, 16);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8);
@@ -114,7 +114,7 @@ function initPirate()
 function initLevel()
 {
     //Creamos las propiedades de las imagemnes del mapa; initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(0, 0, 32, 32, 32, 0, 0);
+    const imageSet = new ImageSet(0, 0, 16, 16, 16, 0, 0);
 
     //Creamos y guardamos nuestro livel
     globals.level = new Level(level1, imageSet);
