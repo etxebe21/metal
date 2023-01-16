@@ -26,48 +26,41 @@ function updatePlayer(sprite)
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
 
-    const isLeftOrRightPressed = globals.action.moveLeft || globals.action.moveRight;
-
     switch(sprite.state)
     {
+        case State.UP:
+            //Si se mueve hacia arriba asignamos vy (-)
+            sprite.physics.vx = 0;
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        case State.DOWN:
+            //Si se mueve hacia abajo asignamos vy (+)
+            sprite.physics.vx = 0;
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+
         case State.RIGHT:
-            //Si se mueve a la derecha ax (+)
-            sprite.physics.ax = sprite.physics.aLimit;
+            //Si se mueve a la derecha vx (+)
+            sprite.physics.vx = sprite.physics.vLimit;
+            sprite.physics.vy = 0;
             break;
 
         case State.LEFT:
-            //Si se mueve a la izquierda asignamos ax (-)
-            sprite.physics.ax = -sprite.physics.aLimit;
+            //Si se mueve a la izquierda asignamos vx (-)
+            sprite.physics.vx = -sprite.physics.vLimit;
+            sprite.physics.vy = 0;
             break;
 
-        default: //Resto de casos(arriba,abajo y parado)
-            sprite.physics.ax = 0;
+        default: //Resto de casos( parado)
+            sprite.physics.vx = 0;
+            sprite.physics.vy = 0;
     }
 
-//Calculamos velocidad en X y en Y (V = V + at)
-sprite.physics.vx += sprite.physics.ax * globals.deltaTime;
-
-//Aplicamos la friccion en los cambios de direccion y cuando haya teclas pulsadas para reducir velocidad rapido
-if((sprite.state === State.LEFT && sprite.physics.vx > 0)||
-    (sprite.state === State.RIGHT && sprite.physics.vx < 0) ||
-    (!isLeftOrRightPressed))
-{
-    sprite.physics.vx *= sprite.physics.friction;
-}
-
-//Limitamos a lavelocidad maxima en direccion horizontal
-if (sprite.physics.vx > sprite.physics.vLimit) //derecha (velocidad +)
-{
-    sprite.physics.vx = sprite.physics.vLimit;
-}
-else if (sprite.physics.vx < -sprite.physics.vLimit) //izquierda (velocidad -)
-{
-    sprite.physics.vx =- sprite.physics.vLimit;
-}
 
 //Calculamos distancia que se mueve (X = X + Vt)
-//xPos segura en movimiento unif. acelerado
 sprite.xPos += sprite.physics.vx * globals.deltaTime;
+sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 //Actualizamos la animación
 updateAnimationFrame(sprite);
@@ -90,13 +83,22 @@ function updatePirate(sprite)
             sprite.physics.vx = -sprite.physics.vLimit;
             break;
 
-    default:
+        default:
         console.error("Error: state invalid");
     }
 //Calculamos distancia que se mueve (X = X +Vt)
 sprite.xPos += sprite.physics.vx * globals.deltaTime;
 
+//Actualizamos la animación
 updateAnimationFrame(sprite);
+
+updateDirectionRandom(sprite);
+
+const isCollision = calculateCollisionWithBorders(sprite);
+if (isCollision)
+{
+    swapDirection(sprite);
+}
 
 }
 
@@ -104,7 +106,7 @@ updateAnimationFrame(sprite);
 function playGame()
 {
     updateSprites();
-    updateLevelTime();
+    updateLevelTime(); 
 }
 
 function updateSprites()
@@ -150,24 +152,90 @@ function updateLevelTime()
     }
 }
 
+function swapDirection(sprite)
+{
+    sprite.state = sprite.state === State.RIGHT_2 ? State.LEFT_2 : State.RIGHT_2;
+}
+
+function updateDirectionRandom(sprite)
+{
+    //Incrementamos el tiempo para cambio de direccion
+    sprite.directionChangeCounter += globals.deltaTime;
+
+    if(sprite.directionChangeCounter > sprite.maxTimeToChangeDirection)
+    {
+        //Reseteamos el contador 
+        sprite.directionChangeCounter = 0;
+
+        //Actualizamos el tiempo de cambio de direccion aleatoriamente, entre 1 y 8 segubdos
+        sprite.maxTimeToChangeDirection = Math.floor(Math.random() * 8) + 1;
+        
+        //Cambiamos la direccion
+        swapDirection(sprite);
+    }
+}
+
+function calculateCollisionWithBorders(sprite)
+{
+    let isCollision = false;
+
+    //Colision con el borde derecho de la pantalla
+    if(sprite.xPos + sprite.imageSet.xSize > globals.canvas.width)
+    {
+        isCollision = true;
+    }
+    //Colision con el borde izquierdo de la pantalla
+    else if (sprite.xPos < 0)
+    {
+        isCollision = true;
+    }
+
+    return isCollision;
+}
+
+
 function updateAnimationFrame(sprite)
 {
-    //Aumentamos el contador de tiempo entre frames
-    sprite.frames.frameChangeCounter++;
-
-    //Cambiamos de frame cuando el lag de animaci´n alcanza animSpeed
-    if(sprite.frames.frameChangeCounter === sprite.frames.speed)
+    switch(sprite.state)
     {
-        //Cambiamos de frame y reseteamos el contador de cambio frame
-        sprite.frames.frameCounter++;
-        sprite.frames.frameChangeCounter =0;
+        case State.STILL_UP:
+        case State.STILL_LEFT:
+        case State.STILL_DOWN:
+        case State.STILL_RIGHT:
+            sprite.frames.frameCounter = 0;
+            sprite.frames.frameChangeCounter = 0;
+            break;
 
+    default:
+
+        //Aumentamos el contador de tiempo entre frames
+        sprite.frames.frameChangeCounter++;
+
+        //Cambiamos de frame cuando el lag de animaci´n alcanza animSpeed
+        if(sprite.frames.frameChangeCounter === sprite.frames.speed)
+        {
+         //Cambiamos de frame y reseteamos el contador de cambio frame
+            sprite.frames.frameCounter++;
+            sprite.frames.frameChangeCounter = 0;
+        }
+
+        //Si hemos llegado al maximo de frames reiniciamos el contador (animación cíclica)
+        if (sprite.frames.frameCounter === sprite.frames.framePerState)
+        {
+            sprite.frames.frameCounter = 0;
+        }
     }
-
-    //Si hemos llegado al maximo de frames reiniciamos el contador (animación cíclica)
-    if (sprite.frames.frameCounter === sprite.frames.framePerState)
-    {
-        sprite.frames.frameCounter = 0;
-    }
-
 }
+
+function readKeyboardAndAssignState(sprite)
+{
+    sprite.state = globals.action.moveLeft       ? State.LEFT:      //Left Key
+                    globals.action.moveRight     ? State.RIGHT:       //rIGHT KEY
+                    globals.action.moveUp        ? State.UP:         //Uo key
+                    globals.action.moveDown      ? State.DOWN:       //Down key
+                    sprite.state === State.LEFT  ? State.STILL_LEFT: //No key pressed and previous state LEFT
+                    sprite.state === State.RIGHT ? State.STILL_RIGHT: //No key pressed and previous state RIGHT
+                    sprite.state === State.UP    ? State.STILL_UP: //No key pressed and previous state UP
+                    sprite.state === State.DOWN  ? State.STILL_DOWN: //No key pressed and previous state DOWN
+                    sprite.state;
+}      

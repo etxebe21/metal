@@ -1,4 +1,4 @@
-//Constants
+
 
 //Estados del juego
 export const Game = {
@@ -22,10 +22,14 @@ export const SpriteID = {
 //Identificador de estado de sprite ( dirección)
 export const State = {
     //Estados player
-    UP:         0,
+    UP:         3,
     LEFT:       1,
-    DOWN:       2,
-    RIGHT:      3,
+    DOWN:       0,
+    RIGHT:      2,
+    STILL_UP:   7,
+    STILL_LEFT: 5,
+    STILL_DOWN: 4,
+    STILL_RIGHT:6,
 
     //Estados PIRATE
     LEFT_2:     0,
@@ -51,4 +55,13 @@ export const Block = {
     GRAY:       5,
     CRYSTAL_1:  6,
     CRYSTAL_2:  7
+}
+
+//Keyboard key codes
+export const Key = {
+    UP:       38,
+    DOWN:     40,
+    RIGHT:    39,
+    LEFT:     37
+
 }

@@ -6,7 +6,8 @@ import Frames from "./frames.js";
 import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
-
+import { keydownHandler, keyupHandler } from "./events.js";
+import { Pirate } from "./sprite.js";
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
 {
@@ -34,6 +35,14 @@ function initVars()
 
     //Iniciar el estado juego
     globals.gameState = Game.PLAYING;
+
+    //Inicializamos los estados de las acciones
+    globals.action = {
+        moveLeft: false,
+        moveRight: false,
+        moveUp: false,
+        moveDown: false
+    }
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS
@@ -86,16 +95,16 @@ function initSprites()
 function initPlayer()
 {
     //Creamos las propiedades de las imagenes: xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(1, 1, 40, 55, 64, 10, 9);
+    const imageSet = new ImageSet(0, 0, 44, 57, 64, 10, 9);
 
     //Creamos los datos de la animación. 8 frmaes / state
-    const frames = new Frames(8);
-
-    //Creamos nuestr sprite
-    const player = new Sprite(SpriteID.PLAYER, State.UP, 100, 70, imageSet, frames,);
+    const frames = new Frames(8, 5);
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
-    const physics = new Physics(40, 40, 0,98);
+    const physics = new Physics(40);
+
+    //Creamos nuestr sprite
+    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 30, 40, imageSet, frames,physics);
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
@@ -106,16 +115,18 @@ function initPirate()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(5, 0, 33, 48, 64, 20, 16);
+    const imageSet = new ImageSet(8, 0, 36, 57, 64, 20, 16);
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8, 5);
+    const frames = new Frames(8, 100);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
+    const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
+
     //Creamos nuestro sprite
-    const pirate = new Sprite(SpriteID.PIRATE, State.RIGHT_2, 100, 100, imageSet, frames, physics);
+    const pirate = new Pirate(SpriteID.PIRATE, State.RIGHT_2, 100, 100, imageSet, frames, physics, initTimeToChangeDirection);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(pirate);
@@ -133,7 +144,14 @@ function initLevel()
 function initTimers()
 {
     //Creamos timer de valor 200, con cambios cada 0,5 segundos
-    globals.levelTime = new Timer(200, 0,5);
+    globals.levelTime = new Timer(200, 0.5);
+}
+
+function initEvents()
+{
+    //Add the keyboard event listeners
+    window.addEventListener("keydown", keydownHandler, false);
+    window.addEventListener("keyup", keyupHandler, false);
 }
 
 //Exportar funciones
@@ -143,5 +161,6 @@ export{
     loadAssets,
     initSprites,
     initLevel,
-    initTimers
+    initTimers,
+    initEvents
 }

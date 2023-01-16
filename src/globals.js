@@ -37,6 +37,9 @@ sprites: [],
 level: {},
 
 //Temporizador nivel
-levelTime: {}
+levelTime: {},
+
+//oBJETO QUE GUARDA EL ESTADO DE TECLA PULSADA
+action: {}
 
 };

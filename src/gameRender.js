@@ -125,7 +125,7 @@ function drawSpriteRectangle(sprite)
     const w1 = sprite.imageSet.xSize;
     const h1 = sprite.imageSet.ySize;
 
-    globals.ctx.fillStyle = "green";
+    globals.ctx.fillStyle = "transparent";
     globals.ctx.fillRect(x1, y1, w1, h1);
 }
 

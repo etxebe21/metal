@@ -13,3 +13,16 @@ export default class Sprite
         this.physics           =physics; //Datos de las físicas
     }
 }
+
+//cLASE PIRATE
+export class Pirate extends Sprite
+{
+    constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection)
+    {
+        //Llamamos al constructor de la clase Sprite
+        super (id, state, xPos, yPos, imageSet, frames, physics);
+
+        this.directionChangeCounter      = 0;                 //Contador para cambio direccion(seconds)
+        this.maxTimeToChangeDirection    = maxTimeToChangeDirection; //Maximo tiempo para cambio de direccion(seconds)
+    }
+}

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="8" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" source="../../mapaje.tsx"/>
- <tileset firstgid="50" source="../../trebol.tsx"/>
- <tileset firstgid="92" source="../../bri.tsx"/>
+ <tileset firstgid="1" source="tileset.tsx"/>
  <layer id="1" name="Capa de patrones 1" width="8" height="6">
   <data encoding="csv">
-92,93,94,95,96,97,98,105,
-99,58,59,60,61,62,63,112,
-106,65,66,67,68,69,70,119,
-113,72,73,74,75,76,77,126,
-120,79,80,81,82,83,84,133,
-127,128,129,130,131,132,133,134
+5,5,5,5,6,5,5,5,
+5,6,2,2,1,2,6,5,
+5,1,2,7,7,2,1,5,
+5,1,2,7,7,2,1,5,
+5,6,2,1,2,2,6,5,
+5,5,5,6,5,5,5,5
 </data>
  </layer>
 </map>
