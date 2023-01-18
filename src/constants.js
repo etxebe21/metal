@@ -14,7 +14,7 @@ export const FPS = 30;
 //Identificador de tipo de sprite 
 export const SpriteID = {
     PLAYER: 0,
-    PIRATE: 1,
+    ZEZEN: 1,
     JOKER:  2,
     KNIGHT: 3
 }
@@ -31,10 +31,11 @@ export const State = {
     STILL_DOWN: 4,
     STILL_RIGHT:6,
 
-    //Estados PIRATE
+    //Estados ZEZEN Y TORO
     LEFT_2:     0,
     RIGHT_2:    1,
-
+    UP_2:       2,
+    DOWN_2:     3,
     //Estado joker y knight
     STILL:      0
 }
@@ -62,6 +63,10 @@ export const Key = {
     UP:       38,
     DOWN:     40,
     RIGHT:    39,
-    LEFT:     37
-
+    LEFT:     37,
+    JUMP:     32
 }
+
+//Aceleración
+export const GRAVITY = 80;
+

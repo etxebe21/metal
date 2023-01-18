@@ -23,9 +23,9 @@ export default function render()
 function renderHUD()
 {
         //TEST: Datos metidos en bruto
-        const score = 1500;
-        const highScore = 130000;
-        const life = 40;
+        const score = 1990;
+        const highScore = 18990;
+        const life = 50;
         const time = globals.levelTime.value;
         
 
@@ -73,11 +73,11 @@ function drawGame()
     //Dibujamos mapa (nivel)
     renderMap();
 
-  //Dibujamos los elementos
-  drawSprites();  
+    //Dibujamos los elementos
+    drawSprites();  
 
-  //Dibujamos el HUD
-  renderHUD();
+    //Dibujamos el HUD
+    renderHUD();
 }
 
 function renderSprite(sprite)

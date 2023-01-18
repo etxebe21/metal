@@ -20,6 +20,10 @@ export function keydownHandler(event)
         case Key.RIGHT:
             globals.action.moveRight = true;
             break;
+
+        case Key.JUMP:
+            globals.action.jump = true;
+            break;
     }
 }
 
@@ -41,6 +45,10 @@ export function keyupHandler(event)
 
         case Key.RIGHT:
             globals.action.moveRight = false;
+            break;
+
+        case Key.JUMP:
+            globals.action.jump = false;
             break;
     }
 }

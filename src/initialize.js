@@ -41,7 +41,10 @@ function initVars()
         moveLeft: false,
         moveRight: false,
         moveUp: false,
-        moveDown: false
+        moveDown: false,
+        jump: false
+
+    
     }
 }
 
@@ -53,7 +56,7 @@ function loadAssets()
     //Load the spritesheet image
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/spritesheet.png"; //Ruta relativa HTML
+    tileSet.src = "./images/spritesheet2.png"; //Ruta relativa HTML
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -89,7 +92,9 @@ function loadHandler()
 function initSprites()
 {
     initPlayer();
-    initPirate();
+    initZezen();
+    initToro();
+    
 }
 
 function initPlayer()
@@ -108,17 +113,16 @@ function initPlayer()
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
-
 }
 
-function initPirate()
+function initZezen()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
     const imageSet = new ImageSet(8, 0, 36, 57, 64, 20, 16);
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8, 100);
+    const frames = new Frames(8, 170);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
@@ -126,7 +130,28 @@ function initPirate()
     const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.PIRATE, State.RIGHT_2, 100, 100, imageSet, frames, physics, initTimeToChangeDirection);
+    const pirate = new Pirate(SpriteID.ZEZEN, State.RIGHT_2, 90, 125, imageSet, frames, physics, initTimeToChangeDirection);
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(pirate);
+}
+
+function initToro()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(10, 0, 36, 57, 64, 20, 16);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8, 100);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    const initTimeToChangeDirection = Math.floor(Math.random() * 6) + 1;
+
+    //Creamos nuestro sprite
+    const pirate = new Pirate(SpriteID.TORO, State.LEFT_2, 50, 7, imageSet, frames, physics, initTimeToChangeDirection);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(pirate);
@@ -144,7 +169,7 @@ function initLevel()
 function initTimers()
 {
     //Creamos timer de valor 200, con cambios cada 0,5 segundos
-    globals.levelTime = new Timer(200, 0.5);
+    globals.levelTime = new Timer(0, 1);
 }
 
 function initEvents()

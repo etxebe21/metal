@@ -1,9 +1,9 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID} from "./constants.js";
+import Sprite from "./sprite.js";
 
 export default function update()
 {
-
     //Change what thw game is doing based game state
     switch(globals.gameState)
     {
@@ -26,8 +26,14 @@ function updatePlayer(sprite)
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
 
+    const isLeftOrRightPressed = globals.action.moveLeft || globals.action.moveRight;
+
     switch(sprite.state)
     {
+        case State.ATTACK:
+            initDisparo();
+            break;
+
         case State.UP:
             //Si se mueve hacia arriba asignamos vy (-)
             sprite.physics.vx = 0;
@@ -68,7 +74,42 @@ updateAnimationFrame(sprite);
 }
 
 //Funcion que actualiza el pirata
-function updatePirate(sprite)
+function updateZezen(sprite)
+{
+//Maquina de estados pirata
+    switch(sprite.state)
+    {
+        case State.RIGHT_2:
+        //Si se mueve a la derecha asignamos velocidad en Xpositiva
+            sprite.physics.vx = sprite.physics.vLimit;
+            break;
+
+        case State.LEFT_2:
+         //Si se mueve a la izquierda asignamos velocidad en X negativa
+            sprite.physics.vx = -sprite.physics.vLimit;
+            break;
+
+        default:
+        console.error("Error: state invalid");
+    }
+//Calculamos distancia que se mueve (X = X +Vt)
+sprite.xPos += sprite.physics.vx * globals.deltaTime;
+
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+
+updateDirectionRandom(sprite);
+
+const isCollision = calculateCollisionWithBorders(sprite);
+if (isCollision)
+{
+    swapDirection(sprite);
+}
+
+}
+
+//Funcion que actualiza el TORO
+function updateToro(sprite)
 {
 //Maquina de estados pirata
     switch(sprite.state)
@@ -128,9 +169,18 @@ function updateSprite(sprite)
             updatePlayer(sprite);
             break;
 
-        case SpriteID.PIRATE:
-            updatePirate(sprite);
+        case SpriteID.ZEZEN:
+            updateZezen(sprite);
             break;
+        
+        case SpriteID.TORO:
+            updateToro(sprite); 
+            break;
+
+        case SpriteID.BALA:
+            updateBala(sprite);
+            break;
+
 
         default:
             break;
@@ -145,7 +195,7 @@ function updateLevelTime()
     //Si ha pasado el tiempo necesario, cambiamos el valor del timer
     if (globals.levelTime.timeChangeCounter > globals.levelTime.timeChangeValue)
     {
-        globals.levelTime.value--;
+        globals.levelTime.value++;
 
         //Reseteamos timeChangeCounter
         globals.levelTime.timeChangeCounter = 0;
