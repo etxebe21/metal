@@ -15,8 +15,8 @@ export const FPS = 30;
 export const SpriteID = {
     PLAYER: 0,
     ZEZEN: 1,
-    JOKER:  2,
-    KNIGHT: 3
+    TORO:  2,
+    ZEZEN2: 3
 }
 
 //Identificador de estado de sprite ( dirección)
@@ -64,7 +64,8 @@ export const Key = {
     DOWN:     40,
     RIGHT:    39,
     LEFT:     37,
-    JUMP:     32
+    JUMP:     32,
+    ATTACK:   30
 }
 
 //Aceleración

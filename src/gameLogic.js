@@ -73,7 +73,7 @@ updateAnimationFrame(sprite);
 
 }
 
-//Funcion que actualiza el pirata
+//Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
 {
 //Maquina de estados pirata
@@ -143,6 +143,41 @@ if (isCollision)
 
 }
 
+//Funcion que actualiza el ZEZEN
+function updateZezen2(sprite)
+{
+//Maquina de estados pirata
+    switch(sprite.state)
+    {
+        case State.UP_2:
+        //Si se mueve arriba asignamos velocidad en Xpositiva
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+
+        case State.DOWN_2:
+         //Si se mueve abajo asignamos velocidad en X negativa
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        default:
+        console.error("Error: state invalid");
+    }
+//Calculamos distancia que se mueve (X = X +Vt)
+sprite.yPos += sprite.physics.vy * globals.deltaTime;
+
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+
+updateDirectionRandom(sprite);
+
+const isCollision = calculateCollisionWithBorders(sprite);
+if (isCollision)
+{
+    swapDirection(sprite);
+}
+
+}
+
 
 function playGame()
 {
@@ -175,6 +210,10 @@ function updateSprite(sprite)
         
         case SpriteID.TORO:
             updateToro(sprite); 
+            break;
+
+        case SpriteID.ZEZEN2:
+            updateZezen2(sprite);
             break;
 
         case SpriteID.BALA:
@@ -270,7 +309,7 @@ function updateAnimationFrame(sprite)
         }
 
         //Si hemos llegado al maximo de frames reiniciamos el contador (animación cíclica)
-        if (sprite.frames.frameCounter === sprite.frames.framePerState)
+        if (sprite.frames.frameCounter === sprite.frames.framesPerState)
         {
             sprite.frames.frameCounter = 0;
         }
