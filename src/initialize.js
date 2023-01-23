@@ -56,7 +56,7 @@ function loadAssets()
     //Load the spritesheet image
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/spritesheet (2).png"; //Ruta relativa HTML
+    tileSet.src = "./images/spritesheet (1).png"; //Ruta relativa HTML
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -94,13 +94,15 @@ function initSprites()
     initPlayer();
     initZezen();
     initToro();
-    initZezen2();   
+    initFruta();
+    initAgua(); 
+    initHacha(); 
 }
 
 function initPlayer()
 {
     //Creamos las propiedades de las imagenes: xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(0, 0, 44, 57, 64, 10, 9);
+    const imageSet = new ImageSet(0, 0, 45, 56, 65, 26, 17);
 
     //Creamos los datos de la animación. 8 frmaes / state
     const frames = new Frames(8, 5);
@@ -119,7 +121,7 @@ function initZezen()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(8, 0, 36, 57, 64, 20, 16);
+    const imageSet = new ImageSet(8, 0, 36, 55, 64, 30, 28);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 10);
@@ -140,7 +142,7 @@ function initToro()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(10, 0, 36, 60, 64, 20, 16);
+    const imageSet = new ImageSet(10, 0, 40, 55, 65, 20, 25);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 10);
@@ -157,26 +159,66 @@ function initToro()
     globals.sprites.push(pirate);
 }
 
-function initZezen2()
+
+
+
+function initFruta()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(12, 0, 38, 58, 65, 20, 16);
+    const imageSet = new ImageSet(14, 0, 36, 40, 65, 29, 25);
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8, 150);
+    const frames = new Frames(8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
-    const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
-
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.ZEZEN2, State.DOWN_2, 10, 110, imageSet, frames, physics, initTimeToChangeDirection);
+    const pirate = new Pirate(SpriteID.FRUTA, State.STILL, 22, 80, imageSet, frames, physics);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(pirate);
 }
+
+function initAgua()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(16, 0, 33, 50, 63, 28, 19);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro sprite
+    const pirate = new Pirate(SpriteID.AGUA, State.STILL, 170, 35, imageSet, frames, physics);
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(pirate);
+}
+
+function initHacha()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(15, 0, 37, 40, 65, 26, 7);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro sprite
+    const pirate = new Pirate(SpriteID.ATTACK, State.STILL, 10, 2, imageSet, frames, physics);
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(pirate);
+}
+
 
 function initLevel()
 {

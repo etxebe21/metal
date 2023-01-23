@@ -24,6 +24,10 @@ export function keydownHandler(event)
         case Key.JUMP:
             globals.action.jump = true;
             break;
+
+        case Key.ATTACK:
+            globals.action.moveAttack = true;
+            break;
     }
 }
 
@@ -49,6 +53,10 @@ export function keyupHandler(event)
 
         case Key.JUMP:
             globals.action.jump = false;
+            break;
+
+        case Key.ATTACK:
+            globals.action.moveAttack = false;
             break;
     }
 }

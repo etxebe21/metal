@@ -31,7 +31,7 @@ function updatePlayer(sprite)
     switch(sprite.state)
     {
         case State.ATTACK:
-            initDisparo();
+            initHacha();
             break;
 
         case State.UP:
@@ -146,23 +146,23 @@ if (isCollision)
 //Funcion que actualiza el ZEZEN
 function updateZezen2(sprite)
 {
-//Maquina de estados pirata
+//Maquina de estados ZEEZEN
     switch(sprite.state)
     {
         case State.UP_2:
-        //Si se mueve arriba asignamos velocidad en Xpositiva
+        //Si se mueve arriba asignamos velocidad en Ypositiva
             sprite.physics.vy = sprite.physics.vLimit;
             break;
 
         case State.DOWN_2:
-         //Si se mueve abajo asignamos velocidad en X negativa
+         //Si se mueve abajo asignamos velocidad en Y negativa
             sprite.physics.vy = -sprite.physics.vLimit;
             break;
 
         default:
         console.error("Error: state invalid");
     }
-//Calculamos distancia que se mueve (X = X +Vt)
+//Calculamos distancia que se mueve (Y = Y +Vt)
 sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 //Actualizamos la animación
@@ -176,6 +176,32 @@ if (isCollision)
     swapDirection(sprite);
 }
 
+}
+
+//Funcion que actualiza el ZEZEN
+function updateHacha(sprite)
+{
+//Maquina de estados ZEEZEN
+    switch(sprite.state)
+    {
+        case State.STILL:
+        //Si se mueve arriba asignamos velocidad en Ypositiva
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+
+        case State.STILL:
+         //Si se mueve abajo asignamos velocidad en Y negativa
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        default:
+        console.error("Error: state invalid");
+    }
+//Calculamos distancia que se mueve (Y = Y +Vt)
+sprite.yPos += sprite.physics.vy * globals.deltaTime;
+
+//Actualizamos la animación
+updateAnimationFrame(sprite);
 }
 
 
@@ -216,8 +242,8 @@ function updateSprite(sprite)
             updateZezen2(sprite);
             break;
 
-        case SpriteID.BALA:
-            updateBala(sprite);
+        case SpriteID.ATTACK:
+            updateHacha(sprite);
             break;
 
 
@@ -279,6 +305,18 @@ function calculateCollisionWithBorders(sprite)
         isCollision = true;
     }
 
+     //Colision con el borde superior de la pantalla
+     else if(sprite.yPos + sprite.imageSet.ySize > globals.canvas.height)
+     {
+         isCollision = true;
+     }
+     //Colision con el borde inferior de la pantalla
+     else if (sprite.yPos < 0)
+     {
+         isCollision = true;
+     }
+ 
+
     return isCollision;
 }
 
@@ -322,9 +360,11 @@ function readKeyboardAndAssignState(sprite)
                     globals.action.moveRight     ? State.RIGHT:       //rIGHT KEY
                     globals.action.moveUp        ? State.UP:         //Uo key
                     globals.action.moveDown      ? State.DOWN:       //Down key
+                    globals.action.moveAttack    ? State.ATTACK:     //ATTACK KEY
                     sprite.state === State.LEFT  ? State.STILL_LEFT: //No key pressed and previous state LEFT
                     sprite.state === State.RIGHT ? State.STILL_RIGHT: //No key pressed and previous state RIGHT
                     sprite.state === State.UP    ? State.STILL_UP: //No key pressed and previous state UP
                     sprite.state === State.DOWN  ? State.STILL_DOWN: //No key pressed and previous state DOWN
+                    sprite.state === State.ATTACK ? State.STILL: 
                     sprite.state;
 }      
