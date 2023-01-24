@@ -1,6 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID} from "./constants.js";
 import Sprite from "./sprite.js";
+import {initDisparos} from "./initialize.js";
 
 export default function update()
 {
@@ -31,31 +32,37 @@ function updatePlayer(sprite)
     switch(sprite.state)
     {
         case State.ATTACK:
-            initHacha();
+            initDisparos(sprite);
+            console.log("disparo");
             break;
+
 
         case State.UP:
             //Si se mueve hacia arriba asignamos vy (-)
             sprite.physics.vx = 0;
             sprite.physics.vy = -sprite.physics.vLimit;
+            console.log("arriba");
             break;
 
         case State.DOWN:
             //Si se mueve hacia abajo asignamos vy (+)
             sprite.physics.vx = 0;
             sprite.physics.vy = sprite.physics.vLimit;
+            console.log("abajo");
             break;
 
         case State.RIGHT:
             //Si se mueve a la derecha vx (+)
             sprite.physics.vx = sprite.physics.vLimit;
             sprite.physics.vy = 0;
+            console.log("derecha");
             break;
 
         case State.LEFT:
             //Si se mueve a la izquierda asignamos vx (-)
             sprite.physics.vx = -sprite.physics.vLimit;
             sprite.physics.vy = 0;
+            console.log("izquierda");
             break;
 
         default: //Resto de casos( parado)
@@ -178,32 +185,6 @@ if (isCollision)
 
 }
 
-//Funcion que actualiza el ZEZEN
-function updateHacha(sprite)
-{
-//Maquina de estados ZEEZEN
-    switch(sprite.state)
-    {
-        case State.STILL:
-        //Si se mueve arriba asignamos velocidad en Ypositiva
-            sprite.physics.vy = sprite.physics.vLimit;
-            break;
-
-        case State.STILL:
-         //Si se mueve abajo asignamos velocidad en Y negativa
-            sprite.physics.vy = -sprite.physics.vLimit;
-            break;
-
-        default:
-        console.error("Error: state invalid");
-    }
-//Calculamos distancia que se mueve (Y = Y +Vt)
-sprite.yPos += sprite.physics.vy * globals.deltaTime;
-
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-}
-
 
 function playGame()
 {
@@ -243,13 +224,66 @@ function updateSprite(sprite)
             break;
 
         case SpriteID.ATTACK:
-            updateHacha(sprite);
+            updateDisparos(sprite);
             break;
 
 
         default:
             break;
     }
+}
+
+function updateDisparo(sprite)
+{
+   
+    //Calculamos distancia que se mueve (Y = Y +Vt)
+sprite.yPos += sprite.physics.vy * globals.deltaTime;
+sprite.xPos += sprite.physics.vx * globals.deltaTime;
+
+
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+
+updateDirectionRandom(sprite);
+}
+
+
+
+function updateDisparos(sprite)
+{
+//Maquina de estados disparos
+    switch(sprite.state)
+    {
+        case State.UP:
+        //Si se mueve arriba asignamos velocidad en Ypositiva
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+            
+        case State.DOWN:
+         //Si se mueve abajo asignamos velocidad en Y negativa
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+            
+        case State.LEFT:
+        //Si se mueve arriba asignamos velocidad en Ypositiva
+            sprite.physics.vx = sprite.physics.xLimit;
+            break;
+
+        case State.RIGHT:
+         //Si se mueve abajo asignamos velocidad en Y negativa
+            sprite.physics.vx = -sprite.physics.xLimit;
+            break;
+
+        default:
+        console.error("Error: state invalid");
+    }
+//Calculamos distancia que se mueve (Y = Y +Vt)
+sprite.yPos += sprite.physics.vy * globals.deltaTime;
+sprite.xPos += sprite.physics.vx * globals.deltaTime;
+
+
+//Actualizamos la animación
+updateAnimationFrame(sprite);
 }
 
 function updateLevelTime()
@@ -359,12 +393,12 @@ function readKeyboardAndAssignState(sprite)
     sprite.state = globals.action.moveLeft       ? State.LEFT:      //Left Key
                     globals.action.moveRight     ? State.RIGHT:       //rIGHT KEY
                     globals.action.moveUp        ? State.UP:         //Uo key
-                    globals.action.moveDown      ? State.DOWN:       //Down key
+                    globals.action.moveDown      ? State.DOWN:          //Down key
                     globals.action.moveAttack    ? State.ATTACK:     //ATTACK KEY
-                    sprite.state === State.LEFT  ? State.STILL_LEFT: //No key pressed and previous state LEFT
-                    sprite.state === State.RIGHT ? State.STILL_RIGHT: //No key pressed and previous state RIGHT
-                    sprite.state === State.UP    ? State.STILL_UP: //No key pressed and previous state UP
-                    sprite.state === State.DOWN  ? State.STILL_DOWN: //No key pressed and previous state DOWN
-                    sprite.state === State.ATTACK ? State.STILL: 
+                    sprite.state === State.LEFT  ? State.STILL_LEFT:    //No key pressed and previous state LEFT
+                    sprite.state === State.RIGHT ? State.STILL_RIGHT:   //No key pressed and previous state RIGHT
+                    sprite.state === State.UP    ? State.STILL_UP:     //No key pressed and previous state UP
+                    sprite.state === State.DOWN  ? State.STILL_DOWN:  //No key pressed and previous state DOWN
+                    sprite.state === State.ATTACK ? State.STILL:
                     sprite.state;
 }      

@@ -42,6 +42,7 @@ function initVars()
         moveRight: false,
         moveUp: false,
         moveDown: false,
+        attack: false,
         jump: false
 
     
@@ -95,8 +96,7 @@ function initSprites()
     initZezen();
     initToro();
     initFruta();
-    initAgua(); 
-    initHacha(); 
+    initAgua();  
 }
 
 function initPlayer()
@@ -160,8 +160,6 @@ function initToro()
 }
 
 
-
-
 function initFruta()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
@@ -188,7 +186,7 @@ function initAgua()
     const imageSet = new ImageSet(16, 0, 33, 50, 63, 28, 19);
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8);
+    const frames = new Frames(8, 5);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
@@ -200,25 +198,47 @@ function initAgua()
     globals.sprites.push(pirate);
 }
 
-function initHacha()
+function initDisparos(sprite)
 {
-    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+    switch(sprite.state)
+    {
+    case State.RIGHT || State.STILL_RIGHT:
+        sprite.vx = +20;
+        break;
+    
+    case State.LEFT || State.STILL_LEFT:
+        sprite.vx = -20;
+        break;
+    
+    case State.UP || State.STILL_UP:
+        sprite.vy = +20;
+        sprite.physics.vy = sprite.physics.vLimit;
+        sprite.physics.vx = 0;
+        break;
+    
+    case State.DOWN || State.STILL_DOWN:
+        sprite.vy = +20;
+        break;
 
-    const imageSet = new ImageSet(15, 0, 37, 40, 65, 26, 7);
+    default:
+        console.error("error: state invalid");
+    }
+
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+    const imageSet = new ImageSet(15, 0, 50, 50, 65, 20, 7);
 
     //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8);
+    const frames = new Frames(8, 5);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.ATTACK, State.STILL, 10, 2, imageSet, frames, physics);
+    const player = new Sprite(SpriteID.ATTACK, State.STILL, sprite.xPos, sprite.yPos, imageSet, frames, physics);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(pirate);
+    globals.sprites.push(player);
 }
-
 
 function initLevel()
 {
@@ -250,5 +270,6 @@ export{
     initSprites,
     initLevel,
     initTimers,
-    initEvents
+    initEvents,
+    initDisparos
 }
