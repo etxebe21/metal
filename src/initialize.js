@@ -8,6 +8,8 @@ import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
 import { Pirate } from "./sprite.js";
+import HitBox from "./HitBox.js";
+
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
 {
@@ -110,8 +112,11 @@ function initPlayer()
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
     const physics = new Physics(40);
 
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    const hitBox = new HitBox(44, 57, 0, 0);
+
     //Creamos nuestr sprite
-    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 30, 40, imageSet, frames,physics);
+    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 30, 40, imageSet, frames,physics, hitBox);
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
@@ -128,6 +133,9 @@ function initZezen()
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    //const hitBox = new HitBox(30, 50, 25, 22);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
 
@@ -149,6 +157,9 @@ function initToro()
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    //const hitBox = new HitBox(35, 50, 15, 20);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 6) + 1;
 
@@ -172,6 +183,9 @@ function initFruta()
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+   // const hitBox = new HitBox(30, 35, 25, 20);
+
     //Creamos nuestro sprite
     const pirate = new Pirate(SpriteID.FRUTA, State.STILL, 22, 80, imageSet, frames, physics);
 
@@ -191,6 +205,9 @@ function initAgua()
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    //const hitBox = new HitBox(30, 45, 20, 15);
+
     //Creamos nuestro sprite
     const pirate = new Pirate(SpriteID.AGUA, State.STILL, 170, 35, imageSet, frames, physics);
 
@@ -200,32 +217,8 @@ function initAgua()
 
 function initDisparos(sprite)
 {
-    switch(sprite.state)
-    {
-    case State.RIGHT || State.STILL_RIGHT:
-        sprite.vx = +20;
-        break;
-    
-    case State.LEFT || State.STILL_LEFT:
-        sprite.vx = -20;
-        break;
-    
-    case State.UP || State.STILL_UP:
-        sprite.vy = +20;
-        sprite.physics.vy = sprite.physics.vLimit;
-        sprite.physics.vx = 0;
-        break;
-    
-    case State.DOWN || State.STILL_DOWN:
-        sprite.vy = +20;
-        break;
-
-    default:
-        console.error("error: state invalid");
-    }
-
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(15, 0, 50, 50, 65, 20, 7);
+    const imageSet = new ImageSet(7, 0, 50, 50, 65, 20, 7);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 5);
@@ -233,11 +226,39 @@ function initDisparos(sprite)
     //Creamos objeto physics con vLimit = 40pixels/seconds
     const physics = new Physics(40);
 
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    //const hitBox = new HitBox(40, 40, 15, 5);
+
     //Creamos nuestro sprite
-    const player = new Sprite(SpriteID.ATTACK, State.STILL, sprite.xPos, sprite.yPos, imageSet, frames, physics);
+    const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(player);
+    globals.sprites.push(bullet);
+    
+    console.log(sprite.state);
+
+    switch(sprite.state)
+    {
+    case State.STILL_RIGHT:
+        console.log("entra");
+        bullet.physics.vx = bullet.physics.vLimit;
+        break;
+    
+    case  State.STILL_LEFT:
+        bullet.physics.vx = - bullet.physics.vLimit;
+        break;
+    
+    case  State.STILL_UP:
+        bullet.physics.vy = - bullet.physics.vLimit;
+        break;
+    
+    case  State.STILL_DOWN:
+        bullet.physics.vy = bullet.physics.vLimit;
+        break;
+
+    default:
+        console.error("error: state invalid");
+    }
 }
 
 function initLevel()

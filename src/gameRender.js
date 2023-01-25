@@ -1,5 +1,6 @@
 import globals from "./globals.js";
-import {Tile, Game} from "./constants.js";
+import {Tile, Game, SpriteID} from "./constants.js";
+import Sprite from "./sprite.js";
 
 export default function render()
 {
@@ -113,6 +114,10 @@ function drawSprites()
         drawSpriteRectangle(sprite);
     
         renderSprite(sprite);
+
+        //TEST: Dibuja el HitBox
+        drawHitBox(sprite);
+        
     }
 }
 
@@ -127,6 +132,22 @@ function drawSpriteRectangle(sprite)
 
     globals.ctx.fillStyle = "white";
     globals.ctx.fillRect(x1, y1, w1, h1);
+}
+
+function drawHitBox (sprite)
+{
+
+    if(sprite.id === SpriteID.PLAYER)
+    {
+        //Datoa del sprite
+        const x1 = Math.floor(sprite.xPos) + Math.floor(sprite.hitBox.xOffset);
+        const y1 = Math.floor(sprite.yPos) + Math.floor(sprite.hitBox.yOffset);
+        const w1 = sprite.hitBox.xSize;
+        const h1 = sprite.hitBox.ySize;
+
+    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeRect (x1, y1, w1, h1);
+    }
 }
 
 //Dibuja mapa

@@ -19,17 +19,17 @@ export const SpriteID = {
     ZEZEN2: 3,
     FRUTA: 4,
     AGUA:  5,
-    ATTACK: 6
+    BULLET: 6
     
 }
 
 //Identificador de estado de sprite ( dirección)
 export const State = {
     //Estados player
-    UP:         3,
-    LEFT:       1,
     DOWN:       0,
+    LEFT:       1,
     RIGHT:      2,
+    UP:         3,
     STILL_UP:   7,
     STILL_LEFT: 5,
     STILL_DOWN: 4,
