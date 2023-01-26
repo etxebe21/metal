@@ -7,7 +7,7 @@ import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
-import { Pirate } from "./sprite.js";
+import { Enemy } from "./sprite.js";
 import HitBox from "./HitBox.js";
 
 //Función que inicializa los elementos  HTML
@@ -34,6 +34,7 @@ function initVars()
     globals.previousCycleMilliseconds = 0;
     globals.deltaTime = 0;
     globals.frameTimeObj = 1 / FPS; //Frame time in seconds
+    globals.life = 400;
 
     //Iniciar el estado juego
     globals.gameState = Game.PLAYING;
@@ -104,7 +105,7 @@ function initSprites()
 function initPlayer()
 {
     //Creamos las propiedades de las imagenes: xSize, ySize, gridSize, xOffset, yOffset
-    const imageSet = new ImageSet(0, 0, 45, 56, 65, 26, 17);
+    const imageSet = new ImageSet(0, 0, 40, 50, 65, 32, 28);
 
     //Creamos los datos de la animación. 8 frmaes / state
     const frames = new Frames(8, 5);
@@ -113,7 +114,7 @@ function initPlayer()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(44, 57, 0, 0);
+    const hitBox = new HitBox(35, 48, 2, 2);
 
     //Creamos nuestr sprite
     const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 30, 40, imageSet, frames,physics, hitBox);
@@ -126,7 +127,7 @@ function initZezen()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(8, 0, 36, 55, 64, 30, 28);
+    const imageSet = new ImageSet(8, 0, 36, 50, 65, 30, 28);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 10);
@@ -135,22 +136,22 @@ function initZezen()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    //const hitBox = new HitBox(30, 50, 25, 22);
+    const hitBox = new HitBox(26, 46, 5, 3);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.ZEZEN, State.RIGHT_2, 90, 125, imageSet, frames, physics, initTimeToChangeDirection);
+    const enemy = new Enemy(SpriteID.ZEZEN, State.RIGHT_2, 90, 125, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(pirate);
+    globals.sprites.push(enemy);
 }
 
 function initToro()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(10, 0, 40, 55, 65, 20, 25);
+    const imageSet = new ImageSet(10, 0, 39, 55, 65, 25, 25);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 10);
@@ -159,15 +160,15 @@ function initToro()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    //const hitBox = new HitBox(35, 50, 15, 20);
+    const hitBox = new HitBox(28, 45, 7, 9);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 6) + 1;
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.TORO, State.LEFT_2, 50, 3, imageSet, frames, physics, initTimeToChangeDirection);
+    const enemy = new Enemy(SpriteID.TORO, State.LEFT_2, 50, 3, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(pirate);
+    globals.sprites.push(enemy);
 }
 
 
@@ -175,7 +176,7 @@ function initFruta()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(14, 0, 36, 40, 65, 29, 25);
+    const imageSet = new ImageSet(14, 0, 36, 40, 65, 33, 30);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8);
@@ -184,20 +185,20 @@ function initFruta()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-   // const hitBox = new HitBox(30, 35, 25, 20);
+    const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.FRUTA, State.STILL, 22, 80, imageSet, frames, physics);
+    const enemy = new Enemy (SpriteID.FRUTA, State.STILL, 22, 80, imageSet, frames, physics,0, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(pirate);
+    globals.sprites.push(enemy);
 }
 
 function initAgua()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(16, 0, 33, 50, 63, 28, 19);
+    const imageSet = new ImageSet(16, 0, 30, 46, 63, 33, 22);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 5);
@@ -206,13 +207,13 @@ function initAgua()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    //const hitBox = new HitBox(30, 45, 20, 15);
+    const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const pirate = new Pirate(SpriteID.AGUA, State.STILL, 170, 35, imageSet, frames, physics);
+    const enemy = new Enemy(SpriteID.AGUA, State.STILL, 170, 35, imageSet, frames, physics,0 , hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(pirate);
+    globals.sprites.push(enemy);
 }
 
 function initDisparos(sprite)
@@ -227,10 +228,10 @@ function initDisparos(sprite)
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    //const hitBox = new HitBox(40, 40, 15, 5);
+    const hitBox = new HitBox(10, 10, 1, 1);
 
     //Creamos nuestro sprite
-    const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics);
+    const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics, 0 , hitBox );
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(bullet);

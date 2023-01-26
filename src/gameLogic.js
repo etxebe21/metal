@@ -2,6 +2,7 @@ import globals from "./globals.js";
 import {Game, State, SpriteID} from "./constants.js";
 import Sprite from "./sprite.js";
 import {initDisparos} from "./initialize.js";
+import detectCollisions from "./collisions.js";
 
 export default function update()
 {
@@ -193,7 +194,10 @@ if (isCollision)
 function playGame()
 {
     updateSprites();
+    detectCollisions();
     updateLevelTime(); 
+    updateLife();
+    
 }
 
 function updateSprites()
@@ -236,21 +240,6 @@ function updateSprite(sprite)
             break;
     }
 }
-
-function updateDisparo(sprite)
-{
-   
-    //Calculamos distancia que se mueve (Y = Y +Vt)
-sprite.yPos += sprite.physics.vy * globals.deltaTime;
-sprite.xPos += sprite.physics.vx * globals.deltaTime;
-
-
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-
-updateDirectionRandom(sprite);
-}
-
 
 
 function updateDisparos(sprite)
@@ -410,3 +399,17 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state === State.ATTACK ? State.STILL:
                     sprite.state;
 }      
+
+function updateLife()
+{
+    for (let i = 1; i < globals.sprites.length; ++i)
+    {
+        const sprite = globals.sprites[i];
+        
+        if( sprite.isCollisionWithPlayer)
+        {
+            //Si hay colision reducimos la vida
+            globals.life--;
+        }
+    }
+}

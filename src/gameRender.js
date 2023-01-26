@@ -47,7 +47,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("LIFE", 168, 8);
         globals.ctxHUD.fillStyle =  'red';
-        globals.ctxHUD.fillRect(168, 9, life, 8);
+        globals.ctxHUD.fillText(" " + globals.life, 168, 16);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';
@@ -136,9 +136,6 @@ function drawSpriteRectangle(sprite)
 
 function drawHitBox (sprite)
 {
-
-    if(sprite.id === SpriteID.PLAYER)
-    {
         //Datoa del sprite
         const x1 = Math.floor(sprite.xPos) + Math.floor(sprite.hitBox.xOffset);
         const y1 = Math.floor(sprite.yPos) + Math.floor(sprite.hitBox.yOffset);
@@ -147,6 +144,11 @@ function drawHitBox (sprite)
 
     globals.ctx.strokeStyle = "red";
     globals.ctx.strokeRect (x1, y1, w1, h1);
+
+    if (sprite.id === SpriteID.BULLET)
+    {
+        console.log("entra")
+
     }
 }
 

@@ -4,19 +4,24 @@ export default class Sprite
 {
     constructor(id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {
-        this.id                =id;           //Tipo de sprite
-        this.state             =state;        //Estado de animación sprite
-        this.xPos              =xPos;         //Posicion en X en Canvas
-        this.yPos              =yPos;         //Posición en Y en Canvas
-        this.imageSet          =imageSet;     //Datos de las imágenes del sprite
-        this.frames            =frames;       //Datos de los frames de animación                  
-        this.physics           =physics;      //Datos de las físicas
-        this.hitBox            =hitBox;  //Datos hitbox
+        this.id                               =id;           //Tipo de sprite
+        this.state                            =state;        //Estado de animación sprite
+        this.xPos                             =xPos;         //Posicion en X en Canvas
+        this.yPos                             =yPos;         //Posición en Y en Canvas
+        this.imageSet                         =imageSet;     //Datos de las imágenes del sprite
+        this.frames                           =frames;       //Datos de los frames de animación                  
+        this.physics                          =physics;      //Datos de las físicas
+        this.hitBox                           =hitBox;       //Datos hitbox
+        this.isCollidingWithPlayer            = false;   //Variable que indica si ha habido colision con player
+        this.isCollidingWithObstacleOnTheTop  = false;   //Indica si ha habido colision con n obstaculo hacia arriba 
+        this.isCollidingWithObstacleOnTheLeft = false;    //Indica si ha habido colision con n obstaculo hacia izuiqerda
+        this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
+        this.isCollidingWithObstacleOnTheRight  = false;  //Indica si ha habido colision con n obstaculo hacia derecha
     }
 }
 
 //cLASE PIRATE
-export class Pirate extends Sprite
+export class Enemy extends Sprite
 {
     constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
     {

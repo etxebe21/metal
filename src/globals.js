@@ -1,45 +1,48 @@
 //Variables globales
-import {Game} from "./constants.js"
+import {Game} from "./constants.js";
 
 export default {
 
-//Acceso al canvas y context
-canvas: {},
-ctx: {},
-canvasHUD: {},
-ctxHUD: {},
+    //Acceso al canvas y context
+    canvas: {},
+    ctx: {},
+    canvasHUD: {},
+    ctxHUD: {},
 
-//Estado del juego. Inicializamos a INVALID
-gameState: Game.INVALID,
+    //Estado del juego. Inicializamos a INVALID
+    gameState: Game.INVALID,
 
-//tIEMPO DE CICLO ANTERIOR (milliseconds)
-previousCycleMilliseconds: -1,
+    //tIEMPO DE CICLO ANTERIOR (milliseconds)
+    previousCycleMilliseconds: -1,
 
-//Tiempo de ciclo de juego rreal (seconds)
-deltaTime: 0,
+    //Tiempo de ciclo de juego rreal (seconds)
+    deltaTime: 0,
 
-//Tiempo de ciclo objetivo (seconds, constante)
-frameTimeObj: 0,
+    //Tiempo de ciclo objetivo (seconds, constante)
+    frameTimeObj: 0,
 
-//Caja de texto para mostrar datos de depuración
-txtPruebas: {},
+    //Caja de texto para mostrar datos de depuración
+    txtPruebas: {},
 
-//Datos de imagen (tileset)
-tileSets:[],
+    //Datos de imagen (tileset)
+    tileSets:[],
 
-//Variables para gestionar la carga de activos
-assetsToLoad: [],
+    //Variables para gestionar la carga de activos
+    assetsToLoad: [],
 
-//Array con datos de los sprites
-sprites: [],
+    //Array con datos de los sprites
+    sprites: [],
 
-//Datos del nivel
-level: {},
+    //Datos del nivel
+    level: {},
 
-//Temporizador nivel
-levelTime: {},
+    //Temporizador nivel
+    levelTime: {},
 
-//oBJETO QUE GUARDA EL ESTADO DE TECLA PULSADA
-action: {}
+    //oBJETO QUE GUARDA EL ESTADO DE TECLA PULSADA
+    action: {},
+
+    //Life
+    life: 0
 
 };
