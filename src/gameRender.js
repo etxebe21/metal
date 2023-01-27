@@ -24,9 +24,9 @@ export default function render()
 function renderHUD()
 {
         //TEST: Datos metidos en bruto
-        const score = 1990;
+        const score = globals.score;
         const highScore = 18990;
-        const life = 50;
+        const life = globals.life;
         const time = globals.levelTime.value;
         
 
@@ -71,11 +71,20 @@ function drawGame()
   globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
   globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
 
+    //Movemos la camara
+    //moveCamera();
+
+    //DIBUJAR FOONDO
+    renderBackground();
+
     //Dibujamos mapa (nivel)
     renderMap();
 
     //Dibujamos los elementos
     drawSprites();  
+
+    //Restauramos la camara
+   // restoreCamera();
 
     //Dibujamos el HUD
     renderHUD();
@@ -130,7 +139,7 @@ function drawSpriteRectangle(sprite)
     const w1 = sprite.imageSet.xSize;
     const h1 = sprite.imageSet.ySize;
 
-    globals.ctx.fillStyle = "white";
+    globals.ctx.fillStyle = "transparent";
     globals.ctx.fillRect(x1, y1, w1, h1);
 }
 
@@ -181,6 +190,29 @@ function renderMap()
             );
         }
     }
-
-
 }
+
+function renderBackground()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[2],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                  
+}
+
+// function moveCamera()
+// {
+//     const xTranslation = -globals.camera.x;
+//     const yTranslation = -globals.camera.y;
+
+//     globals.ctx.translate(xTranslation, yTranslation);
+// }
+
+// function restoreCamera()
+// {
+//     globals.ctx.setTransform(1, 0, 0, 1, 0, 0);
+// }

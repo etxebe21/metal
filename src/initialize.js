@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import {Game, SpriteID, State, FPS} from "./constants.js";
-import Sprite from "./sprite.js";
+import Sprite, { Bruja } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
 import {Level, level1} from "./Level.js";
@@ -9,6 +9,7 @@ import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
 import { Enemy } from "./sprite.js";
 import HitBox from "./HitBox.js";
+//import Camera from "./Camera.js";
 
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
@@ -60,7 +61,7 @@ function loadAssets()
     //Load the spritesheet image
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/spritesheet (1).png"; //Ruta relativa HTML
+    tileSet.src = "./images/spritesheet (1)..png"; //Ruta relativa HTML
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -68,6 +69,13 @@ function loadAssets()
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
     tileSet.src = "./images/mapa.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //fondo pantalla
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/cies (2).png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 }
@@ -99,7 +107,8 @@ function initSprites()
     initZezen();
     initToro();
     initFruta();
-    initAgua();  
+    initAgua(); 
+    initBruja(); 
 }
 
 function initPlayer()
@@ -114,10 +123,10 @@ function initPlayer()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(35, 48, 2, 2);
+    const hitBox = new HitBox(28, 45, 3, 2);
 
     //Creamos nuestr sprite
-    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 30, 40, imageSet, frames,physics, hitBox);
+    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 10, 260, imageSet, frames,physics, hitBox);
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
@@ -136,12 +145,12 @@ function initZezen()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(26, 46, 5, 3);
+    const hitBox = new HitBox(22, 46, 9, 3);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
 
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.ZEZEN, State.RIGHT_2, 90, 125, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
+    const enemy = new Enemy(SpriteID.ZEZEN, State.RIGHT_2, 90, 259, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(enemy);
@@ -160,12 +169,12 @@ function initToro()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(28, 45, 7, 9);
+    const hitBox = new HitBox(22, 45, 13, 9);
 
     const initTimeToChangeDirection = Math.floor(Math.random() * 6) + 1;
 
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.TORO, State.LEFT_2, 50, 3, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
+    const enemy = new Enemy(SpriteID.TORO, State.LEFT_2, 100, 251, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(enemy);
@@ -188,7 +197,7 @@ function initFruta()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const enemy = new Enemy (SpriteID.FRUTA, State.STILL, 22, 80, imageSet, frames, physics,0, hitBox);
+    const enemy = new Enemy (SpriteID.FRUTA, State.STILL, 220, 267, imageSet, frames, physics,0, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(enemy);
@@ -210,11 +219,38 @@ function initAgua()
     const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.AGUA, State.STILL, 170, 35, imageSet, frames, physics,0 , hitBox);
+    const enemy = new Enemy(SpriteID.AGUA, State.STILL, 320, 132, imageSet, frames, physics,0 , hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(enemy);
 }
+
+function initBruja()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(23, 0, 35, 45, 65, 42, 15);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(2, 8);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    const hitBox = new HitBox(20, 31, 7, 7);
+
+    //Creamos nuestro sprite
+    const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 100, 75, imageSet, frames, physics, hitBox);
+
+    //Iniciamos velocidades
+    bruja.physics.vx = bruja.physics.vLimit;
+    bruja.physics.vy = bruja.physics.vLimit;
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(bruja);
+}
+
 
 function initDisparos(sprite)
 {
@@ -262,6 +298,41 @@ function initDisparos(sprite)
     }
 }
 
+function initDisparoEnemy(sprite)
+{
+//Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+const imageSet = new ImageSet(18, 0, 50, 50, 65, 20, 7);
+
+//Creamos los datos de la animación. 8 frames / state
+const frames = new Frames(8, 5);
+
+//Creamos objeto physics con vLimit = 40pixels/seconds
+const physics = new Physics(40);
+
+//Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+const hitBox = new HitBox(10, 10, 1, 1);
+
+//Creamos nuestro sprite
+const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics, 0 , hitBox );
+
+//Añadimos el pirate al array de sprites
+globals.sprites.push(bullet);
+
+console.log(sprite.state);
+
+switch(sprite.state)
+    {
+    case State.RIGHT_2:
+        console.log("entra");
+        bullet.physics.vx = bullet.physics.vLimit;
+        break;
+    
+    case  State.LEFT_2:
+        bullet.physics.vx = - bullet.physics.vLimit;
+        break;
+    }
+}
+
 function initLevel()
 {
     //Creamos las propiedades de las imagemnes del mapa; initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
@@ -275,6 +346,7 @@ function initTimers()
 {
     //Creamos timer de valor 200, con cambios cada 0,5 segundos
     globals.levelTime = new Timer(0, 1);
+    globals.lifeTime = new Timer (3 ,1);
 }
 
 function initEvents()
@@ -284,8 +356,13 @@ function initEvents()
     window.addEventListener("keyup", keyupHandler, false);
 }
 
+// function initCamera()
+// {
+//     globals.camera = new Camera(0, 0);
+// }
+
 //Exportar funciones
-export{
+export {
     initHTMLelements,
     initVars,
     loadAssets,
@@ -293,5 +370,6 @@ export{
     initLevel,
     initTimers,
     initEvents,
-    initDisparos
+    initDisparos,
+    initDisparoEnemy
 }

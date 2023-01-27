@@ -33,6 +33,9 @@ function init()
     //Iniciamos evento teclado
     initEvents();
 
+    //Inicializamos camera
+    //initCamera();
+
     //Start the first frame request
     window.requestAnimationFrame(gameLoop);
 }

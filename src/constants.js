@@ -19,7 +19,8 @@ export const SpriteID = {
     ZEZEN2: 3,
     FRUTA: 4,
     AGUA:  5,
-    BULLET: 6
+    BULLET: 6,
+    BRUJA:  7
     
 }
 
@@ -56,14 +57,17 @@ export const Tile = {
 
 //Id de bloque del mapa
 export const Block = {
-    EMPTY:      0,
-    VINES:      1,
-    BROWN_1:    2,
-    BROWN_2:    3,
-    DARK_1:     4,
-    GRAY:       5,
-    CRYSTAL_1:  6,
-    CRYSTAL_2:  7
+    EMPTY:      0,     
+    BROWN_1:    1,
+    BROWN_2:    2,
+    CESPED_1:   3,
+    CESPED_2:   4,
+    PIEDRA_1:   5,
+    PIEDRA_2:   6,
+    CRYSTAL_1:  7,
+    CRYSTAL_2:  8,
+    ROCA_1:     9,
+    ROCA_2:     10
 }
 
 //Keyboard key codes
@@ -78,4 +82,13 @@ export const Key = {
 
 //Aceleración
 export const GRAVITY = 80;
+
+export const Collision = {
+
+    NO_COLLISION:  -1,
+    BORDER_UP:     0,
+    BORDER_DOWN:   1,
+    BORDER_LEFT:   2,
+    BORDER_RIGHT:  3
+}
 

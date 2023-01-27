@@ -1,4 +1,4 @@
-
+import { Collision } from "./constants.js";
 //Clase gestora de los sprites
 export default class Sprite
 {
@@ -20,7 +20,7 @@ export default class Sprite
     }
 }
 
-//cLASE PIRATE
+//cLASE Enemy
 export class Enemy extends Sprite
 {
     constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
@@ -39,5 +39,16 @@ constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {
     //Llamamos al constructor de la clase Sprite
     super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+    }
+}
+
+export class Bruja extends Sprite
+{
+    constructor (id, state, xPos, yPos, imageSet, frames, physics, hitbox)
+    {
+        //Llamamos al construcor de la clase Sprite
+        super(id, state, xPos, yPos, imageSet, frames, physics, hitbox);
+
+        this.collisionBorder    = Collision.NO_COLLISION;   //Empezamos no colisiion
     }
 }

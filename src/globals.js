@@ -39,10 +39,16 @@ export default {
     //Temporizador nivel
     levelTime: {},
 
+    //temporizadoe vida
+    lifeTime: {},
+
     //oBJETO QUE GUARDA EL ESTADO DE TECLA PULSADA
     action: {},
 
     //Life
-    life: 0
+    life: 0,
+
+    //Score
+    score: 0
 
 };

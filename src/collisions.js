@@ -70,7 +70,7 @@ function getMapTileId (xPos, yPos)
     const fil = Math.floor(yPos / brickSize);
     const col = Math.floor(xPos / brickSize);
 
-    return lvelData[fil][col];
+    return levelData[fil][col];
 }
 
 function isCollidingWithObstacleAt (xPos, yPos, obstacleId)
@@ -91,7 +91,7 @@ function isCollidingWithObstacleAt (xPos, yPos, obstacleId)
 //Calculo de cvolision con los bloques del mapa
 function detectCollisionBetweenPlayerAndMapObstacles()
 {
-    const player = globals.sprite[0];
+    const player = globals.sprites[2];
 
     //Reset collision state
     player.isCollidingWithObstacleOnTheRight = false;
@@ -109,7 +109,7 @@ function detectCollisionBetweenPlayerAndMapObstacles()
     const direction = player.state;
 
     //ID del obsatculo
-    const obstacleId = Block.CRYSTAL_1;  //aqui cambiarlo!!!!!!!!!!!!
+    const obstacleId = Block.BROWN_2;  //aqui cambiarlo!!!!!!!!!!!!
 
     switch(direction)
     {
