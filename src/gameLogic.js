@@ -466,7 +466,7 @@ function updateLife()
         
         if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
         { 
-            if(sprite.isCollisionWithPlayer != SpriteID.AGUA && SpriteID.FRUTA)
+            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
             {
             //Si hay colision reducimos la vida
             globals.life -= 100;
