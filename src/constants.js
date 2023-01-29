@@ -2,10 +2,17 @@
 
 //Estados del juego
 export const Game = {
-    INVALID:     1,
+    INVALID:     -1,
     LOADING:     0,
     PLAYING:     1,
-    OVER:        2
+    OVER:        2,
+    NEW_GAME:    3,
+    HIGH_SCORES: 4,
+    HISTORY:     5,
+    GAME_OVER:   6,
+    HOME:        7,
+    EXIT:        8
+
 };
 
 //Velocidad del juego
@@ -27,6 +34,7 @@ export const SpriteID = {
 //Identificador de estado de sprite ( dirección)
 export const State = {
     //Estados player
+    STATE_OFF:   -1,
     DOWN:       0,
     LEFT:       1,
     RIGHT:      2,
@@ -47,6 +55,8 @@ export const State = {
     DOWN_2:     3,
     //Estado FRUTA AGUA HACHA
     STILL:      0
+
+    //Estados 
 }
 
 //Diferentes tileSet
@@ -77,7 +87,10 @@ export const Key = {
     RIGHT:    39,
     LEFT:     37,
     JUMP:     32,
-    ATTACK:   65
+    ATTACK:   65,
+    ONE:       49,
+    TWO:       50,
+    THREE:     51
 }
 
 //Aceleración

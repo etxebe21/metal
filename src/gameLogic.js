@@ -17,10 +17,89 @@ export default function update()
             playGame();
             break;
 
+        case Game.HOME:
+            updateNewGame();
+            break;
+
+        case Game.HISTORY:
+            updateHistory();
+            break;
+
+        case Game.GAME_OVER:
+            updateGameOver();
+
+        case Game.HIGH_SCORES:
+            updateHighScores();
+            break;
+
         default:
             console.error("Error: Game State invalid");
     }
 }
+
+function updateNewGame()
+{
+    if( globals.action.move1)
+        globals.gameState = Game.PLAYING;
+
+    if ( globals.action.move2)
+        globals.gameState = Game.HIGH_SCORES;
+
+    if ( globals.action.move3)
+        globals.gameState = Game.HISTORY;
+}
+
+function updateGameOver()
+{
+    if( globals.action.move1)
+        globals.gameState = Game.HOME;
+
+    if ( globals.action.move2)
+        globals.gameState = Game.EXIT;
+
+    if (globals.action.move3)
+        globals.gameState = Game.HIGH_SCORES;
+}
+
+function updateHighScores()
+{
+    if( globals.action.move1)
+        globals.gameState = Game.HOME;
+
+    if ( globals.action.move2)
+        globals.gameState = Game.EXIT;
+}
+
+function updateHistory()
+{
+    if( globals.action.move1)
+        globals.gameState = Game.HOME; 
+}
+
+function playGame()
+{
+    //Actualizacion de la fisica de Sprites
+    updateSprites();
+
+    //Colisiones
+    detectCollisions();
+
+    //Actualizacion de la camara
+    //updateCamera();
+
+    //Actualizacion de la logica de juego
+    updateLevelTime(); 
+    updateLife();
+    updateLifeTime();
+    updateScore();
+
+//     if(globals.life === 0 || globals.levelTime.value >= 120)
+
+//     globals.life = 0;
+//    // globals.levelTime.value = 0;
+//     globals.gameState = Game.PLAYING;
+}
+
 
 //fUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
@@ -87,6 +166,7 @@ updateAnimationFrame(sprite);
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
 {
+    console.log("colision ZEZEN");
 //Maquina de estados pirata
     switch(sprite.state)
     {
@@ -124,6 +204,7 @@ if (isCollision)
 //Funcion que actualiza el TORO
 function updateToro(sprite)
 {
+console.log("colision TORO");
 //Maquina de estados toro
     switch(sprite.state)
     {
@@ -154,7 +235,41 @@ if (isCollision)
         swapDirection(sprite);
     }
 }
+
 function updateBruja(sprite)
+{
+    //Movimiento de rebote. Cambiamos velocidades sgun haya colision con las paredes
+    switch(sprite.collisionBorder)
+    {
+        case Collision.BORDER_RIGHT:
+            sprite.physics.vx = -sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_LEFT:
+            sprite.physics.vx = sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_UP:
+            sprite.physics.vy =sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_DOWN:
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        default:
+            //Si no hay colision mantenemos velocidades
+    }
+
+    sprite.xPos += sprite.physics.vx * globals.deltaTime;
+    sprite.yPos += sprite.physics.vy * globals.deltaTime;
+
+    updateAnimationFrame(sprite);
+
+    calculateCollisionWithFourBorders(sprite);
+}
+
+function updateBruja2(sprite)
 {
     //Movimiento de rebote. Cambiamos velocidades sgun haya colision con las paredes
     switch(sprite.collisionBorder)
@@ -188,23 +303,6 @@ function updateBruja(sprite)
 }
 
 
-function playGame()
-{
-    //Actualizacion de la fisica de Sprites
-    updateSprites();
-
-    //Colisiones
-    detectCollisions();
-
-    //Actualizacion de la camara
-    //updateCamera();
-
-    //Actualizacion de la logica de juego
-    updateLevelTime(); 
-    updateLife();
-    updateLifeTime();
-}
-
 function updateSprites()
 {
     for (let i=0; i < globals.sprites.length; ++i)
@@ -212,7 +310,7 @@ function updateSprites()
         const sprite = globals.sprites[i];
         updateSprite(sprite);
     
-    if(sprite.state === State.OFF){ // -1
+    if(sprite.state === State.STATE_OFF){ // -1
 
         globals.sprites.splice(i, 1);
          i--; }
@@ -242,7 +340,7 @@ function updateSprite(sprite)
         //     break;
 
         // case SpriteID.FRUTA:
-        //     updateAgua(sprite);
+        //     updateFruta(sprite);
         //     break;
 
         case SpriteID.BULLET:
@@ -253,6 +351,9 @@ function updateSprite(sprite)
             updateBruja(sprite);
             break;
 
+        case SpriteID.BRUJA:
+            updateBruja2(sprite);
+            break;
 
         default:
             break;
@@ -328,6 +429,43 @@ function updateLifeTime()
 
         //Reseteamos timeChangeCounter
         globals.lifeTime.timeChangeCounter = 0;
+    }
+}
+
+function updateLife()
+{
+    //console.log("colision");
+    for (let i = 1; i < globals.sprites.length; ++i)
+    {
+        const sprite = globals.sprites[i];
+        
+        if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
+        { 
+            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
+            {
+                //Si hay colision reducimos la vida
+                globals.life -= 100;
+                globals.lifeTime.value = 3;
+            }
+        }
+    }
+}
+
+function updateScore()
+{
+    for (let i = 1; i < globals.sprites.length; ++i)
+    {
+        const sprite = globals.sprites[i];
+        
+        if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
+        { 
+            if(sprite.id = SpriteID.AGUA && SpriteID.FRUTA)
+            {
+                //Si hay colision sumamos puntos
+                 globals.score += 100;
+                 globals.lifeTime.value = 3;
+            }
+        }
     }
 }
 
@@ -449,7 +587,6 @@ function readKeyboardAndAssignState(sprite)
                     globals.action.moveRight     ? State.RIGHT:       //rIGHT KEY
                     globals.action.moveUp        ? State.UP:         //Uo key
                     globals.action.moveDown      ? State.DOWN:          //Down key
-                    //globals.action.moveAttack    ? State.ATTACK:     //ATTACK KEY
                     sprite.state === State.LEFT  ? State.STILL_LEFT:    //No key pressed and previous state LEFT
                     sprite.state === State.RIGHT ? State.STILL_RIGHT:   //No key pressed and previous state RIGHT
                     sprite.state === State.UP    ? State.STILL_UP:     //No key pressed and previous state UP
@@ -458,23 +595,7 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state;
 }      
 
-function updateLife()
-{
-    for (let i = 1; i < globals.sprites.length; ++i)
-    {
-        const sprite = globals.sprites[i];
-        
-        if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
-        { 
-            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
-            {
-            //Si hay colision reducimos la vida
-            globals.life -= 100;
-            globals.lifeTime.value = 3;
-            }
-        }
-    }
-}
+
 
 // function updateCamera()
 // {

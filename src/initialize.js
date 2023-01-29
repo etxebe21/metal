@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import {Game, SpriteID, State, FPS} from "./constants.js";
-import Sprite, { Bruja } from "./sprite.js";
+import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
 import {Level, level1} from "./Level.js";
@@ -47,7 +47,11 @@ function initVars()
         moveUp: false,
         moveDown: false,
         attack: false,
-        jump: false
+        jump: false,
+        move1: false,
+        move2: false,
+        move3: false,
+        move4: false
 
     
     }
@@ -76,6 +80,34 @@ function loadAssets()
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
     tileSet.src = "./images/cies (2).png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //home
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/MENU1.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //high score
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/HIGHSCORES.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //history
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/HISTORY.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //game over
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/GAMEOVER.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 }
@@ -109,6 +141,7 @@ function initSprites()
     initFruta();
     initAgua(); 
     initBruja(); 
+    initBruja2();
 }
 
 function initPlayer()
@@ -197,10 +230,10 @@ function initFruta()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const enemy = new Enemy (SpriteID.FRUTA, State.STILL, 220, 267, imageSet, frames, physics,0, hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 220, 267, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(enemy);
+    globals.sprites.push(puntos);
 }
 
 function initAgua()
@@ -219,16 +252,15 @@ function initAgua()
     const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.AGUA, State.STILL, 320, 132, imageSet, frames, physics,0 , hitBox);
+    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 320, 132, imageSet, frames, physics , hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(enemy);
+    globals.sprites.push(puntos);
 }
 
 function initBruja()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-
     const imageSet = new ImageSet(23, 0, 35, 45, 65, 42, 15);
 
     //Creamos los datos de la animación. 8 frames / state
@@ -238,7 +270,7 @@ function initBruja()
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(20, 31, 7, 7);
+    const hitBox = new HitBox(15, 28, 9, 9);
 
     //Creamos nuestro sprite
     const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 100, 75, imageSet, frames, physics, hitBox);
@@ -250,6 +282,32 @@ function initBruja()
     //Añadimos el pirate al array de sprites
     globals.sprites.push(bruja);
 }
+
+function initBruja2()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+    const imageSet = new ImageSet(24, 0, 35, 45, 65, 40, 1);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(2, 6);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    const hitBox = new HitBox(15, 30, 11, 5);
+
+    //Creamos nuestro sprite
+    const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 10, 7, imageSet, frames, physics, hitBox);
+
+    //Iniciamos velocidades
+    bruja.physics.vx = -bruja.physics.vLimit;
+    bruja.physics.vy = -bruja.physics.vLimit;
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(bruja);
+}
+
 
 
 function initDisparos(sprite)
@@ -264,12 +322,12 @@ function initDisparos(sprite)
     const physics = new Physics(40);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(10, 10, 1, 1);
+    const hitBox = new HitBox(35, 30, 10,11);
 
     //Creamos nuestro sprite
-    const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics, 0 , hitBox );
+    const bullet = new Disparo(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics, hitBox );
 
-    //Añadimos el pirate al array de sprites
+    //Añadimos el DIPASRO al array de sprites
     globals.sprites.push(bullet);
     
     console.log(sprite.state);
@@ -280,16 +338,32 @@ function initDisparos(sprite)
         console.log("entra");
         bullet.physics.vx = bullet.physics.vLimit;
         break;
+
+    case State.RIGHT:
+        bullet.physics.vx = bullet.physics.vLimit;
+        break;
     
-    case  State.STILL_LEFT:
+    case State.STILL_LEFT:
+        bullet.physics.vx = - bullet.physics.vLimit;
+        break;
+
+    case State.LEFT:
         bullet.physics.vx = - bullet.physics.vLimit;
         break;
     
-    case  State.STILL_UP:
+    case State.STILL_UP:
+        bullet.physics.vy = - bullet.physics.vLimit;
+        break;
+
+    case State.UP:
         bullet.physics.vy = - bullet.physics.vLimit;
         break;
     
-    case  State.STILL_DOWN:
+    case State.STILL_DOWN:
+        bullet.physics.vy = bullet.physics.vLimit;
+        break;
+
+    case State.DOWN:
         bullet.physics.vy = bullet.physics.vLimit;
         break;
 
@@ -344,7 +418,7 @@ function initLevel()
 
 function initTimers()
 {
-    //Creamos timer de valor 200, con cambios cada 0,5 segundos
+    //Creamos timer, con cambios cada 1 segundos
     globals.levelTime = new Timer(0, 1);
     globals.lifeTime = new Timer (3 ,1);
 }

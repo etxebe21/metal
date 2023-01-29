@@ -2,7 +2,7 @@ import { Collision } from "./constants.js";
 //Clase gestora de los sprites
 export default class Sprite
 {
-    constructor(id, state, xPos, yPos, imageSet, frames, physics, hitBox)
+    constructor(id, state, xPos, yPos, imageSet, frames, physics, hitBox )
     {
         this.id                               =id;           //Tipo de sprite
         this.state                            =state;        //Estado de animación sprite
@@ -26,7 +26,7 @@ export class Enemy extends Sprite
     constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
     {
         //Llamamos al constructor de la clase Sprite
-        super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+        super (id, state, xPos, yPos, imageSet, frames, physics, hitBox,);
 
         this.directionChangeCounter      = 0;                 //Contador para cambio direccion(seconds)
         this.maxTimeToChangeDirection    = maxTimeToChangeDirection; //Maximo tiempo para cambio de direccion(seconds)
@@ -34,6 +34,15 @@ export class Enemy extends Sprite
 }
 
 export class Disparo extends Sprite
+{
+constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
+    {
+    //Llamamos al constructor de la clase Sprite
+    super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+    }
+}
+
+export class Puntos extends Sprite
 {
 constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {

@@ -154,11 +154,11 @@ function drawHitBox (sprite)
     globals.ctx.strokeStyle = "red";
     globals.ctx.strokeRect (x1, y1, w1, h1);
 
-    if (sprite.id === SpriteID.BULLET)
-    {
-        console.log("entra")
+    // if (sprite.id === SpriteID.BULLET)
+    // {
+    //     console.log("entra")
 
-    }
+    // }
 }
 
 //Dibuja mapa

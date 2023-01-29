@@ -32,8 +32,8 @@ export default function detectCollisions()
 }
 
 function detectCollisionBetweenPlayerAndSprite (sprite)
-{
-    
+{    //console.log(sprite.isCollidingWithPlayer);
+
         //Reset collision state
         sprite.isCollidingWithPlayer = false;
 
@@ -55,6 +55,7 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
         const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
         if(isOverlap)
             {
+                //console.log("entra");
             //Existe colision
             sprite.isCollidingWithPlayer = true;
             }
