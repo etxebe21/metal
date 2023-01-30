@@ -163,10 +163,20 @@ updateAnimationFrame(sprite);
 
 }
 
+function updateFruta(sprite)
+{
+    
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+}
+
+function updateAgua()
+{} 
+
+
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
 {
-    console.log("colision ZEZEN");
 //Maquina de estados pirata
     switch(sprite.state)
     {
@@ -204,7 +214,6 @@ if (isCollision)
 //Funcion que actualiza el TORO
 function updateToro(sprite)
 {
-console.log("colision TORO");
 //Maquina de estados toro
     switch(sprite.state)
     {
@@ -310,10 +319,10 @@ function updateSprites()
         const sprite = globals.sprites[i];
         updateSprite(sprite);
     
-    if(sprite.state === State.STATE_OFF){ // -1
+    // if(sprite.state === State.STATE_OFF){ // -1
 
-        globals.sprites.splice(i, 1);
-         i--; }
+    //     globals.sprites.splice(i, 1);
+    //      i--; }
     }
 }
 
@@ -335,13 +344,13 @@ function updateSprite(sprite)
             updateToro(sprite); 
             break;
 
-        // case SpriteID.AGUA:
-        //     updateAgua(sprite);
-        //     break;
+        case SpriteID.AGUA:
+            updateAgua(sprite);
+            break;
 
-        // case SpriteID.FRUTA:
-        //     updateFruta(sprite);
-        //     break;
+        case SpriteID.FRUTA:
+            updateFruta(sprite);
+            break;
 
         case SpriteID.BULLET:
             updateDisparos(sprite);
@@ -363,43 +372,12 @@ function updateSprite(sprite)
 
 function updateDisparos(sprite)
 {
-//Maquina de estados disparos
-    // switch(sprite.state)
-    // {
-    //     case State.UP:
-    //         console.log("ariba");
-    //     //Si se mueve arriba asignamos velocidad en Ypositiva
-    //         sprite.physics.vy = sprite.physics.vLimit;
-    //         break;
-            
-    //     case State.DOWN:
-    //         console.log("down");
-    //      //Si se mueve abajo asignamos velocidad en Y negativa
-    //         sprite.physics.vy = -sprite.physics.vLimit;
-    //         break;
-            
-    //     case State.LEFT:
-    //         console.log("left");
-    //     //Si se mueve arriba asignamos velocidad en Ypositiva
-    //         sprite.physics.vx = sprite.physics.xLimit;
-    //         break;
+    //Calculamos distancia que se mueve (Y = Y +Vt)
+    sprite.yPos += sprite.physics.vy * globals.deltaTime;
+    sprite.xPos += sprite.physics.vx * globals.deltaTime;
 
-    //     case State.RIGHT:
-    //         console.log("derecha")
-    //      //Si se mueve abajo asignamos velocidad en Y negativa
-    //         sprite.physics.vx = -sprite.physics.xLimit;
-    //         break;
-
-    //     default:
-    //     console.error("Error: state invalid");
-    // }
-//Calculamos distancia que se mueve (Y = Y +Vt)
-sprite.yPos += sprite.physics.vy * globals.deltaTime;
-sprite.xPos += sprite.physics.vx * globals.deltaTime;
-
-
-//Actualizamos la animación
-updateAnimationFrame(sprite);
+    //Actualizamos la animación
+    updateAnimationFrame(sprite);
 }
 
 function updateLevelTime()
@@ -434,14 +412,14 @@ function updateLifeTime()
 
 function updateLife()
 {
-    //console.log("colision");
     for (let i = 1; i < globals.sprites.length; ++i)
     {
-        const sprite = globals.sprites[i];
+        const enemy = globals.sprites[i];
         
-        if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
+        if(enemy.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
         { 
-            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
+            console.log("entra");
+            if(enemy.id != SpriteID.AGUA && SpriteID.FRUTA)
             {
                 //Si hay colision reducimos la vida
                 globals.life -= 100;
@@ -450,15 +428,15 @@ function updateLife()
         }
     }
 }
-
 function updateScore()
-{
+{ 
     for (let i = 1; i < globals.sprites.length; ++i)
     {
         const sprite = globals.sprites[i];
         
-        if( sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value == 0)
+        if(sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
         { 
+            console.log("entra");
             if(sprite.id = SpriteID.AGUA && SpriteID.FRUTA)
             {
                 //Si hay colision sumamos puntos
@@ -595,8 +573,14 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state;
 }      
 
+function readKeyboardAndAssignState1(game)
+{
+    game.state = globals.action.move1   ? State.ONE:
+                globals.action.mover2   ? State.TWO:
+                globals.action.move3    ? State.THREE:
+                game.state;
 
-
+}
 // function updateCamera()
 // {
 //     //Centramos la camara en el player

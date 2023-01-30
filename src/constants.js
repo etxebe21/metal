@@ -6,12 +6,11 @@ export const Game = {
     LOADING:     0,
     PLAYING:     1,
     OVER:        2,
-    NEW_GAME:    3,
+    HOME:           3,
     HIGH_SCORES: 4,
     HISTORY:     5,
     GAME_OVER:   6,
-    HOME:        7,
-    EXIT:        8
+    EXIT:        7
 
 };
 

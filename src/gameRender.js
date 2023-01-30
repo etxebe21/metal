@@ -15,10 +15,76 @@ export default function render()
         case Game.PLAYING:
             drawGame();
             break;
+        
+        case Game.HOME:
+            renderHome();
+            break;
+        
+        case Game.HISTORY:
+            renderHistory();
+            break;
 
+        case Game.HIGH_SCORES:
+            renderHighScores();
+            break;
+        
+        case Game.GAME_OVER:
+            renderGameOver();
+            break;
+
+
+        
         default:
             console.error("Error: Game State invalid");
     }
+}
+
+function renderHome()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[3],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
+}
+
+function renderHistory()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[5],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
+}
+
+function renderHighScores()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[4],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
+}
+
+function renderGameOver()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[6],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
 }
 
 function renderHUD()
@@ -35,7 +101,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("SCORE", 8, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText( " " + score, 8, 16);
+        globals.ctxHUD.fillText( " " + globals.score, 8, 16);
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';

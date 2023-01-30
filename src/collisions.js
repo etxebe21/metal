@@ -32,8 +32,8 @@ export default function detectCollisions()
 }
 
 function detectCollisionBetweenPlayerAndSprite (sprite)
-{    //console.log(sprite.isCollidingWithPlayer);
 
+{    
         //Reset collision state
         sprite.isCollidingWithPlayer = false;
 
@@ -53,13 +53,13 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
         const h2 = sprite.hitBox.ySize;
 
         const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
+        //console.log("entra hasta aqui");
         if(isOverlap)
             {
-                //console.log("entra");
+                console.log("entra en funcion");
             //Existe colision
             sprite.isCollidingWithPlayer = true;
             }
-    
 }
 
 //Deevuelve el Id del tile del mapa para las coordenadas xPos y yPos
