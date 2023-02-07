@@ -473,7 +473,7 @@ function updateLife()
         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
         { 
             console.log("entra");
-            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
+            if(sprite.id != SpriteID.AGUA && sprite.id != SpriteID.FRUTA)
             {
                 //Si hay colision reducimos la vida
                 globals.life -= 100;
@@ -491,7 +491,7 @@ function updateScore()
         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
         { 
             console.log("entra");
-            if(sprite.id = SpriteID.AGUA && SpriteID.FRUTA)
+            if(sprite.id == SpriteID.AGUA && sprite.id == SpriteID.FRUTA)
             {
                 //Si hay colision sumamos puntos
                  globals.score += 100;
