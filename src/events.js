@@ -28,6 +28,22 @@ export function keydownHandler(event)
         case Key.ATTACK:
             globals.action.moveAttack = true;
             break;
+
+        case Key.ONE:
+            globals.action.move1 = true;
+            break;
+    
+        case Key.TWO:
+            globals.action.move2 = true;
+            break;
+    
+        case Key.THREE:
+            globals.action.move3 = true;
+            break;
+    
+        case Key.FOUR:
+            globals.action.move4 = true;
+            break;
     }
 }
 
@@ -57,6 +73,22 @@ export function keyupHandler(event)
 
         case Key.ATTACK:
             globals.action.moveAttack = false;
+            break;
+
+        case Key.ONE:
+            globals.action.move1 = false;
+            break;
+
+        case Key.TWO:
+            globals.action.move2 = false;
+            break;
+
+        case Key.THREE:
+            globals.action.move3 = false;
+            break;
+
+        case Key.FOUR:
+            globals.action.move4 = false;
             break;
     }
 }

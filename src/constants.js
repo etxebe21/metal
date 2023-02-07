@@ -89,7 +89,8 @@ export const Key = {
     ATTACK:   65,
     ONE:       49,
     TWO:       50,
-    THREE:     51
+    THREE:     51,
+    FOUR:      52
 }
 
 //Aceleración

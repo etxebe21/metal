@@ -51,28 +51,19 @@ function updateNewGame()
 
 function updateGameOver()
 {
-    if( globals.action.move1)
+    if( globals.action.move4)
         globals.gameState = Game.HOME;
-
-    if ( globals.action.move2)
-        globals.gameState = Game.EXIT;
-
-    if (globals.action.move3)
-        globals.gameState = Game.HIGH_SCORES;
 }
 
 function updateHighScores()
 {
-    if( globals.action.move1)
+    if( globals.action.move4)
         globals.gameState = Game.HOME;
-
-    if ( globals.action.move2)
-        globals.gameState = Game.EXIT;
 }
 
 function updateHistory()
 {
-    if( globals.action.move1)
+    if( globals.action.move4)
         globals.gameState = Game.HOME; 
 }
 
@@ -91,7 +82,7 @@ function playGame()
     updateLevelTime(); 
     updateLife();
     updateLifeTime();
-    //updateScore();
+    updateScoreTotal();
 
 //     if(globals.life === 0 || globals.levelTime.value >= 120)
 
@@ -168,12 +159,12 @@ function updateFruta(sprite)
 updateAnimationFrame(sprite);
 //points();
 //reaparicion();
-updateScore();
+
 }
 
 function updateAgua()
 {
-updateScore();
+
 } 
 
 
@@ -322,10 +313,10 @@ function updateSprites()
         const sprite = globals.sprites[i];
         updateSprite(sprite);
     
-    // if(sprite.state === State.STATE_OFF){ // -1
+    if(sprite.state === State.STATE_OFF){ // -1
 
-    //     globals.sprites.splice(i, 1);
-    //      i--; }
+        globals.sprites.splice(i, 1);
+         i--; }
     }
 }
 
@@ -412,11 +403,11 @@ function reaparicionFresa(sprite)
 function points(sprite)
 {
     if(sprite.isCollidingWithPlayer)
-    {
-        globals.score += 100;
-    }
-
+        {
+            globals.score += 100;
+        }
 }
+
 
 function increment(sprite)
 {
@@ -484,24 +475,24 @@ function updateLife()
         }
     }
 }
-function updateScore()
-{ 
-    for (let i = 1; i < globals.sprites.length; ++i)
-    {
-        const sprite = globals.sprites[i];
+// function updateScore()
+// { 
+//     for (let i = 1; i < globals.sprites.length; ++i)
+//     {
+//         const sprite = globals.sprites[i];
         
-        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
-        { 
-            console.log("entra");
-            //if( sprite.id == SpriteID.FRUTA)
+//         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
+//         { 
             
-                //Si hay colision sumamos puntos
-                 globals.score += 100;
-                 globals.lifeTime.value = 3;
-            
-        }
-    }
-}
+//             if( sprite.id = SpriteID.FRUTA)
+//             {console.log("entra");
+//                 //Si hay colision sumamos puntos
+//                  globals.score += 100;
+//                  globals.lifeTime.value = 3;
+//             }
+//         }
+//     }
+// }
 
 function swapDirection(sprite)
 {
