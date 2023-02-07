@@ -91,7 +91,7 @@ function renderHUD()
 {
         //TEST: Datos metidos en bruto
         const score = globals.score;
-        const highScore = 18990;
+        const highScore = globals.highscore;
         const life = globals.life;
         const time = globals.levelTime.value;
         

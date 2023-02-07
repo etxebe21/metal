@@ -253,7 +253,7 @@ function initAgua()
     const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 320, 132, imageSet, frames, physics , hitBox);
+    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 320, 267, imageSet, frames, physics , hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);

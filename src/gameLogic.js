@@ -91,7 +91,7 @@ function playGame()
     updateLevelTime(); 
     updateLife();
     updateLifeTime();
-    updateScore();
+    //updateScore();
 
 //     if(globals.life === 0 || globals.levelTime.value >= 120)
 
@@ -159,8 +159,7 @@ sprite.xPos += sprite.physics.vx * globals.deltaTime;
 sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 //Actualizamos la animación
-updateAnimationFrame(sprite);
-
+updateAnimationFrame(sprite)
 }
 
 function updateFruta(sprite)
@@ -169,10 +168,13 @@ function updateFruta(sprite)
 updateAnimationFrame(sprite);
 //points();
 //reaparicion();
+updateScore();
 }
 
 function updateAgua()
-{} 
+{
+updateScore();
+} 
 
 
 //Funcion que actualiza el ZEZEN
@@ -491,12 +493,12 @@ function updateScore()
         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
         { 
             console.log("entra");
-            if(sprite.id == SpriteID.AGUA && sprite.id == SpriteID.FRUTA)
-            {
+            //if( sprite.id == SpriteID.FRUTA)
+            
                 //Si hay colision sumamos puntos
                  globals.score += 100;
                  globals.lifeTime.value = 3;
-            }
+            
         }
     }
 }
