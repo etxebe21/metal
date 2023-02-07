@@ -211,7 +211,7 @@ function drawSpriteRectangle(sprite)
 
 function drawHitBox (sprite)
 {
-        //Datoa del sprite
+        //Datos del sprite
         const x1 = Math.floor(sprite.xPos) + Math.floor(sprite.hitBox.xOffset);
         const y1 = Math.floor(sprite.yPos) + Math.floor(sprite.hitBox.yOffset);
         const w1 = sprite.hitBox.xSize;
@@ -219,12 +219,6 @@ function drawHitBox (sprite)
 
     globals.ctx.strokeStyle = "red";
     globals.ctx.strokeRect (x1, y1, w1, h1);
-
-    // if (sprite.id === SpriteID.BULLET)
-    // {
-    //     console.log("entra")
-
-    // }
 }
 
 //Dibuja mapa

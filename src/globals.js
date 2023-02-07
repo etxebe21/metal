@@ -29,6 +29,7 @@ export default {
 
     //Variables para gestionar la carga de activos
     assetsToLoad: [],
+    assetsLoaded: 0 ,
 
     //Array con datos de los sprites
     sprites: [],
@@ -49,6 +50,11 @@ export default {
     life: 0,
 
     //Score
-    score: 0
+    score: 0,
+
+    highscore: 500,
+
+    //Array particulas
+    particles: []
 
 };

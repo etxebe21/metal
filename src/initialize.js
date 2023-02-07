@@ -7,7 +7,7 @@ import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
-import { Enemy } from "./sprite.js";
+import Enemy from "./sprite.js";
 import HitBox from "./HitBox.js";
 //import Camera from "./Camera.js";
 
@@ -34,8 +34,7 @@ function initVars()
     //Inicializamos las variables de gestión de tiempo
     globals.previousCycleMilliseconds = 0;
     globals.deltaTime = 0;
-    globals.frameTimeObj = 1 / FPS; //Frame time in seconds
-    globals.life = 400;
+    globals.frameTimeObj = 1 / FPS; //Frame time in secondsg
 
     //Iniciar el estado juego
     globals.gameState = Game.PLAYING;
@@ -52,9 +51,11 @@ function initVars()
         move2: false,
         move3: false,
         move4: false
-
-    
     }
+    //Variables logica juego
+    globals.life = 300;
+
+    globals.highscore = 100;
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS
