@@ -380,6 +380,59 @@ function updateDisparos(sprite)
     updateAnimationFrame(sprite);
 }
 
+function reaparicion(sprite)
+{
+   if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer )
+   {  
+        sprite.xPos = Math.round(Math.random()*(400-225)+225);
+        sprite.yPos = Math.round(Math.random()*(133-33)+33);
+   }
+}
+
+function reaparicion2(sprite)
+{
+    if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer)
+    {
+        sprite.xPos = Math.round(Math.random()*(400-225)+225);
+        sprite.physics.yRef = Math.round(Math.random()*(133-33)+33);
+    }
+}
+
+function reaparicionFresa(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        initParticles(sprite);
+    }
+}
+
+function points(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        globals.score += 100;
+    }
+
+}
+
+function increment(sprite)
+{
+    if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600  )
+    {
+        sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
+    }
+}
+
+function updateScoreTotal()
+{
+    if(globals.score > globals.highscore)
+    {
+        globals.highscore = globals.score;
+    }
+}
+
+
+
 function updateLevelTime()
 {
     //Incrementamos el contador de cambio de valor
@@ -414,12 +467,12 @@ function updateLife()
 {
     for (let i = 1; i < globals.sprites.length; ++i)
     {
-        const enemy = globals.sprites[i];
+        const sprite = globals.sprites[i];
         
-        if(enemy.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
+        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
         { 
             console.log("entra");
-            if(enemy.id != SpriteID.AGUA && SpriteID.FRUTA)
+            if(sprite.id != SpriteID.AGUA && SpriteID.FRUTA)
             {
                 //Si hay colision reducimos la vida
                 globals.life -= 100;
@@ -434,7 +487,7 @@ function updateScore()
     {
         const sprite = globals.sprites[i];
         
-        if(sprite.isCollisionWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
+        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
         { 
             console.log("entra");
             if(sprite.id = SpriteID.AGUA && SpriteID.FRUTA)
@@ -573,14 +626,7 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state;
 }      
 
-function readKeyboardAndAssignState1(game)
-{
-    game.state = globals.action.move1   ? State.ONE:
-                globals.action.mover2   ? State.TWO:
-                globals.action.move3    ? State.THREE:
-                game.state;
 
-}
 // function updateCamera()
 // {
 //     //Centramos la camara en el player
