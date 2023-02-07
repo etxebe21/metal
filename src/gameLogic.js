@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision} from "./constants.js";
 import Sprite from "./sprite.js";
-import {initDisparos, initDisparoEnemy} from "./initialize.js";
+import {initDisparos, initDisparoEnemy, initSprites} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -164,10 +164,11 @@ updateAnimationFrame(sprite);
 }
 
 function updateFruta(sprite)
-{
-    
+{ 
 //Actualizamos la animación
 updateAnimationFrame(sprite);
+//points();
+//reaparicion();
 }
 
 function updateAgua()
@@ -456,7 +457,7 @@ function updateLifeTime()
     //Si ha pasado el tiempo necesario, cambiamos el valor del timer
     if (globals.lifeTime.timeChangeCounter > globals.lifeTime.timeChangeValue && globals.lifeTime != 0)
     {
-        globals.lifeTime.value++;
+        globals.lifeTime.value--;
 
         //Reseteamos timeChangeCounter
         globals.lifeTime.timeChangeCounter = 0;
