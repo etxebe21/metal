@@ -85,12 +85,10 @@ function playGame()
     updateScoreTotal();
 
 //     if(globals.life === 0 || globals.levelTime.value >= 120)
-
 //     globals.life = 0;
-//    // globals.levelTime.value = 0;
+//     globals.levelTime.value = 0;
 //     globals.gameState = Game.PLAYING;
 }
-
 
 //fUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
@@ -167,7 +165,6 @@ function updateAgua()
 
 } 
 
-
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
 {
@@ -202,7 +199,6 @@ if (isCollision)
     {
      swapDirection(sprite);
     }
-
 }
 
 //Funcion que actualiza el TORO
@@ -305,7 +301,6 @@ function updateBruja2(sprite)
     calculateCollisionWithFourBorders(sprite);
 }
 
-
 function updateSprites()
 {
     for (let i=0; i < globals.sprites.length; ++i)
@@ -363,7 +358,6 @@ function updateSprite(sprite)
     }
 }
 
-
 function updateDisparos(sprite)
 {
     //Calculamos distancia que se mueve (Y = Y +Vt)
@@ -374,49 +368,6 @@ function updateDisparos(sprite)
     updateAnimationFrame(sprite);
 }
 
-function reaparicion(sprite)
-{
-   if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer )
-   {  
-        sprite.xPos = Math.round(Math.random()*(400-225)+225);
-        sprite.yPos = Math.round(Math.random()*(133-33)+33);
-   }
-}
-
-function reaparicion2(sprite)
-{
-    if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer)
-    {
-        sprite.xPos = Math.round(Math.random()*(400-225)+225);
-        sprite.physics.yRef = Math.round(Math.random()*(133-33)+33);
-    }
-}
-
-function reaparicionFresa(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {
-        initParticles(sprite);
-    }
-}
-
-function points(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-        {
-            globals.score += 100;
-        }
-}
-
-
-function increment(sprite)
-{
-    if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600  )
-    {
-        sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
-    }
-}
-
 function updateScoreTotal()
 {
     if(globals.score > globals.highscore)
@@ -424,8 +375,6 @@ function updateScoreTotal()
         globals.highscore = globals.score;
     }
 }
-
-
 
 function updateLevelTime()
 {
@@ -572,7 +521,6 @@ function calculateCollisionWithBorders(sprite)
     return isCollision;
 }
 
-
 function updateAnimationFrame(sprite)
 {
     switch(sprite.state)
@@ -628,4 +576,47 @@ function readKeyboardAndAssignState(sprite)
 
 //     globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 2);
 //     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) / 2);
+// }
+
+// function reaparicion(sprite)
+// {
+//    if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer )
+//    {  
+//         sprite.xPos = Math.round(Math.random()*(400-225)+225);
+//         sprite.yPos = Math.round(Math.random()*(133-33)+33);
+//    }
+// }
+
+// function reaparicion2(sprite)
+// {
+//     if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer)
+//     {
+//         sprite.xPos = Math.round(Math.random()*(400-225)+225);
+//         sprite.physics.yRef = Math.round(Math.random()*(133-33)+33);
+//     }
+// }
+
+// function reaparicionFresa(sprite)
+// {
+//     if(sprite.isCollidingWithPlayer)
+//     {
+//         initParticles(sprite);
+//     }
+// }
+
+// function points(sprite)
+// {
+//     if(sprite.isCollidingWithPlayer)
+//         {
+//             globals.score += 100;
+//         }
+// }
+
+
+// function increment(sprite)
+// {
+//     if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600  )
+//     {
+//         sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
+//     }
 // }
