@@ -80,9 +80,9 @@ function playGame()
 
     //Actualizacion de la logica de juego
     updateLevelTime(); 
-    updateLife();
     updateLifeTime();
     updateScoreTotal();
+    //updateScore();
 
 //     if(globals.life === 0 || globals.levelTime.value >= 120)
 //     globals.life = 0;
@@ -140,7 +140,6 @@ function updatePlayer(sprite)
 if(globals.action.moveAttack)
 {
     initDisparos(sprite);
-
 }
 
 //Calculamos distancia que se mueve (X = X + Vt)
@@ -155,14 +154,15 @@ function updateFruta(sprite)
 { 
 //Actualizamos la animación
 updateAnimationFrame(sprite);
-//points();
-//reaparicion();
-
+// updateScore();
+// updateLife();
+points(sprite);
+updateLife();
 }
 
-function updateAgua()
+function updateAgua(sprite)
 {
-
+points(sprite);
 } 
 
 //Funcion que actualiza el ZEZEN
@@ -265,7 +265,7 @@ function updateBruja(sprite)
 
     updateAnimationFrame(sprite);
 
-    calculateCollisionWithFourBorders(sprite);
+    calculateCollisionWithFourBorders(sprite);   
 }
 
 function updateBruja2(sprite)
@@ -299,6 +299,7 @@ function updateBruja2(sprite)
     updateAnimationFrame(sprite);
 
     calculateCollisionWithFourBorders(sprite);
+    
 }
 
 function updateSprites()
@@ -412,13 +413,13 @@ function updateLife()
     {
         const sprite = globals.sprites[i];
         
-        if(sprite.isCollidingWithPlayer) //&& globals.life > 0 && globals.lifeTime.value === 0)
+        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
         { 
             console.log("entra");
-            if(sprite.id != SpriteID.AGUA && sprite.id != SpriteID.FRUTA)
+            if(sprite.id != SpriteID.AGUA  sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
             {
                 //Si hay colision reducimos la vida
-                globals.life -= 100;
+                globals.life -= 10;
                 globals.lifeTime.value = 3;
             }
         }
@@ -585,13 +586,21 @@ function readKeyboardAndAssignState(sprite)
 //     }
 // }
 
-// function points(sprite)
-// {
-//     if(sprite.isCollidingWithPlayer)
-//     {
-//         globals.score += 100;
-//     }
-// }
+function points(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        globals.score += 10;
+    }
+}
+
+function life(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        globals.life -= 10;
+    }
+}
 
 
 // function incrementarVelocidad(sprite)
