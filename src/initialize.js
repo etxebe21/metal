@@ -214,7 +214,6 @@ function initToro()
     globals.sprites.push(enemy);
 }
 
-
 function initFruta()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
@@ -308,8 +307,6 @@ function initBruja2()
     //Añadimos el pirate al array de sprites
     globals.sprites.push(bruja);
 }
-
-
 
 function initDisparos(sprite)
 {

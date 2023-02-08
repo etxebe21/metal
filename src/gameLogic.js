@@ -412,7 +412,7 @@ function updateLife()
     {
         const sprite = globals.sprites[i];
         
-        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
+        if(sprite.isCollidingWithPlayer) //&& globals.life > 0 && globals.lifeTime.value === 0)
         { 
             console.log("entra");
             if(sprite.id != SpriteID.AGUA && sprite.id != SpriteID.FRUTA)
@@ -517,7 +517,6 @@ function calculateCollisionWithBorders(sprite)
          isCollision = true;
      }
  
-
     return isCollision;
 }
 
@@ -578,25 +577,7 @@ function readKeyboardAndAssignState(sprite)
 //     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) / 2);
 // }
 
-// function reaparicion(sprite)
-// {
-//    if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer )
-//    {  
-//         sprite.xPos = Math.round(Math.random()*(400-225)+225);
-//         sprite.yPos = Math.round(Math.random()*(133-33)+33);
-//    }
-// }
-
-// function reaparicion2(sprite)
-// {
-//     if(sprite.xPos + sprite.imageSet.xSize < 0 || sprite.isCollidingWithPlayer)
-//     {
-//         sprite.xPos = Math.round(Math.random()*(400-225)+225);
-//         sprite.physics.yRef = Math.round(Math.random()*(133-33)+33);
-//     }
-// }
-
-// function reaparicionFresa(sprite)
+// function restartFresa(sprite)
 // {
 //     if(sprite.isCollidingWithPlayer)
 //     {
@@ -607,13 +588,13 @@ function readKeyboardAndAssignState(sprite)
 // function points(sprite)
 // {
 //     if(sprite.isCollidingWithPlayer)
-//         {
-//             globals.score += 100;
-//         }
+//     {
+//         globals.score += 100;
+//     }
 // }
 
 
-// function increment(sprite)
+// function incrementarVelocidad(sprite)
 // {
 //     if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600  )
 //     {
