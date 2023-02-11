@@ -613,3 +613,12 @@ function restartFruta(sprite)
     }
 }
 
+function restartAgua(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = Math.round(Math.random()*(400));
+        sprite.yPos = 267;
+    }
+}
+
