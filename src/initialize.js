@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Game, SpriteID, State, FPS} from "./constants.js";
+import {Game, SpriteID, State, FPS, ParticleState, ParticleID} from "./constants.js";
 import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
