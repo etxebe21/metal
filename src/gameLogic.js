@@ -295,7 +295,7 @@ function updateBruja2(sprite)
 
     updateAnimationFrame(sprite);
 
-    restartBruja(sprite);
+    restartBruja2(sprite);
 
     quitarLife(sprite);
 
@@ -626,8 +626,17 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(800));
+        sprite.xPos = Math.random()*10;
         sprite.yPos = 267;
+    }
+}
+
+function restartBruja2(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = Math.random()*30;
+        sprite.yPos = 100;
     }
 }
 
@@ -635,7 +644,7 @@ function restartToro(sprite)
 {
     if(sprite.xPos  > 1000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = -150;
+        sprite.xPos = -250;
         sprite.yPos = 250;
     }
 }
@@ -644,7 +653,7 @@ function restartZezen(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1000;
+        sprite.xPos = 1200;
         sprite.yPos = 260;
     }
 }
