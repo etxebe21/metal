@@ -634,8 +634,8 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.random()*30;
-        sprite.yPos = 100;
+        sprite.xPos = Math.random(sprite.xPos);
+        sprite.yPos = 200;
     }
 }
 
@@ -690,27 +690,26 @@ function updateExplosionParticle(particle)
     switch (particle.state)
     {
         case ParticleState.ON:
-          if (particle.fadeCounter > particle.timeToFade)
-        {
-            particle.fadeCounter = 0;
-            particle.state = ParticleState.FADE;
-        }
-        break;
+            if (particle.fadeCounter > particle.timeToFade)
+            {
+                particle.fadeCounter = 0;
+                particle.state = ParticleState.FADE;
+            }
+            break;
 
         case ParticleState.FADE:
-
-        particle.alpha -= 0.8;
-
-          if (particle.alpha <= 0)
-        {
-            particle.state = ParticleState.OFF;
-        }
-      break;
+            particle.alpha -= 0.8;
+            if (particle.alpha <= 0)
+            {
+                particle.state = ParticleState.OFF;
+            }
+            break;
 
        case ParticleState.OFF:
 
-      break;
-    default:
+            break;
+
+        default:
    }
       particle.xPos += particle.physics.vx * globals.deltaTime;
       particle.yPos += particle.physics.vy * globals.deltaTime;
