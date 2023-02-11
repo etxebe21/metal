@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision} from "./constants.js";
 import Sprite from "./sprite.js";
-import {initDisparos, initDisparoEnemy, initSprites} from "./initialize.js";
+import {initDisparos} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -82,7 +82,7 @@ function playGame()
     updateLevelTime(); 
     updateLifeTime();
     updateScoreTotal();
-    //updateScore();
+    updateSprites();
 
 //     if(globals.life === 0 || globals.levelTime.value >= 120)
 //     globals.life = 0;
@@ -154,15 +154,15 @@ function updateFruta(sprite)
 { 
 //Actualizamos la animación
 updateAnimationFrame(sprite);
-// updateScore();
-// updateLife();
-points(sprite);
-updateLife();
+sumPoints(sprite);
+restartFruta(sprite)
 }
 
 function updateAgua(sprite)
 {
-points(sprite);
+sumPoints(sprite);
+restartAgua(sprite);
+quitarLife(sprite);
 } 
 
 //Funcion que actualiza el ZEZEN
@@ -192,13 +192,9 @@ sprite.xPos += sprite.physics.vx * globals.deltaTime;
 //Actualizamos la animación
 updateAnimationFrame(sprite);
 
-//updateDirectionRandom(sprite);
+restartZezen(sprite);
 
-const isCollision = calculateCollisionWithBorders(sprite);
-if (isCollision)
-    {
-     swapDirection(sprite);
-    }
+quitarLife(sprite);
 }
 
 //Funcion que actualiza el TORO
@@ -209,12 +205,12 @@ function updateToro(sprite)
     {
         case State.RIGHT_2:
         //Si se mueve a la derecha asignamos velocidad en Xpositiva
-            sprite.physics.vx = sprite.physics.vLimit;
+            sprite.physics.vx = -sprite.physics.vLimit;
             break;
 
         case State.LEFT_2:
          //Si se mueve a la izquierda asignamos velocidad en X negativa
-            sprite.physics.vx = -sprite.physics.vLimit;
+            sprite.physics.vx = sprite.physics.vLimit;
             break;
 
         default:
@@ -226,14 +222,11 @@ sprite.xPos += sprite.physics.vx * globals.deltaTime;
 //Actualizamos la animación
 updateAnimationFrame(sprite);
 
-updateDirectionRandom(sprite);
+restartToro(sprite);
 
-const isCollision = calculateCollisionWithBorders(sprite);
-if (isCollision)
-    {
-        swapDirection(sprite);
-    }
-}
+quitarLife(sprite);
+
+ }
 
 function updateBruja(sprite)
 {
@@ -264,6 +257,10 @@ function updateBruja(sprite)
     sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
     updateAnimationFrame(sprite);
+
+    restartBruja(sprite);
+
+    quitarLife(sprite);
 
     calculateCollisionWithFourBorders(sprite);   
 }
@@ -297,6 +294,10 @@ function updateBruja2(sprite)
     sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
     updateAnimationFrame(sprite);
+
+    restartBruja(sprite);
+
+    quitarLife(sprite);
 
     calculateCollisionWithFourBorders(sprite);
     
@@ -416,7 +417,7 @@ function updateLife()
         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
         { 
             console.log("entra");
-            if(sprite.id != SpriteID.AGUA  sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
+            if(sprite.id != SpriteID.AGUA || sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
             {
                 //Si hay colision reducimos la vida
                 globals.life -= 10;
@@ -586,27 +587,12 @@ function readKeyboardAndAssignState(sprite)
 //     }
 // }
 
-function points(sprite)
+function sumPoints(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.score += 10;
+        globals.score += 100;
+        globals.lifeTime.value = 3;
     }
 }
 
-function life(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {
-        globals.life -= 10;
-    }
-}
-
-
-// function incrementarVelocidad(sprite)
-// {
-//     if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600  )
-//     {
-//         sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
-//     }
-// }

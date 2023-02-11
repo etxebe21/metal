@@ -7,7 +7,6 @@ import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
-import Enemy from "./sprite.js";
 import HitBox from "./HitBox.js";
 //import Camera from "./Camera.js";
 
@@ -181,20 +180,18 @@ function initZezen()
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(22, 46, 9, 3);
 
-    const initTimeToChangeDirection = Math.floor(Math.random() * 3) + 1;
-
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.ZEZEN, State.RIGHT_2, 90, 259, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 90, 259, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(enemy);
+    globals.sprites.push(sprite);
 }
 
 function initToro()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(10, 0, 39, 55, 65, 25, 25);
+    const imageSet = new ImageSet(11, 0, 39, 55, 65, 25, 25);
 
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 10);
@@ -205,13 +202,11 @@ function initToro()
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(22, 45, 13, 9);
 
-    const initTimeToChangeDirection = Math.floor(Math.random() * 6) + 1;
-
     //Creamos nuestro sprite
-    const enemy = new Enemy(SpriteID.TORO, State.LEFT_2, 100, 251, imageSet, frames, physics, initTimeToChangeDirection, hitBox);
+    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2, 100, 251, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(enemy);
+    globals.sprites.push(sprite);
 }
 
 function initFruta()
@@ -230,7 +225,7 @@ function initFruta()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 220, 267, imageSet, frames, physics, hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 220, 267, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -252,7 +247,7 @@ function initAgua()
     const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 320, 267, imageSet, frames, physics , hitBox);
+    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 320, 263, imageSet, frames, physics , hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -298,7 +293,7 @@ function initBruja2()
     const hitBox = new HitBox(15, 30, 11, 5);
 
     //Creamos nuestro sprite
-    const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 10, 7, imageSet, frames, physics, hitBox);
+    const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 10, 7, imageSet, frames, physics,hitBox);
 
     //Iniciamos velocidades
     bruja.physics.vx = -bruja.physics.vLimit;
@@ -370,41 +365,6 @@ function initDisparos(sprite)
     }
 }
 
-function initDisparoEnemy(sprite)
-{
-//Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
-const imageSet = new ImageSet(18, 0, 50, 50, 65, 20, 7);
-
-//Creamos los datos de la animación. 8 frames / state
-const frames = new Frames(8, 5);
-
-//Creamos objeto physics con vLimit = 40pixels/seconds
-const physics = new Physics(40);
-
-//Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-const hitBox = new HitBox(10, 10, 1, 1);
-
-//Creamos nuestro sprite
-const bullet = new Sprite(SpriteID.BULLET, State.ATTACK, sprite.xPos, sprite.yPos, imageSet, frames, physics, 0 , hitBox );
-
-//Añadimos el pirate al array de sprites
-globals.sprites.push(bullet);
-
-console.log(sprite.state);
-
-switch(sprite.state)
-    {
-    case State.RIGHT_2:
-        console.log("entra");
-        bullet.physics.vx = bullet.physics.vLimit;
-        break;
-    
-    case  State.LEFT_2:
-        bullet.physics.vx = - bullet.physics.vLimit;
-        break;
-    }
-}
-
 function initLevel()
 {
     //Creamos las propiedades de las imagemnes del mapa; initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
@@ -442,6 +402,5 @@ export {
     initLevel,
     initTimers,
     initEvents,
-    initDisparos,
-    initDisparoEnemy
+    initDisparos
 }

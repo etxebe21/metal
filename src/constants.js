@@ -2,11 +2,12 @@
 
 //Estados del juego
 export const Game = {
-    INVALID:     -1,
+    STATE_OFF:   -1,
+    INVALID:     -2,
     LOADING:     0,
     PLAYING:     1,
     OVER:        2,
-    HOME:           3,
+    HOME:         3,
     HIGH_SCORES: 4,
     HISTORY:     5,
     GAME_OVER:   6,

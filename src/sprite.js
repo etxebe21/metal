@@ -17,21 +17,22 @@ export default class Sprite
         this.isCollidingWithObstacleOnTheLeft = false;    //Indica si ha habido colision con n obstaculo hacia izuiqerda
         this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
         this.isCollidingWithObstacleOnTheRight  = false;  //Indica si ha habido colision con n obstaculo hacia derecha
+        
     }
 }
 
-//cLASE Enemy
-export class Enemy extends Sprite
-{
-    constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
-    {
-        //Llamamos al constructor de la clase Sprite
-        super (id, state, xPos, yPos, imageSet, frames, physics, hitBox,);
+// //cLASE Enemy
+// export class Enemy extends Sprite
+// {
+//     constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
+//     {
+//         //Llamamos al constructor de la clase Sprite
+//         super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
 
-        this.directionChangeCounter      = 0;                 //Contador para cambio direccion(seconds)
-        this.maxTimeToChangeDirection    = maxTimeToChangeDirection; //Maximo tiempo para cambio de direccion(seconds)
-    }
-}
+//         this.directionChangeCounter      = 0;                 //Contador para cambio direccion(seconds)
+//         this.maxTimeToChangeDirection    = maxTimeToChangeDirection; //Maximo tiempo para cambio de direccion(seconds)
+//     }
+// }
 
 export class Disparo extends Sprite
 {
@@ -39,6 +40,8 @@ constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {
     //Llamamos al constructor de la clase Sprite
     super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+
+    this.isCollidingWithDisparo = false;
     }
 }
 

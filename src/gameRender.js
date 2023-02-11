@@ -196,6 +196,7 @@ function drawSprites()
     }
 }
 
+
 function drawSpriteRectangle(sprite)
 {
 
