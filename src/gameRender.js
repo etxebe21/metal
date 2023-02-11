@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Tile, Game, SpriteID} from "./constants.js";
+import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
 import Sprite from "./sprite.js";
 
 export default function render()
@@ -154,6 +154,8 @@ function drawGame()
 
     //Dibujamos el HUD
     renderHUD();
+
+    renderParticles();
 }
 
 function renderSprite(sprite)
@@ -277,3 +279,40 @@ function renderBackground()
 // {
 //     globals.ctx.setTransform(1, 0, 0, 1, 0, 0);
 // }
+
+function renderParticles()
+{
+    for (let i = 0; i < globals.particles.length; ++i)
+    {
+        const particle = globals.particles[i];
+        renderParticle(particle);
+    }
+}
+
+function renderParticle(particle)
+{
+    const type = particle.id;
+    switch (type)
+    {
+        //Caso del jugador
+        case ParticleID.EXPLOSION:
+            renderExplosionParticle(particle);
+            break;
+    
+        default:
+            break;
+     }
+}
+
+function renderExplosionParticle(particle)
+{
+    if(particle.state != ParticleState.OFF)
+    {
+        globals.ctx.fillStyle = 'red';
+        globals.ctx.globalAlpha = particle.alpha; //Set alpha
+        globals.ctx.beginPath();
+        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0,2 * Math.PI );
+        globals.ctx.fill();
+        globals.ctx.globalAlpha = 1.0;  //Restore alpha
+    }
+}

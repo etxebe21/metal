@@ -393,6 +393,36 @@ function initEvents()
 //     globals.camera = new Camera(0, 0);
 // }
 
+function initParticles(sprite)
+{
+    initExplosion(sprite);
+}
+
+function initExplosion(sprite)
+{
+    const numParticles = 100;
+    const xInit = sprite.xPos + 8;
+    const yInit = sprite.yPos + 8;
+    const radius = 0.8;
+    const timeToFadeMax = 1;
+    const alpha = 1.0;
+
+    for (let i = 0; i < numParticles; ++i)
+     {
+        const velocity = Math.random() * 25 + 5;
+        const physics = new Physics(velocity);
+        const timeToFade = timeToFadeMax * Math.random() + 1;
+        const particle = new ExplosionParticle(ParticleID.EXPLOSION, ParticleState.ON, xInit, yInit, radius, alpha, physics, timeToFade);
+
+        //Asignamos velocidades según ángulo aleatorio
+        const randomAngle = Math.random() * 2 * Math.PI;
+        particle.physics.vx = particle.physics.vLimit * Math.cos(randomAngle);
+        particle.physics.vy = particle.physics.vLimit * Math.sin(randomAngle);
+
+        globals.particles.push(particle);
+     }
+}
+
 //Exportar funciones
 export {
     initHTMLelements,
@@ -402,5 +432,6 @@ export {
     initLevel,
     initTimers,
     initEvents,
-    initDisparos
+    initDisparos,
+    initParticles
 }

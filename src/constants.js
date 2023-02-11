@@ -12,7 +12,6 @@ export const Game = {
     HISTORY:     5,
     GAME_OVER:   6,
     EXIT:        7
-
 };
 
 //Velocidad del juego
@@ -27,8 +26,7 @@ export const SpriteID = {
     FRUTA: 4,
     AGUA:  5,
     BULLET: 6,
-    BRUJA:  7
-    
+    BRUJA:  7 
 }
 
 //Identificador de estado de sprite ( dirección)
@@ -47,7 +45,6 @@ export const State = {
     //Estados disparo
     ATTACK: 8,
   
-
     //Estados ZEZEN Y TORO
     LEFT_2:     0,
     RIGHT_2:    1,
@@ -93,7 +90,6 @@ export const Key = {
     THREE:     51,
     FOUR:      52
 }
-
 //Aceleración
 export const GRAVITY = 80;
 
@@ -104,5 +100,17 @@ export const Collision = {
     BORDER_DOWN:   1,
     BORDER_LEFT:   2,
     BORDER_RIGHT:  3
+}
+
+export const ParticleID =
+{
+    EXPLOSION:   0
+}
+
+export const ParticleState =
+{
+    ON:    0,
+    FADE:  1,
+    OFF:   -1
 }
 

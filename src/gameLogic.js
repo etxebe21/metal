@@ -1,7 +1,7 @@
 import globals from "./globals.js";
-import {Game, State, SpriteID, Collision} from "./constants.js";
+import {Game, State, SpriteID, Collision,ParticleState,ParticleID} from "./constants.js";
 import Sprite from "./sprite.js";
-import {initDisparos} from "./initialize.js";
+import {initDisparos, initSprites} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -42,10 +42,10 @@ function updateNewGame()
     if( globals.action.move1)
         globals.gameState = Game.PLAYING;
 
-    if ( globals.action.move2)
+    if ( globals.action.move3)
         globals.gameState = Game.HIGH_SCORES;
 
-    if ( globals.action.move3)
+    if ( globals.action.move2)
         globals.gameState = Game.HISTORY;
 }
 
@@ -83,11 +83,8 @@ function playGame()
     updateLifeTime();
     updateScoreTotal();
     updateSprites();
-
-//     if(globals.life === 0 || globals.levelTime.value >= 120)
-//     globals.life = 0;
-//     globals.levelTime.value = 0;
-//     globals.gameState = Game.PLAYING;
+    updateDied();
+    updateParticles();
 }
 
 //fUNCIÓN QUE ACTUALIZA EL PERSONAJE
@@ -155,7 +152,8 @@ function updateFruta(sprite)
 //Actualizamos la animación
 updateAnimationFrame(sprite);
 sumPoints(sprite);
-restartFruta(sprite)
+restartFruta(sprite);
+particles(sprite);
 }
 
 function updateAgua(sprite)
@@ -163,6 +161,7 @@ function updateAgua(sprite)
 sumPoints(sprite);
 restartAgua(sprite);
 quitarLife(sprite);
+particlesFruta(sprite);
 } 
 
 //Funcion que actualiza el ZEZEN
@@ -657,5 +656,86 @@ function restartZezen(sprite)
         sprite.yPos = 260;
     }
 }
+
+function updateParticles()
+{
+  for (let i = 0; i < globals.particles.length; ++i)
+    {  
+      const particle = globals.particles[i];
+      updateParticle(particle);
+    }
+}
+
+function updateParticle(particle)
+{
+  const type = particle.id;
+  switch (type)
+  {
+    //Caso del jugador
+    case ParticleID.EXPLOSION:
+      updateExplosionParticle(particle);
+      break;
+
+    //caso del enemigo
+    default:
+      break;
+  }
+}
+
+function updateExplosionParticle(particle)
+{
+    particle.fadeCounter += globals.deltaTime;
+
+    //Cogemos las velocidades de los arrays
+    switch (particle.state)
+    {
+        case ParticleState.ON:
+          if (particle.fadeCounter > particle.timeToFade)
+        {
+            particle.fadeCounter = 0;
+            particle.state = ParticleState.FADE;
+        }
+        break;
+
+        case ParticleState.FADE:
+
+        particle.alpha -= 0.8;
+
+          if (particle.alpha <= 0)
+        {
+            particle.state = ParticleState.OFF;
+        }
+      break;
+
+       case ParticleState.OFF:
+
+      break;
+    default:
+   }
+      particle.xPos += particle.physics.vx * globals.deltaTime;
+      particle.yPos += particle.physics.vy * globals.deltaTime;
+  }
+
+function particlesFruta(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        initParticles(sprite);
+    }
+}
+
+function updateDied()
+{
+    if(globals.life === 0 || globals.levelTime.value >= 150)
+    {   globals.highscore = globals.score;
+        globals.score = 0;
+        globals.life = 300;
+        globals.levelTime.value = 0;
+        globals.sprites.splice(0)
+        globals.gameState = Game.GAME_OVER;
+        initSprites();
+    } 
+  }
+
 
 
