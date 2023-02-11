@@ -631,3 +631,22 @@ function restartBruja(sprite)
     }
 }
 
+function restartToro(sprite)
+{
+    if(sprite.xPos  > 1000 || sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = -150;
+        sprite.yPos = 250;
+    }
+}
+
+function restartZezen(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = 1000;
+        sprite.yPos = 260;
+    }
+}
+
+
