@@ -604,3 +604,12 @@ function quitarLife(sprite)
     }
 }
 
+function restartFruta(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = Math.round(Math.random()*(500));
+        sprite.yPos = 267;
+    }
+}
+
