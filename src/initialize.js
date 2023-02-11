@@ -9,6 +9,7 @@ import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
 import HitBox from "./HitBox.js";
 //import Camera from "./Camera.js";
+import ExplosionParticle from "./particle.js";
 
 //Función que inicializa los elementos  HTML
 function initHTMLelements()

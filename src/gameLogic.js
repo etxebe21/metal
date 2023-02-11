@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID} from "./constants.js";
 import Sprite from "./sprite.js";
-import {initDisparos, initSprites} from "./initialize.js";
+import {initDisparos, initSprites, initParticles} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -153,7 +153,7 @@ function updateFruta(sprite)
 updateAnimationFrame(sprite);
 sumPoints(sprite);
 restartFruta(sprite);
-particles(sprite);
+particlesFruta(sprite);
 }
 
 function updateAgua(sprite)
