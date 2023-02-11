@@ -26,7 +26,7 @@ export default function detectCollisions()
         const sprite = globals.sprites[i];
         detectCollisionBetweenPlayerAndSprite(sprite);
         // console.log("colisionando");
-        detectCollisionBetweenDisparoAndSprite(sprite);
+        //detectCollisionBetweenDisparoAndSprite(sprite);
     }
 
     //Calculamos colision del player con los obstaculos del mapa
@@ -58,41 +58,37 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
         //console.log("entra hasta aqui");
         if(isOverlap)
             {
-                //console.log("entra en funcion");
             //Existe colision
             sprite.isCollidingWithPlayer = true;
             }
 }
 
-function detectCollisionBetweenDisparoAndSprite (sprite)
-{    
-        //Reset collision state
-        sprite.isCollidingWithDisparo = false;
+// function detectCollisionBetweenDisparoAndSprite (bullet, sprite)
+// {    
+//         //Reset collision state
+//         sprite.isCollidingWithDisparo = false;
 
-        //Nustro player esta en la posición 0 
-        const bullet = globals.sprites[0];
+//         //Datos del disparo
+//         const x1 = bullet.xPos + bullet.hitBox.xOffset;
+//         const y1 = bullet.yPos + bullet.hitBox.yOffset;
+//         const w1 = bullet.hitBox.xSize;
+//         const h1 = bullet.hitBox.ySize;
 
-        //Datos del player
-        const x1 = bullet.xPos + bullet.hitBox.xOffset;
-        const y1 = bullet.yPos + bullet.hitBox.yOffset;
-        const w1 = bullet.hitBox.xSize;
-        const h1 = bullet.hitBox.ySize;
+//         //Datos de otro sprite
+//         const x2 = sprite.xPos + sprite.hitBox.xOffset;
+//         const y2 = sprite.yPos + sprite.hitBox.yOffset;
+//         const w2 = sprite.hitBox.xSize;
+//         const h2 = sprite.hitBox.ySize;
 
-        //Datos de otro sprite
-        const x2 = sprite.xPos + sprite.hitBox.xOffset;
-        const y2 = sprite.yPos + sprite.hitBox.yOffset;
-        const w2 = sprite.hitBox.xSize;
-        const h2 = sprite.hitBox.ySize;
-
-        const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
-        //console.log("entra hasta aqui");
-        if(isOverlap)
-            {
-                console.log("entra en funcion");
-            //Existe colision
-            sprite.isCollidingWithDisparo = true;
-            }
-}
+//         const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
+//         //console.log("entra hasta aqui");
+//         if(isOverlap)
+//             {
+//                 console.log("entra en funcion");
+//             //Existe colision
+//             sprite.isCollidingWithDisparo = true;
+//             }
+// }
 
 //Deevuelve el Id del tile del mapa para las coordenadas xPos y yPos
 function getMapTileId (xPos, yPos)

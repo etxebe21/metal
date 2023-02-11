@@ -633,7 +633,7 @@ function restartBruja(sprite)
 
 function restartToro(sprite)
 {
-    if(sprite.xPos  > 1000 || sprite.isCollidingWithPlayer)
+    if(sprite.xPos  > 1000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = -150;
         sprite.yPos = 250;
@@ -642,7 +642,7 @@ function restartToro(sprite)
 
 function restartZezen(sprite)
 {
-    if(sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = 1000;
         sprite.yPos = 260;
