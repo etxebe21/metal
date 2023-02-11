@@ -622,3 +622,12 @@ function restartAgua(sprite)
     }
 }
 
+function restartBruja(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.xPos = Math.round(Math.random()*(800));
+        sprite.yPos = 267;
+    }
+}
+
