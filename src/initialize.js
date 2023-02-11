@@ -401,16 +401,16 @@ function initParticles(sprite)
 
 function initExplosion(sprite)
 {
-    const numParticles = 100;
-    const xInit = sprite.xPos + 8;
-    const yInit = sprite.yPos + 8;
-    const radius = 0.8;
-    const timeToFadeMax = 1;
+    const numParticles = 50;
+    const xInit = sprite.xPos;
+    const yInit = sprite.yPos;
+    const radius = 1;
+    const timeToFadeMax = 3;
     const alpha = 1.0;
 
     for (let i = 0; i < numParticles; ++i)
      {
-        const velocity = Math.random() * 25 + 5;
+        const velocity = Math.random() * 15 + 5;
         const physics = new Physics(velocity);
         const timeToFade = timeToFadeMax * Math.random() + 1;
         const particle = new ExplosionParticle(ParticleID.EXPLOSION, ParticleState.ON, xInit, yInit, radius, alpha, physics, timeToFade);

@@ -616,7 +616,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(400));
+        sprite.xPos = Math.round(Math.random()*40);
         sprite.yPos = 267;
     }
 }
@@ -625,8 +625,8 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.random()*10;
-        sprite.yPos = 267;
+        sprite.xPos = Math.random()*10 + 5;
+        sprite.yPos = Math.random()*20 + 10;
     }
 }
 
@@ -698,7 +698,7 @@ function updateExplosionParticle(particle)
             break;
 
         case ParticleState.FADE:
-            particle.alpha -= 0.8;
+            particle.alpha -= 0.5;
             if (particle.alpha <= 0)
             {
                 particle.state = ParticleState.OFF;
