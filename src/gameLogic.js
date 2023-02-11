@@ -596,3 +596,11 @@ function sumPoints(sprite)
     }
 }
 
+function quitarLife(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        globals.life -= 10;
+    }
+}
+
