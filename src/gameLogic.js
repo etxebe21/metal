@@ -616,8 +616,8 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*40);
-        sprite.yPos = 267;
+        sprite.xPos = Math.round(Math.random() * 300);
+        sprite.yPos = 260;
     }
 }
 
