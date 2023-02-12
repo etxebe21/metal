@@ -139,8 +139,10 @@ function initSprites()
     initPlayer();
     initZezen();
     initToro();
-    initFruta();
-    initFrutas();
+    initFresa();
+    initManzana();
+    initPera();
+    initPlatano();
     initAgua(); 
     initBruja(); 
     initBruja2();
@@ -211,7 +213,7 @@ function initToro()
     globals.sprites.push(sprite);
 }
 
-function initFruta()
+function initFresa()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
@@ -233,7 +235,7 @@ function initFruta()
     globals.sprites.push(puntos);
 }
 
-function initFrutas()
+function initManzana()
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
@@ -250,6 +252,50 @@ function initFrutas()
 
     //Creamos nuestro sprite
     const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 200, 267, imageSet, frames, physics,hitBox);
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(puntos);
+}
+
+function initPera()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(14, 3, 36, 40, 65, 33, 30);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    const hitBox = new HitBox(22, 30, 9, 8);
+
+    //Creamos nuestro sprite
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 400, 267, imageSet, frames, physics,hitBox);
+
+    //Añadimos el pirate al array de sprites
+    globals.sprites.push(puntos);
+}
+
+function initPlatano()
+{
+    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+
+    const imageSet = new ImageSet(14, 1, 40, 40, 65, 33, 30);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8);
+
+    //Creamos objeto physics con vLimit = 40pixels/seconds
+    const physics = new Physics(40);
+
+    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+    const hitBox = new HitBox(22, 30, 9, 8);
+
+    //Creamos nuestro sprite
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 100, 267, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
