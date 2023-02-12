@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { Block, State } from "./constants.js";
+import { Block, State, SpriteID } from "./constants.js";
 
 //Función que calcula si 2 rectángulos interseccionan
 function rectIntersect ( x1, y1, w1, h1, x2, y2, w2, h2)
@@ -25,8 +25,18 @@ export default function detectCollisions()
     {
         const sprite = globals.sprites[i];
         detectCollisionBetweenPlayerAndSprite(sprite);
-        // console.log("colisionando");
-        // detectCollisionBetweenDisparoAndSprite(sprite);
+
+        if (sprite.id === SpriteID.BULLET)
+        {
+            for ( let j = 1; j < globals.sprites.length; ++j)
+            {      
+                const sprite = globals.sprites[j];
+                // if(sprite.id === SpriteID.TORO || sprite.id === SpriteID.ZEZEN || sprite.id === SpriteID.BRUJA)
+                
+                    detectCollisionBetweenDisparoAndSprite( sprite);        
+            }
+        
+        }
     }
 
     //Calculamos colision del player con los obstaculos del mapa
@@ -34,7 +44,6 @@ export default function detectCollisions()
 }
 
 function detectCollisionBetweenPlayerAndSprite (sprite)
-
 {    
         //Reset collision state
         sprite.isCollidingWithPlayer = false;
@@ -63,10 +72,12 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
             }
 }
 
-function detectCollisionBetweenDisparoAndSprite (bullet, sprite)
+function detectCollisionBetweenDisparoAndSprite ( sprite)
 {    
         //Reset collision state
         sprite.isCollidingWithDisparo = false;
+
+        const bullet = globals.sprites[7];
 
         //Datos del disparo
         const x1 = bullet.xPos + bullet.hitBox.xOffset;
@@ -87,7 +98,7 @@ function detectCollisionBetweenDisparoAndSprite (bullet, sprite)
                 console.log("entra en funcion");
             //Existe colision
             sprite.isCollidingWithDisparo = true;
-            // bullet.state = State.OFF;
+            //bullet.state = State.OFF;
             // bullet.isCollidingWithEnemy = true;
             }
 }
@@ -104,33 +115,33 @@ function getMapTileId (xPos, yPos)
     return levelData[fil][col];
 }
 
-// function isCollidingWithObstacleAt (xPos, yPos,)
-// {
-//     let isColliding;
-
-//     const id = getMapTileId(xPos, yPos);
-
-//     //Calculamos colision con bloque de cristal 
-//     if (id === Block.BROWN_1)
-//         isColliding = true;
-//     else
-//         isColliding = false;
-
-//     return isColliding;
-// }
-
-function isCollidingWithObstacleAt(xPos, yPos)
+function isCollidingWithObstacleAt (xPos, yPos,)
 {
-    const id = getMapTiledId(xPos, yPos);
+    let isColliding;
 
-    //Cálculo de colisión
-    if(id === Block.BROWN_1)
-    {
-        return true;
-    }
+    const id = getMapTileId(xPos, yPos);
+
+    //Calculamos colision con bloque de cristal 
+    if (id === Block.BROWN_1)
+        isColliding = true;
     else
-        return false;
+        isColliding = false;
+
+    return isColliding;
 }
+
+// function isCollidingWithObstacleAt(xPos, yPos)
+// {
+//     const id = getMapTiledId(xPos, yPos);
+
+//     //Cálculo de colisión
+//     if(id === Block.BROWN_1)
+//     {
+//         return true;
+//     }
+//     else
+//         return false;
+// }
 
 //Calculo de cvolision con los bloques del mapa
 function detectCollisionBetweenPlayerAndMapObstacles()
@@ -284,3 +295,5 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 //        sprite.yPos += overlap;
 //    }   
 // }       
+
+// globals.camera.x + globals.canvas.widt

@@ -263,6 +263,8 @@ restartZezen(sprite);
 
 quitarLife(sprite);
 
+sumPointsEnemy(sprite);
+
 //sumPointsEnemy(sprite);
 }
 
@@ -294,6 +296,8 @@ updateAnimationFrame(sprite);
 restartToro(sprite);
 
 quitarLife(sprite);
+
+sumPointsEnemy(sprite);
 
  }
 
@@ -331,6 +335,8 @@ function updateBruja(sprite)
 
     quitarLife(sprite);
 
+    sumPointsEnemy(sprite);
+
     calculateCollisionWithFourBorders(sprite);   
 }
 
@@ -367,6 +373,8 @@ function updateBruja2(sprite)
     restartBruja2(sprite);
 
     quitarLife(sprite);
+
+    sumPointsEnemy(sprite);
 
     calculateCollisionWithFourBorders(sprite);
     
@@ -628,7 +636,7 @@ function sumPoints(sprite)
 
 function sumPointsEnemy(sprite)
 {
-    if(sprite.isCollidingWithDisparo)
+    if(sprite.isCollidingWithDisparo || sprite.isCollidingWithPlayer)
     {
         globals.score += 100;
         globals.lifeTime.value = 3;
@@ -664,14 +672,14 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * 1000);
+        sprite.xPos = Math.round(Math.random() * 1400 + 5);
         sprite.yPos = 260;
     }
 }
 
 function restartBruja(sprite)
 {
-    if(sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = Math.round(Math.random() * 80) + 1;
         sprite.yPos = Math.round(Math.random() * 80) + 1;
@@ -680,7 +688,7 @@ function restartBruja(sprite)
 
 function restartBruja2(sprite)
 {
-    if(sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = Math.round(Math.random() * 180) + 1;
         sprite.yPos = Math.round(Math.random() * 180) + 1;
@@ -784,5 +792,94 @@ function updateDied()
     } 
   }
 
+  function getDataBase()
+  {
+    //Ruta o absoluta o elativa al fivchero que hace la peticion(HTML)
+    const url = "http://localhost/serverClient/server/routes/getAllClassic.php"
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        if(this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                    const resultJSON = JSON.parse(this.responseText);
+                    console.log (resultJSON);
+                    console.log("entra");
+                    //Iniciamos los datos del juego
+                    initGame(resultJSON);
+                }
+                else
+                    alert("Communication erro: No data received");
+            }
+            else
+                alert("Communication error: " + this.statusText);
+        }
+    }
+    request.open('GET', url, true);
+    request.responseType = "text";
+    request.send();
+}
+  
+
+  function upData ()
+  {
+    console.log("Add button pressed");
+
+    //Generamos isbn aleatorio
+    const isbn = Math.floor(Math.random() * Math.pow(10,13));
+
+    //Send data
+    const objectToSend= {
+        name:    "XG Erudite",
+        score:     "Lord of the kings"  
+    }
+
+    //String data to send
+    const dataToSend = 'name=' + objectToSend.name + '&score=' + 
+    objectToSend.score; 
+
+    console.log(dataToSend);
+
+    //Ruta relativa al fichero que hace la peticion(testAjax.php)
+    const url = "http://localhost/serverClient/server/routes/postClassic.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if(this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                    //console.log(this.responseText);
+                    const resultJSON = JSON.parse(this.responseText);
+                    //console.log (resultJSON);
+
+                    //Metemos los datos en un array , ya que lo que nos devuelve la ruta es un Objeto
+                    const arrayResult = [resultJSON];
+
+                    //Iniciamos los datos
+                    initGame(arrayResult);
+                    console.log(arrayResult);
+                }
+                else
+                    alert("Communication error: No data received");
+            }
+            else
+                alert("Communication error: " + this.statusText);
+        }
+    }
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+  
 
 
