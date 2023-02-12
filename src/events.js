@@ -44,6 +44,10 @@ export function keydownHandler(event)
         case Key.FOUR:
             globals.action.move4 = true;
             break;
+
+        case Key.FIVE:
+            globals.action.move5 = true;
+            break;
     }
 }
 
@@ -89,6 +93,10 @@ export function keyupHandler(event)
 
         case Key.FOUR:
             globals.action.move4 = false;
+            break;
+
+        case Key.FIVE:
+            globals.action.move5 = false;
             break;
     }
 }

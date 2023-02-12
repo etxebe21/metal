@@ -104,25 +104,38 @@ function getMapTileId (xPos, yPos)
     return levelData[fil][col];
 }
 
-function isCollidingWithObstacleAt (xPos, yPos,)
+// function isCollidingWithObstacleAt (xPos, yPos,)
+// {
+//     let isColliding;
+
+//     const id = getMapTileId(xPos, yPos);
+
+//     //Calculamos colision con bloque de cristal 
+//     if (id === Block.BROWN_1)
+//         isColliding = true;
+//     else
+//         isColliding = false;
+
+//     return isColliding;
+// }
+
+function isCollidingWithObstacleAt(xPos, yPos)
 {
-    let isColliding;
+    const id = getMapTiledId(xPos, yPos);
 
-    const id = getMapTileId(xPos, yPos);
-
-    //Calculamos colision con bloque de cristal 
-    if (id === Block.BROWN_1)
-        isColliding = true;
+    //Cálculo de colisión
+    if(id === Block.BROWN_1)
+    {
+        return true;
+    }
     else
-        isColliding = false;
-
-    return isColliding;
+        return false;
 }
 
 //Calculo de cvolision con los bloques del mapa
 function detectCollisionBetweenPlayerAndMapObstacles()
 {
-    const player = globals.sprites[2];
+    const player = globals.sprites[1];
 
     //Reset collision state
     player.isCollidingWithObstacleOnTheRight = false;
@@ -140,7 +153,7 @@ function detectCollisionBetweenPlayerAndMapObstacles()
     const direction = player.state;
 
     //ID del obsatculo
-    const obstacleId = Block.BROWN_2;  //aqui cambiarlo!!!!!!!!!!!!
+    const obstacleId = Block.BROWN_1;  //aqui cambiarlo!!!!!!!!!!!!
 
     switch(direction)
     {
@@ -182,3 +195,92 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 
 }
 
+// if(sprite.physics.vx > 0){
+
+
+//     //Colisión en Pos1
+//     xPos = sprite.xPos + sprite.hitBox.xOffset + sprite.hitBox.xSize - 1;
+//     yPos = sprite.yPos + sprite.hitBox.yOffset;
+   
+//     isCollidingOnPos1 = isCollidingWithObstacleAt(xPos, yPos);
+
+//     //Colisión en Pos2
+//     yPos = sprite.yPos + sprite.hitBox.yOffset + sprite.hitBox.ySize -1;
+//     isCollidingOnPos2 = isCollidingWithObstacleAt(xPos, yPos);
+
+//     isColliding = isCollidingOnPos1 || isCollidingOnPos2;
+
+//     if(isColliding){
+
+//         sprite.isCollidingWithObstacle = true;
+
+//         //Cálculo de overlap
+//         overlap = Math.floor(xPos) % brickSize + 1;
+//         sprite.xPos -= overlap;
+//    }
+// }else if(sprite.physics.vx < 0){
+
+//    //Colisión en Pos1
+//    xPos = sprite.xPos + sprite.hitBox.xOffset - 1;
+//    yPos = sprite.yPos + sprite.hitBox.yOffset;
+  
+//    isCollidingOnPos1 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    //Colisión en Pos2
+//    yPos = sprite.yPos + sprite.hitBox.yOffset + sprite.hitBox.ySize -1;
+//    isCollidingOnPos2 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    isColliding = isCollidingOnPos1 || isCollidingOnPos2;
+
+//    if(isColliding){
+
+//        sprite.isCollidingWithObstacle = true;
+
+//        //Cálculo de overlap
+//        overlap = brickSize -(Math.floor(xPos) % brickSize);
+//        sprite.xPos += overlap;
+//    }
+// }else if(sprite.physics.vy > 0){
+
+//    //Colisión en Pos1
+//    xPos = sprite.xPos + sprite.hitBox.xOffset - 1;
+//    yPos = sprite.yPos + sprite.hitBox.yOffset + sprite.hitBox.ySize - 1;
+  
+//    isCollidingOnPos1 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    //Colisión en Pos2
+//    xPos = sprite.xPos + sprite.hitBox.xOffset + sprite.hitBox.xSize - 1;
+//    isCollidingOnPos2 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    isColliding = isCollidingOnPos1 || isCollidingOnPos2;
+
+//    if(isColliding){
+
+//        sprite.isCollidingWithObstacle = true;
+
+//        //Cálculo de overlap
+//        overlap = Math.floor(yPos) % brickSize + 1;
+//        sprite.yPos -= overlap;
+//        }
+// }else if(sprite.physics.vy < 0){
+
+//    xPos = sprite.xPos + sprite.hitBox.xOffset - 1;
+//    yPos = sprite.yPos + sprite.hitBox.yOffset - 1;
+  
+//    isCollidingOnPos1 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    //Colisión en Pos2
+//    xPos = sprite.xPos + sprite.hitBox.xOffset + sprite.hitBox.xSize - 1;
+//    isCollidingOnPos2 = isCollidingWithObstacleAt(xPos, yPos);
+
+//    isColliding = isCollidingOnPos1 || isCollidingOnPos2;
+
+//    if(isColliding){
+
+//        sprite.isCollidingWithObstacle = true;
+
+//        //Cálculo de overlap
+//        overlap = brickSize -(Math.floor(yPos) % brickSize);
+//        sprite.yPos += overlap;
+//    }   
+// }       

@@ -53,6 +53,9 @@ function updateGameOver()
 {
     if( globals.action.move4)
         globals.gameState = Game.HOME;
+
+    if( globals.action.move5)
+        globals.gameState = Game.HIGH_SCORES;
 }
 
 function updateHighScores()
@@ -636,7 +639,7 @@ function quitarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.life -= 10;
+        globals.life -= 20;
     }
 }
 

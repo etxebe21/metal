@@ -50,7 +50,8 @@ function initVars()
         move1: false,
         move2: false,
         move3: false,
-        move4: false
+        move4: false,
+        move5: false
     }
     //Variables logica juego
     globals.life = 300;
