@@ -102,20 +102,6 @@ function updatePlayer(sprite)
             console.log("disparo");
             break;
 
-        // case State.UP:
-        //     //Si se mueve hacia arriba asignamos vy (-)
-        //     sprite.physics.vx = 0;
-        //     sprite.physics.vy = -sprite.physics.vLimit;
-        //     console.log("arriba");
-        //     break;
-
-        // case State.DOWN:
-        //     //Si se mueve hacia abajo asignamos vy (+)
-        //     sprite.physics.vx = 0;
-        //     sprite.physics.vy = sprite.physics.vLimit;
-        //     console.log("abajo");
-        //     break;
-
         case State.RIGHT:
             //Si se mueve a la derecha vx (+)
             sprite.physics.vx = sprite.physics.vLimit;
@@ -160,8 +146,8 @@ function updateAgua(sprite)
 {
 sumPoints(sprite);
 restartAgua(sprite);
-quitarLife(sprite);
 particlesFruta(sprite);
+sumarLife(sprite);
 } 
 
 //Funcion que actualiza el ZEZEN
@@ -600,6 +586,14 @@ function quitarLife(sprite)
     if(sprite.isCollidingWithPlayer)
     {
         globals.life -= 10;
+    }
+}
+
+function sumarLife(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {
+        globals.life += 10;
     }
 }
 
