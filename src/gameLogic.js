@@ -259,6 +259,8 @@ updateAnimationFrame(sprite);
 restartZezen(sprite);
 
 quitarLife(sprite);
+
+//sumPointsEnemy(sprite);
 }
 
 //Funcion que actualiza el TORO
@@ -608,13 +610,22 @@ function updateCamera()
     //Centramos la camara en el player
     const player = globals.sprites[0];
 
-    globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 10 );
+    globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 2 );
     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) + 10 );
 }
 
 function sumPoints(sprite)
 {
     if(sprite.isCollidingWithPlayer)
+    {
+        globals.score += 100;
+        globals.lifeTime.value = 3;
+    }
+}
+
+function sumPointsEnemy(sprite)
+{
+    if(sprite.isCollidingWithDisparo)
     {
         globals.score += 100;
         globals.lifeTime.value = 3;
@@ -641,7 +652,7 @@ function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(1500));
+        sprite.xPos = Math.round(Math.random()*(1500) + 20);
         sprite.yPos = 267;
     }
 }
@@ -684,7 +695,7 @@ function restartToro(sprite)
 
 function restartZezen(sprite)
 {
-    if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = 1700;
         sprite.yPos = 260;
