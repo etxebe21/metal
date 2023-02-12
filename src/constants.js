@@ -83,7 +83,7 @@ export const Key = {
     DOWN:     40,
     RIGHT:    39,
     LEFT:     37,
-    JUMP:     32,
+    JUMP:     83,
     ATTACK:   65,
     ONE:       49,
     TWO:       50,

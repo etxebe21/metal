@@ -102,14 +102,14 @@ function getMapTileId (xPos, yPos)
     return levelData[fil][col];
 }
 
-function isCollidingWithObstacleAt (xPos, yPos, obstacleId)
+function isCollidingWithObstacleAt (xPos, yPos,)
 {
     let isColliding;
 
     const id = getMapTileId(xPos, yPos);
 
     //Calculamos colision con bloque de cristal 
-    if (id === obstacleId)
+    if (id === Block.BROWN_1)
         isColliding = true;
     else
         isColliding = false;
