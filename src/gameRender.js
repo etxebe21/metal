@@ -138,7 +138,7 @@ function drawGame()
   globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
 
     //Movemos la camara
-    //moveCamera();
+    moveCamera();
 
     //DIBUJAR FOONDO
     renderBackground();
@@ -150,7 +150,7 @@ function drawGame()
     drawSprites();  
 
     //Restauramos la camara
-   // restoreCamera();
+    restoreCamera();
 
     //Dibujamos el HUD
     renderHUD();
@@ -267,18 +267,18 @@ function renderBackground()
     );                  
 }
 
-// function moveCamera()
-// {
-//     const xTranslation = -globals.camera.x;
-//     const yTranslation = -globals.camera.y;
+function moveCamera()
+{
+    const xTranslation = -globals.camera.x;
+    const yTranslation = -globals.camera.y;
 
-//     globals.ctx.translate(xTranslation, yTranslation);
-// }
+    globals.ctx.translate(xTranslation, yTranslation);
+}
 
-// function restoreCamera()
-// {
-//     globals.ctx.setTransform(1, 0, 0, 1, 0, 0);
-// }
+function restoreCamera()
+{
+    globals.ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
 
 function renderParticles()
 {

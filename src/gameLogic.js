@@ -76,7 +76,7 @@ function playGame()
     detectCollisions();
 
     //Actualizacion de la camara
-    //updateCamera();
+    updateCamera();
 
     //Actualizacion de la logica de juego
     updateLevelTime(); 
@@ -387,7 +387,6 @@ function updateLifeTime()
     if (globals.lifeTime.timeChangeCounter > globals.lifeTime.timeChangeValue && globals.lifeTime != 0)
     {
         globals.lifeTime.value--;
-
         //Reseteamos timeChangeCounter
         globals.lifeTime.timeChangeCounter = 0;
     }
@@ -429,7 +428,6 @@ function updateLife()
 //         }
 //     }
 // }
-
 function swapDirection(sprite)
 {
     sprite.state = sprite.state === State.RIGHT_2 ? State.LEFT_2 : State.RIGHT_2;
@@ -555,14 +553,14 @@ function readKeyboardAndAssignState(sprite)
 }      
 
 
-// function updateCamera()
-// {
-//     //Centramos la camara en el player
-//     const player = globals.sprites[0];
+function updateCamera()
+{
+    //Centramos la camara en el player
+    const player = globals.sprites[0];
 
-//     globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 2);
-//     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) / 2);
-// }
+    globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 2);
+    globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) / 2);
+}
 
 // function restartFresa(sprite)
 // {
@@ -619,8 +617,8 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.random()*10 + 5;
-        sprite.yPos = Math.random()*20 + 10;
+        sprite.xPos = Math.round(Math.random() * 8) + 1;
+        sprite.yPos = Math.round(Math.random() * 8) + 1;
     }
 }
 
@@ -628,7 +626,7 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.random(sprite.xPos);
+        sprite.xPos = Math.random() * 20;
         sprite.yPos = 200;
     }
 }

@@ -8,7 +8,7 @@ import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler } from "./events.js";
 import HitBox from "./HitBox.js";
-//import Camera from "./Camera.js";
+import Camera from "./Camera.js";
 import ExplosionParticle from "./particle.js";
 
 //Función que inicializa los elementos  HTML
@@ -389,10 +389,10 @@ function initEvents()
     window.addEventListener("keyup", keyupHandler, false);
 }
 
-// function initCamera()
-// {
-//     globals.camera = new Camera(0, 0);
-// }
+function initCamera()
+{
+    globals.camera = new Camera(0, 0);
+}
 
 function initParticles(sprite)
 {
@@ -434,5 +434,6 @@ export {
     initTimers,
     initEvents,
     initDisparos,
+    initCamera,
     initParticles
 }
