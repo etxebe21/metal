@@ -66,7 +66,7 @@ function loadAssets()
     //Load the spritesheet image
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/spritesheet (1)..png"; //Ruta relativa HTML
+    tileSet.src = "./images/spritesheet.png"; //Ruta relativa HTML
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -80,7 +80,7 @@ function loadAssets()
     //fondo pantalla
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/cies (2).png";
+    tileSet.src = "./images/fondocanvas1.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -160,7 +160,7 @@ function initPlayer()
     const hitBox = new HitBox(25, 45, 9, 2);
 
     //Creamos nuestr sprite
-    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 10, 260, imageSet, frames,physics, hitBox);
+    const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 200, 260, imageSet, frames,physics, hitBox);
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
@@ -182,7 +182,7 @@ function initZezen()
     const hitBox = new HitBox(22, 46, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 90, 259, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 200, 259, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);

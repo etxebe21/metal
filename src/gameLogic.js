@@ -392,42 +392,25 @@ function updateLifeTime()
     }
 }
 
-function updateLife()
-{
-    for (let i = 1; i < globals.sprites.length; ++i)
-    {
-        const sprite = globals.sprites[i];
-        
-        if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
-        { 
-            console.log("entra");
-            if(sprite.id != SpriteID.AGUA || sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
-            {
-                //Si hay colision reducimos la vida
-                globals.life -= 10;
-                globals.lifeTime.value = 3;
-            }
-        }
-    }
-}
-// function updateScore()
-// { 
+// function updateLife()
+// {
 //     for (let i = 1; i < globals.sprites.length; ++i)
 //     {
 //         const sprite = globals.sprites[i];
         
-//         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value ===  0)
+//         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
 //         { 
-            
-//             if( sprite.id = SpriteID.FRUTA)
-//             {console.log("entra");
-//                 //Si hay colision sumamos puntos
-//                  globals.score += 100;
-//                  globals.lifeTime.value = 3;
+//             console.log("entra");
+//             if(sprite.id != SpriteID.AGUA || sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
+//             {
+//                 //Si hay colision reducimos la vida
+//                 globals.life -= 10;
+//                 globals.lifeTime.value = 3;
 //             }
 //         }
 //     }
 // }
+
 function swapDirection(sprite)
 {
     sprite.state = sprite.state === State.RIGHT_2 ? State.LEFT_2 : State.RIGHT_2;
@@ -453,11 +436,11 @@ function updateDirectionRandom(sprite)
 
 function calculateCollisionWithFourBorders(sprite)
 {
-    if(sprite.xPos + sprite.imageSet.xSize > globals.canvas.width)
+    if(sprite.xPos + sprite.imageSet.xSize > 1532)
     {
         sprite.collisionBorder = Collision.BORDER_RIGHT;
     }
-    else if (sprite.xPos < 0)
+    else if (sprite.xPos < -200)
     {
         sprite.collisionBorder = Collision.BORDER_LEFT;
     }
@@ -552,23 +535,14 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state;
 }      
 
-
 function updateCamera()
 {
     //Centramos la camara en el player
     const player = globals.sprites[0];
 
-    globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 5 );
+    globals.camera.x = Math.floor(player.xPos) + Math.floor((player.imageSet.xSize - globals.canvas.width) / 10 );
     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) + 10 );
 }
-
-// function restartFresa(sprite)
-// {
-//     if(sprite.isCollidingWithPlayer)
-//     {
-//         initParticles(sprite);
-//     }
-// }
 
 function sumPoints(sprite)
 {
@@ -599,7 +573,7 @@ function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(500));
+        sprite.xPos = Math.round(Math.random()*(1500));
         sprite.yPos = 267;
     }
 }
@@ -608,7 +582,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * 300);
+        sprite.xPos = Math.round(Math.random() * 1000);
         sprite.yPos = 260;
     }
 }
@@ -617,8 +591,8 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * 8) + 1;
-        sprite.yPos = Math.round(Math.random() * 8) + 1;
+        sprite.xPos = Math.round(Math.random() * 80) + 1;
+        sprite.yPos = Math.round(Math.random() * 80) + 1;
     }
 }
 
@@ -626,16 +600,16 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.random() * 20;
-        sprite.yPos = 200;
+        sprite.xPos = Math.round(Math.random() * 180) + 1;
+        sprite.yPos = Math.round(Math.random() * 180) + 1;
     }
 }
 
 function restartToro(sprite)
 {
-    if(sprite.xPos  > 1000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = -250;
+        sprite.xPos = -600;
         sprite.yPos = 250;
     }
 }
@@ -644,7 +618,7 @@ function restartZezen(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1200;
+        sprite.xPos = 1700;
         sprite.yPos = 260;
     }
 }

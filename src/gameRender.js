@@ -261,10 +261,10 @@ function renderBackground()
         globals.tileSets[2],
     
         0, 0,                   //The source x and y position
-        534, 320,               //The source height and width
+        1534, 320,               //The source height and width
         0, 0,                   //The destination x and y position
-        534, 320,             //The destination height and width
-    );                  
+        1534, 320,             //The destination height and width
+    );               
 }
 
 function moveCamera()
