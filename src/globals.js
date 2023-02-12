@@ -52,7 +52,7 @@ export default {
     //Score
     score: 0,
 
-    highscore: 500,
+    highscore: 0,
 
     //Array particulas
     particles: []

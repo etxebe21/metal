@@ -25,7 +25,7 @@ export default function detectCollisions()
     {
         const sprite = globals.sprites[i];
         detectCollisionBetweenPlayerAndSprite(sprite);
-
+    
         if (sprite.id === SpriteID.BULLET)
         {
             for ( let j = 1; j < globals.sprites.length; ++j)
@@ -98,8 +98,6 @@ function detectCollisionBetweenDisparoAndSprite ( sprite)
                 console.log("entra en funcion");
             //Existe colision
             sprite.isCollidingWithDisparo = true;
-            //bullet.state = State.OFF;
-            // bullet.isCollidingWithEnemy = true;
             }
 }
 
