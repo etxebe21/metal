@@ -399,35 +399,35 @@ function initDisparos(sprite)
     {
     case State.STILL_RIGHT:
         console.log("entra");
-        bullet.physics.vx = bullet.physics.vLimit;
+        bullet.physics.vx = bullet.physics.vLimit + 50;
         break;
 
     case State.RIGHT:
-        bullet.physics.vx = bullet.physics.vLimit;
+        bullet.physics.vx = bullet.physics.vLimit + 50;
         break;
     
     case State.STILL_LEFT:
-        bullet.physics.vx = - bullet.physics.vLimit;
+        bullet.physics.vx = - bullet.physics.vLimit - 50;
         break;
 
     case State.LEFT:
-        bullet.physics.vx = - bullet.physics.vLimit;
+        bullet.physics.vx = - bullet.physics.vLimit - 50;
         break;
     
     case State.STILL_UP:
-        bullet.physics.vy = - bullet.physics.vLimit;
+        bullet.physics.vy = - bullet.physics.vLimit - 50;
         break;
 
     case State.UP:
-        bullet.physics.vy = - bullet.physics.vLimit;
+        bullet.physics.vy = - bullet.physics.vLimit  - 50;
         break;
     
     case State.STILL_DOWN:
-        bullet.physics.vy = bullet.physics.vLimit;
+        bullet.physics.vy = bullet.physics.vLimit + 50;
         break;
 
     case State.DOWN:
-        bullet.physics.vy = bullet.physics.vLimit;
+        bullet.physics.vy = bullet.physics.vLimit + 50;
         break;
 
     default:
