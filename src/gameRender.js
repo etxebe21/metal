@@ -206,7 +206,6 @@ function drawSprites()
     }
 }
 
-
 function drawSpriteRectangle(sprite)
 {
 
@@ -228,7 +227,7 @@ function drawHitBox (sprite)
         const w1 = sprite.hitBox.xSize;
         const h1 = sprite.hitBox.ySize;
 
-    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeStyle = "transparent";
     globals.ctx.strokeRect (x1, y1, w1, h1);
 }
 
@@ -319,7 +318,7 @@ function renderExplosionParticle(particle)
         globals.ctx.fillStyle = 'red';
         globals.ctx.globalAlpha = particle.alpha; //Set alpha
         globals.ctx.beginPath();
-        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0,2 * Math.PI );
+        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0,5 * Math.PI );
         globals.ctx.fill();
         globals.ctx.globalAlpha = 1.0;  //Restore alpha
     }

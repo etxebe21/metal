@@ -17,7 +17,8 @@ export default class Sprite
         this.isCollidingWithObstacleOnTheLeft = false;    //Indica si ha habido colision con n obstaculo hacia izuiqerda
         this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
         this.isCollidingWithObstacleOnTheRight  = false;  //Indica si ha habido colision con n obstaculo hacia derecha
-        
+        this.isCollision = false;
+  
     }
 }
 

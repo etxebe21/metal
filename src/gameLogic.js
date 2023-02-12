@@ -131,6 +131,8 @@ sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 //Actualizamos la animación
 updateAnimationFrame(sprite)
+
+//calculateCollisionWithBorders();
 }
 
 function updateFruta(sprite)
@@ -464,27 +466,16 @@ function calculateCollisionWithBorders(sprite)
     let isCollision = false;
 
     //Colision con el borde derecho de la pantalla
-    if(sprite.xPos + sprite.imageSet.xSize > globals.canvas.width)
+    if(sprite.xPos + sprite.imageSet.xSize > 1532)
     {
         isCollision = true;
     }
     //Colision con el borde izquierdo de la pantalla
-    else if (sprite.xPos < 0)
+    else if (sprite.xPos < -200)
     {
         isCollision = true;
     }
 
-     //Colision con el borde superior de la pantalla
-     else if(sprite.yPos + sprite.imageSet.ySize > globals.canvas.height)
-     {
-         isCollision = true;
-     }
-     //Colision con el borde inferior de la pantalla
-     else if (sprite.yPos < 0)
-     {
-         isCollision = true;
-     }
- 
     return isCollision;
 }
 
