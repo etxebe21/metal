@@ -41,6 +41,8 @@ export default function render()
 
 function renderHome()
 {
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[3],
     
@@ -53,6 +55,8 @@ function renderHome()
 
 function renderHistory()
 {
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[5],
     
@@ -65,6 +69,8 @@ function renderHistory()
 
 function renderHighScores()
 {
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[4],
     
@@ -77,6 +83,8 @@ function renderHighScores()
 
 function renderGameOver()
 {
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[6],
     
