@@ -66,10 +66,10 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
         const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
         //console.log("entra hasta aqui");
         if(isOverlap)
-            {
+        {
             //Existe colision
             sprite.isCollidingWithPlayer = true;
-            }
+        }
 }
 
 function detectCollisionBetweenDisparoAndSprite ( sprite)
@@ -77,7 +77,7 @@ function detectCollisionBetweenDisparoAndSprite ( sprite)
         //Reset collision state
         sprite.isCollidingWithDisparo = false;
 
-        const bullet = globals.sprites[7];
+        const bullet = globals.sprites[0];
 
         //Datos del disparo
         const x1 = bullet.xPos + bullet.hitBox.xOffset;
@@ -94,11 +94,11 @@ function detectCollisionBetweenDisparoAndSprite ( sprite)
         const isOverlap = rectIntersect (x1, y1, w1, h1, x2, y2, w2, h2) 
         //console.log("entra hasta aqui");
         if(isOverlap)
-            {
-                console.log("entra en funcion");
+        {
+            console.log("entra en funcion");
             //Existe colision
             sprite.isCollidingWithDisparo = true;
-            }
+        }
 }
 
 //Deevuelve el Id del tile del mapa para las coordenadas xPos y yPos

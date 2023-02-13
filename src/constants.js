@@ -26,12 +26,14 @@ export const SpriteID = {
     FRUTA: 4,
     AGUA:  5,
     BULLET: 6,
-    BRUJA:  7 
+    BRUJA:  7 ,
+    FIRE:   8
 }
 
 //Identificador de estado de sprite ( dirección)
 export const State = {
     //Estados player
+    INVALID:      -2,
     STATE_OFF:   -1,
     DOWN:       0,
     LEFT:       1,

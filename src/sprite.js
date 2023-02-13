@@ -13,7 +13,6 @@ export default class Sprite
         this.physics                          =physics;      //Datos de las físicas
         this.hitBox                           =hitBox;       //Datos hitbox
         this.isCollidingWithPlayer            = false;   //Variable que indica si ha habido colision con player
-        this.isCollidingWithDisparo = false;
         this.isCollidingWithObstacleOnTheTop  = false;   //Indica si ha habido colision con n obstaculo hacia arriba 
         this.isCollidingWithObstacleOnTheLeft = false;    //Indica si ha habido colision con n obstaculo hacia izuiqerda
         this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
@@ -44,7 +43,6 @@ constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
 
     this.isCollidingWithDisparo = false;
-    this.isCollidingWithPlayer = false;
     }
 }
 

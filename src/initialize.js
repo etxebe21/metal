@@ -147,6 +147,7 @@ function initSprites()
     initAgua(); 
     initBruja(); 
     initBruja2();
+    initFire();
 }
 
 function initPlayer()
@@ -372,6 +373,32 @@ function initBruja2()
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(bruja);
+}
+
+function initFire()
+{
+//Creamos las propiedades de las imagenes : initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
+const imageSet = new ImageSet(18,0,40,40,65,29,25);
+
+//Creamos los datos de la animación. 8 frames / state
+const frames = new Frames(1);
+
+//Valores inciciales para Physics
+const initAngle = 50 * Math.PI / 180;
+const omega     = 10;
+const yRef      = 20;
+
+//Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
+const physics = new Physics(10, 0.001, 1, 0, omega, initAngle, yRef);
+
+//Creamos nuestro objeto Hitbox
+const hitBox = new HitBox (13 ,8 ,3 , 6);
+
+//Creamos nuestro sprite
+const fire = new Sprite(SpriteID.FIRE, State.STILL, 500, 100, imageSet,frames,physics,hitBox);
+
+//Añadimos el mon al array de sprites
+globals.sprites.push(fire);
 }
 
 function initDisparos(sprite)

@@ -264,8 +264,6 @@ restartZezen(sprite);
 quitarLife(sprite);
 
 sumPointsEnemy(sprite);
-
-//sumPointsEnemy(sprite);
 }
 
 //Funcion que actualiza el TORO
@@ -298,8 +296,7 @@ restartToro(sprite);
 quitarLife(sprite);
 
 sumPointsEnemy(sprite);
-
- }
+}
 
 function updateBruja(sprite)
 {
@@ -377,20 +374,35 @@ function updateBruja2(sprite)
     sumPointsEnemy(sprite);
 
     calculateCollisionWithFourBorders(sprite);
-    
 }
 
+function updateFire(sprite)
+{
+  const amplitude = 10;
+  
+  sprite.physics.vx = -sprite.physics.vLimit;
+  sprite.physics.angle += sprite.physics.omega + globals.deltaTime;
+ 
+  //Calculamos distancia que se mueve ( x = x +vt)
+  sprite.xPos += sprite.physics.vx * globals.deltaTime;
+  sprite.yPos = sprite.physics.yRef + amplitude * Math.sin(sprite.physics.angle); 
+  
+  updateAnimationFrame(sprite);
+
+  restarFire(sprite);
+}
 function updateSprites()
 {
-    for (let i=0; i < globals.sprites.length; ++i)
+    for(let i = 0; i < globals.sprites.length; i++)
     {
         const sprite = globals.sprites[i];
-        updateSprite(sprite);
-    
-    if(sprite.state === State.STATE_OFF){ // -1
+            updateSprite(sprite);
 
-        globals.sprites.splice(i, 1);
-         i--; }
+            if (sprite.state === State.STATE_OFF )
+            {
+                globals.sprites.splice(i,1);
+                i--;
+            } 
     }
 }
 
@@ -430,6 +442,10 @@ function updateSprite(sprite)
 
         case SpriteID.BRUJA:
             updateBruja2(sprite);
+            break;
+        
+        case SpriteID.FIRE:
+            updateFire(sprite);
             break;
 
         default:
@@ -636,7 +652,7 @@ function sumPoints(sprite)
 
 function sumPointsEnemy(sprite)
 {
-    if(sprite.isCollidingWithDisparo || sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWithPlayer)
     {
         globals.score += 100;
         globals.lifeTime.value = 3;
@@ -697,7 +713,7 @@ function restartBruja2(sprite)
 
 function restartToro(sprite)
 {
-    if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
         sprite.xPos = -600;
         sprite.yPos = 250;
@@ -710,6 +726,15 @@ function restartZezen(sprite)
     {  
         sprite.xPos = 1700;
         sprite.yPos = 260;
+    }
+}
+
+function restarFire(sprite)
+{
+    if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    {  
+        sprite.xPos = 1300;
+        sprite.yPos = 360;
     }
 }
 
