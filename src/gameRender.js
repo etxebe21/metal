@@ -228,7 +228,7 @@ function drawHitBox (sprite)
         const w1 = sprite.hitBox.xSize;
         const h1 = sprite.hitBox.ySize;
 
-    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeStyle = "transparent";
     globals.ctx.strokeRect (x1, y1, w1, h1);
 }
 
@@ -341,10 +341,14 @@ function renderScores()
 }
 
 function renderScoreTable(score)
-{
-     //globals.ctx.fillRect(score.xPos, score.yPos, SCORE_SIZE, SCORE_SIZE);
-     globals.ctx.font = '30px emulogic';
+{    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+     globals.ctx.font = '40px emulogic';
      globals.ctx.fillStyle = 'white';
-     globals.ctx.fillText(score.name, score.xPos + 20, score.yPos + 30);
-     globals.ctx.fillText(score.score, score.xPos + 20, score.yPos + 50);  
+     globals.ctx.fillText("HIGH SCORES", 50,60);
+     globals.ctx.font = '25px emulogic';
+     globals.ctx.fillText("MIK     20000", 80,120);
+     globals.ctx.fillText("JAV     15000", 80,170);
+     globals.ctx.fillText("ASI     12000", 80,220);
+     globals.ctx.fillText("EST     10000", 80,270);
+      
 }

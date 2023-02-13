@@ -381,7 +381,9 @@ function updateFire(sprite)
   
   updateAnimationFrame(sprite);
 
-  restarFire(sprite);
+  restartFire(sprite);
+
+  quitarLife(sprite);
 }
 function updateSprites()
 {
@@ -543,7 +545,6 @@ function calculateCollisionWithFourBorders(sprite)
     }
 }
 
-
 function calculateCollisionWithBorders(sprite)
 {
     let isCollision = false;
@@ -646,7 +647,7 @@ function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(1500) + 20);
+        sprite.xPos = Math.round(Math.random()*(1500-0)) ;
         sprite.yPos = 267;
     }
 }
@@ -655,7 +656,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * 1400 + 5);
+        sprite.xPos = Math.round(Math.random() * 1500-10);
         sprite.yPos = 260;
     }
 }
@@ -673,8 +674,8 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = Math.round(Math.random() * 180) + 1;
-        sprite.yPos = Math.round(Math.random() * 180) + 1;
+        sprite.xPos = Math.round(Math.random() * (1500-0));
+        sprite.yPos = Math.round(Math.random() * (500-100));
     }
 }
 
@@ -682,8 +683,8 @@ function restartToro(sprite)
 {
     if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
-        sprite.xPos = -600;
-        sprite.yPos = 250;
+        sprite.xPos = -400;
+        sprite.yPos = 254;
     }
 }
 
@@ -691,24 +692,19 @@ function restartZezen(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1700;
-        sprite.yPos = 260;
+        sprite.xPos = 1600;
+        sprite.yPos = 258;
     }
 }
 
-function restarFire(sprite)
+function restartFire(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1300;
-        sprite.yPos = 360;
+        sprite.xPos = 1500;
+        sprite.yPos = 260;
     }
 }
-
-// function updateRestart(sprite)
-// {
-//     initRestart(sprite);
-// }
 
 function updateParticles()
 {
