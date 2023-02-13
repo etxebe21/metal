@@ -456,7 +456,7 @@ function updateSprite(sprite)
 function updateDisparos(sprite)
 { console.log(sprite.isCollidingWith);
     if(sprite.isCollidingWith)
-    {  
+    {   
         sprite.state = State.STATE_OFF;
     }
     //Calculamos distancia que se mueve (Y = Y +Vt)
@@ -465,6 +465,7 @@ function updateDisparos(sprite)
 
     //Actualizamos la animación
     updateAnimationFrame(sprite);
+    sumPointsEnemy(sprite);
 }
 
 function updateScoreTotal()
@@ -656,7 +657,7 @@ function sumPoints(sprite)
 
 function sumPointsEnemy(sprite)
 {
-    if(sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWithDisparo)
     {
         globals.score += 100;
         globals.lifeTime.value = 3;
@@ -793,7 +794,6 @@ function updateExplosionParticle(particle)
        case ParticleState.OFF:
 
             break;
-
         default:
    }
       particle.xPos += particle.physics.vx * globals.deltaTime;

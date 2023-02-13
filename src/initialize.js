@@ -503,8 +503,8 @@ function initParticles(sprite)
 function initExplosion(sprite)
 {
     const numParticles = 50;
-    const xInit = sprite.xPos;
-    const yInit = sprite.yPos;
+    const xInit = sprite.xPos + 5;
+    const yInit = sprite.yPos + 5;
     const radius = 1;
     const timeToFadeMax = 3;
     const alpha = 1.0;
