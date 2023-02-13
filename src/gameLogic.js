@@ -283,14 +283,12 @@ function updateFruta(sprite)
 updateAnimationFrame(sprite);
 sumPoints(sprite);
 restartFruta(sprite);
-particlesFruta(sprite);
 }
 
 function updateAgua(sprite)
 {
 sumPoints(sprite);
 restartAgua(sprite);
-particlesFruta(sprite);
 sumarLife(sprite);
 } 
 
@@ -452,6 +450,7 @@ function updateDisparos(sprite)
 { 
     if(sprite.isCollidingWith)
     {   
+        particlesDisparo(sprite);
         sprite.state = State.STATE_OFF;
     }
     //Calculamos distancia que se mueve (Y = Y +Vt)
@@ -693,7 +692,7 @@ function restartZezen(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1600;
+        sprite.xPos = 3000;
         sprite.yPos = 258;
     }
 }
@@ -702,7 +701,7 @@ function restartFire(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1500;
+        sprite.xPos = 2000;
         sprite.yPos = 260;
     }
 }
@@ -771,9 +770,9 @@ function updateExplosionParticle(particle)
       particle.yPos += particle.physics.vy * globals.deltaTime;
   }
 
-function particlesFruta(sprite)
+function particlesDisparo(sprite)
 {
-    if(sprite.isCollidingWithPlayer)
+    if(sprite.isCollidingWith)
     {
         initParticles(sprite);
     }

@@ -264,9 +264,9 @@ function renderBackground()
         globals.tileSets[2],
     
         0, 0,                   //The source x and y position
-        1600, 320,               //The source height and width
-        0, 0,                   //The destination x and y position
-        1600, 320,             //The destination height and width
+        3200, 320,               //The source height and width
+        -500, 0,                   //The destination x and y position
+        3200, 320,             //The destination height and width
     );               
 }
 

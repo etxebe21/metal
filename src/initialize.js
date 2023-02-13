@@ -85,7 +85,7 @@ function loadAssets()
     //fondo pantalla
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/fondocanvas1.png";
+    tileSet.src = "./images/fondoGame.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
