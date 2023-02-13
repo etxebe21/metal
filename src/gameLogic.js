@@ -10,7 +10,7 @@ export default function update()
     switch(globals.gameState)
     {
         case Game.LOADING:
-            console.log("Loading assets...");
+            updateLoading();
             break;
 
         case Game.PLAYING:
@@ -37,10 +37,16 @@ export default function update()
     }
 }
 
+function updateLoading()
+{
+    if( globals.action.moveAttack)
+    globals.gameState = Game.PLAYING;  
+}
+
 function updateNewGame()
 {
     if( globals.action.move1)
-        globals.gameState = Game.PLAYING;
+        globals.gameState = Game.LOADING;
 
     if ( globals.action.move3)
         globals.gameState = Game.HIGH_SCORES;
@@ -713,12 +719,12 @@ function updateParticles()
       const particle = globals.particles[i];
       updateParticle(particle);
 
-    //   if(particle.state === ParticleState.STATE_OFF)
-    //   {
+      if(particle.state === ParticleState.OFF)
+      {
 
-    //     globals.particles.splice(i,1);
-    //     i--;
-    // }
+        globals.particles.splice(i,1);
+        i--;
+    }
     }
 }
 
@@ -780,7 +786,7 @@ function particlesDisparo(sprite)
 
 function updateDied()
 {
-    if(globals.life < 0 || globals.levelTime.value >= 150)
+    if(globals.life <=0 )  //|| globals.levelTime.value >= 150
     {   globals.highscore = globals.score;
         globals.score = 0;
         globals.life = 300;

@@ -116,6 +116,13 @@ function loadAssets()
     tileSet.src = "./images/GAMEOVER.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
+
+    //loading
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/loading.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
 }
 
 
@@ -656,10 +663,10 @@ function getDataBase()
 
 function initScores(data)
 {
-    //Creamos las cartas
+    //Creamos score
     createScores(data);
 
-    //Dibujamos las cartas
+    //Dibujamos lscore
     renderScore();
 }
 
@@ -667,7 +674,7 @@ function createScores(data)
 {
     let score;
 
-    //Reseteamos las cartas
+    //Reseteamos score
     globals.scores = [];
 
     for(let i = 0; i < data.length; ++i)
@@ -680,7 +687,7 @@ function createScores(data)
         )
         globals.scores.push(score);
     }
-    //Posicionamos las cartas en la pantalla
+    //Posicionamos score en la pantalla
     setScorePosition();
 }
 

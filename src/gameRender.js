@@ -9,7 +9,7 @@ export default function render()
     switch(globals.gameState)
     {
         case Game.LOADING:
-            //Draw loading spinner
+            renderLoading();
             break;
 
         case Game.PLAYING:
@@ -56,6 +56,20 @@ function renderHistory()
     globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[5],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
+}
+
+function renderLoading()
+{
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+    globals.ctx.drawImage(
+        globals.tileSets[7],
     
         0, 0,                   //The source x and y position
         534, 320,               //The source height and width
@@ -346,6 +360,7 @@ function renderScoreTable(score)
     globals.ctx.fillStyle = 'yellow';
     globals.ctx.fillText("POS  NAME    SCORE", 40,90);
     globals.ctx.font = '22px emulogic';
+    globals.ctx.fillStyle = 'white';
     globals.ctx.fillText("1   MIK    20000", 60,130);
     globals.ctx.fillText("2   JAV    15500", 60,165);
     globals.ctx.fillText("3   ASI    12000", 60,200);
