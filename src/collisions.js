@@ -184,11 +184,39 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 
             break;
         
-        default:
-            //Resto de estados a rellenar
-            break;
+    case State.LEFT:
+
+    //pRIMERA colision en ( xPos + xSize - 1 , y Pos)
+    xPos = player.xPos + player.hitBox.xOffset -1;
+    yPos = player.yPos + player.hitBox.yOffset;
+    isCollidingOnPos1 = isCollidingWithObstacleAt(xPos, yPos, obstacleId);
+
+
+    //Ultima colision en (xPos + xSize -1, yPos + ySize -1)
+    yPos = player.yPos + player.hitBox.yOffset + player.hitBox.ySize -1;
+    isCollidingOnPos3 = isCollidingWithObstacleAt (xPos, yPos, obstacleId);
+
+    //Habra colision si toca alguno de los 3 bloques
+    isColliding = isCollidingOnPos1 || isCollidingOnPos3;
+
+    if(isColliding)
+    {
+        //Exist colision a la derecha
+        player.isCollidingWithObstacleOnTheRight = true;
+
+        //AJUSTE: Calculamos solapamiento (overlap) y lo eliminiamos
+        //moviendo el personaje tantos pixeles como overlap a la izda
+        overlap = (Math.floor(xPos) % brickSize) - brickSize + 1;
+        player.xPos -= overlap;
     }
 
+    break;
+
+default:
+    //Resto de estados a rellenar
+    break;
+
+}
 }
 
 
