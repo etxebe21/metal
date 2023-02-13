@@ -152,6 +152,8 @@ function initSprites()
     initBruja(); 
     initBruja2();
     initFire();
+    initFire2();
+    initFire3();
 }
 
 function initPlayer()
@@ -406,6 +408,58 @@ function initFire()
     globals.sprites.push(fire);
 }
 
+function initFire2()
+{
+    //Creamos las propiedades de las imagenes: initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
+    const imageSet = new ImageSet(18, 0, 55, 55, 65, 20, 20);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8, 8);
+
+    //Valores inciciales para Physics
+    const initAngle = 50 * Math.PI / 180;
+    const omega     = 10;
+    const yRef      = 20;
+
+    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
+    const physics = new Physics(30, 0.002, 1, 0, omega, initAngle, yRef);
+
+    //Creamos nuestro objeto Hitbox
+    const hitBox = new HitBox (29 ,30 ,12 , 12);
+
+    //Creamos sprite
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1200, 100, imageSet,frames,physics,hitBox);
+
+    //Añadimos array de sprites
+    globals.sprites.push(fire);
+}
+
+function initFire3()
+{
+    //Creamos las propiedades de las imagenes: initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
+    const imageSet = new ImageSet(17, 0, 55, 55, 65, 20, 20);
+
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8, 8);
+
+    //Valores inciciales para Physics
+    const initAngle = 50 * Math.PI / 180;
+    const omega     = 10;
+    const yRef      = 20;
+
+    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
+    const physics = new Physics(40, 0.003, 1, 0, omega, initAngle, yRef);
+
+    //Creamos nuestro objeto Hitbox
+    const hitBox = new HitBox (29 ,30 ,12 , 12);
+
+    //Creamos sprite
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1700, 100, imageSet,frames,physics,hitBox);
+
+    //Añadimos array de sprites
+    globals.sprites.push(fire);
+}
+
 function initDisparos(sprite)
 {
     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
@@ -490,14 +544,6 @@ function initEvents()
     window.addEventListener("keydown", keydownHandler, false);
     window.addEventListener("keyup", keyupHandler, false);
 }
-
-// function initRestart(sprite)
-// {
-//     if(globals.levelTime.value > 10)
-//     { console.log("timer");
-//         initToro(sprite); 
-//     }
-// }
 
 function initCamera()
 {

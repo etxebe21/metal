@@ -342,7 +342,7 @@ function renderScores()
 
 function renderScoreTable(score)
 {
-     globals.ctx.fillRect(score.xPos, score.yPos, SCORE_SIZE, SCORE_SIZE);
+     //globals.ctx.fillRect(score.xPos, score.yPos, SCORE_SIZE, SCORE_SIZE);
      globals.ctx.font = '30px emulogic';
      globals.ctx.fillStyle = 'white';
      globals.ctx.fillText(score.name, score.xPos + 20, score.yPos + 30);

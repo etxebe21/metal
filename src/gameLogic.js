@@ -784,7 +784,7 @@ function particlesFruta(sprite)
 
 function updateDied()
 {
-    if(globals.life === 0 || globals.levelTime.value >= 150)
+    if(globals.life < 0 || globals.levelTime.value >= 150)
     {   globals.highscore = globals.score;
         globals.score = 0;
         globals.life = 300;
