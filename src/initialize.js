@@ -187,7 +187,7 @@ function initZezen()
     const hitBox = new HitBox(22, 46, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 950, 259, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 100, 259, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -209,7 +209,7 @@ function initToro()
     const hitBox = new HitBox(22, 45, 13, 9);
 
     //Creamos nuestro sprite
-    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2, -400, 251, imageSet, frames, physics, hitBox);
+    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2, -600, 251, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -297,7 +297,7 @@ function initPlatano()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 10, 267, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 15, 267, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -378,7 +378,7 @@ function initBruja2()
 function initFire()
 {
 //Creamos las propiedades de las imagenes : initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
-const imageSet = new ImageSet(18,0,40,40,65,29,25);
+const imageSet = new ImageSet(18, 0, 40, 40, 65, 29, 25);
 
 //Creamos los datos de la animación. 8 frames / state
 const frames = new Frames(1);
@@ -389,13 +389,13 @@ const omega     = 10;
 const yRef      = 20;
 
 //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-const physics = new Physics(10, 0.001, 1, 0, omega, initAngle, yRef);
+const physics = new Physics(20, 0.001, 1, 0, omega, initAngle, yRef);
 
 //Creamos nuestro objeto Hitbox
-const hitBox = new HitBox (13 ,8 ,3 , 6);
+const hitBox = new HitBox (25 ,25 ,5 , 10);
 
 //Creamos nuestro sprite
-const fire = new Sprite(SpriteID.FIRE, State.STILL, 500, 100, imageSet,frames,physics,hitBox);
+const fire = new Sprite(SpriteID.FIRE, State.STILL, 800, 100, imageSet,frames,physics,hitBox);
 
 //Añadimos el mon al array de sprites
 globals.sprites.push(fire);

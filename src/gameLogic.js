@@ -378,7 +378,7 @@ function updateBruja2(sprite)
 
 function updateFire(sprite)
 {
-  const amplitude = 10;
+  const amplitude = 250;
   
   sprite.physics.vx = -sprite.physics.vLimit;
   sprite.physics.angle += sprite.physics.omega + globals.deltaTime;
