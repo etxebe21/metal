@@ -234,7 +234,7 @@ sumarLife(sprite);
 
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
-{
+{    
 //Maquina de estados pirata
     switch(sprite.state)
     {
@@ -259,11 +259,9 @@ sprite.xPos += sprite.physics.vx * globals.deltaTime;
 //Actualizamos la animación
 updateAnimationFrame(sprite);
 
-restartZezen(sprite);
-
 quitarLife(sprite);
 
-sumPointsEnemy(sprite);
+restartZezen(sprite);
 }
 
 //Funcion que actualiza el TORO
@@ -291,11 +289,9 @@ sprite.xPos += sprite.physics.vx * globals.deltaTime;
 //Actualizamos la animación
 updateAnimationFrame(sprite);
 
-restartToro(sprite);
-
 quitarLife(sprite);
 
-sumPointsEnemy(sprite);
+restartToro(sprite);
 }
 
 function updateBruja(sprite)
@@ -331,8 +327,6 @@ function updateBruja(sprite)
     restartBruja(sprite);
 
     quitarLife(sprite);
-
-    sumPointsEnemy(sprite);
 
     calculateCollisionWithFourBorders(sprite);   
 }
@@ -370,8 +364,6 @@ function updateBruja2(sprite)
     restartBruja2(sprite);
 
     quitarLife(sprite);
-
-    sumPointsEnemy(sprite);
 
     calculateCollisionWithFourBorders(sprite);
 }
@@ -454,7 +446,7 @@ function updateSprite(sprite)
 }
 
 function updateDisparos(sprite)
-{ console.log(sprite.isCollidingWith);
+{ 
     if(sprite.isCollidingWith)
     {   
         sprite.state = State.STATE_OFF;
@@ -464,8 +456,7 @@ function updateDisparos(sprite)
     sprite.xPos += sprite.physics.vx * globals.deltaTime;
 
     //Actualizamos la animación
-    updateAnimationFrame(sprite);
-    sumPointsEnemy(sprite);
+    updateAnimationFrame(sprite);  
 }
 
 function updateScoreTotal()
@@ -504,25 +495,6 @@ function updateLifeTime()
         globals.lifeTime.timeChangeCounter = 0;
     }
 }
-
-// function updateLife()
-// {
-//     for (let i = 1; i < globals.sprites.length; ++i)
-//     {
-//         const sprite = globals.sprites[i];
-        
-//         if(sprite.isCollidingWithPlayer && globals.life > 0 && globals.lifeTime.value === 0)
-//         { 
-//             console.log("entra");
-//             if(sprite.id != SpriteID.AGUA || sprite.ID != SpriteID.FRUTA || sprite.ID != SpriteID.BRUJA || sprite.id != SpriteID.TORO || sprite.id != SpriteID.ZEZEN)
-//             {
-//                 //Si hay colision reducimos la vida
-//                 globals.life -= 10;
-//                 globals.lifeTime.value = 3;
-//             }
-//         }
-//     }
-// }
 
 function swapDirection(sprite)
 {
@@ -650,17 +622,7 @@ function sumPoints(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.score += 100;
-        globals.lifeTime.value = 3;
-    }
-}
-
-function sumPointsEnemy(sprite)
-{
-    if(sprite.isCollidingWithDisparo)
-    {
-        globals.score += 100;
-        globals.lifeTime.value = 3;
+        globals.score += 50;
     }
 }
 
@@ -668,7 +630,7 @@ function quitarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.life -= 20;
+        globals.life -= 50;
     }
 }
 
@@ -743,12 +705,24 @@ function restarFire(sprite)
     }
 }
 
+// function updateRestart(sprite)
+// {
+//     initRestart(sprite);
+// }
+
 function updateParticles()
 {
   for (let i = 0; i < globals.particles.length; ++i)
     {  
       const particle = globals.particles[i];
       updateParticle(particle);
+
+    //   if(particle.state === ParticleState.STATE_OFF)
+    //   {
+
+    //     globals.particles.splice(i,1);
+    //     i--;
+    // }
     }
 }
 
@@ -819,7 +793,7 @@ function updateDied()
         globals.gameState = Game.GAME_OVER;
         initSprites();
     } 
-  }
+}
 
   function upData ()
   {

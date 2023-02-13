@@ -173,6 +173,7 @@ function initPlayer()
 
     //Añadimos el player al array de sprites
     globals.sprites.push(player);
+
 }
 
 function initZezen()
@@ -490,6 +491,14 @@ function initEvents()
     window.addEventListener("keyup", keyupHandler, false);
 }
 
+// function initRestart(sprite)
+// {
+//     if(globals.levelTime.value > 10)
+//     { console.log("timer");
+//         initToro(sprite); 
+//     }
+// }
+
 function initCamera()
 {
     globals.camera = new Camera(0, 0);
@@ -624,7 +633,5 @@ export {
     initDisparos,
     initCamera,
     initParticles,
-    getDataBase
-    
-    
+    getDataBase   
 }
