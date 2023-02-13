@@ -215,7 +215,7 @@ function drawSpriteRectangle(sprite)
     const w1 = sprite.imageSet.xSize;
     const h1 = sprite.imageSet.ySize;
 
-    globals.ctx.fillStyle = "white";
+    globals.ctx.fillStyle = "transparent";
     globals.ctx.fillRect(x1, y1, w1, h1);
 }
 
@@ -227,7 +227,7 @@ function drawHitBox (sprite)
         const w1 = sprite.hitBox.xSize;
         const h1 = sprite.hitBox.ySize;
 
-    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeStyle = "transparent";
     globals.ctx.strokeRect (x1, y1, w1, h1);
 }
 

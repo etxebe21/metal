@@ -377,28 +377,28 @@ function initBruja2()
 
 function initFire()
 {
-//Creamos las propiedades de las imagenes : initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
-const imageSet = new ImageSet(18, 0, 40, 40, 65, 29, 25);
+    //Creamos las propiedades de las imagenes: initFil , initCol , xSize , ySize , gridSize , xOffset , yOffset
+    const imageSet = new ImageSet(19, 0, 55, 55, 65, 20, 20);
 
-//Creamos los datos de la animación. 8 frames / state
-const frames = new Frames(1);
+    //Creamos los datos de la animación. 8 frames / state
+    const frames = new Frames(8, 8);
 
-//Valores inciciales para Physics
-const initAngle = 50 * Math.PI / 180;
-const omega     = 10;
-const yRef      = 20;
+    //Valores inciciales para Physics
+    const initAngle = 50 * Math.PI / 180;
+    const omega     = 10;
+    const yRef      = 20;
 
-//Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-const physics = new Physics(20, 0.001, 1, 0, omega, initAngle, yRef);
+    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
+    const physics = new Physics(20, 0.001, 1, 0, omega, initAngle, yRef);
 
-//Creamos nuestro objeto Hitbox
-const hitBox = new HitBox (25 ,25 ,5 , 10);
+    //Creamos nuestro objeto Hitbox
+    const hitBox = new HitBox (29 ,30 ,12 , 12);
 
-//Creamos nuestro sprite
-const fire = new Sprite(SpriteID.FIRE, State.STILL, 800, 100, imageSet,frames,physics,hitBox);
+    //Creamos sprite
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 800, 100, imageSet,frames,physics,hitBox);
 
-//Añadimos el mon al array de sprites
-globals.sprites.push(fire);
+    //Añadimos array de sprites
+    globals.sprites.push(fire);
 }
 
 function initDisparos(sprite)
