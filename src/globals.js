@@ -55,6 +55,10 @@ export default {
     highscore: 0,
 
     //Array particulas
-    particles: []
+    particles: [],
+
+    //Array de tarjetas
+    scores: [],
+    
 
 };

@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Game, SpriteID, State, FPS, ParticleState, ParticleID} from "./constants.js";
+import {Game, SpriteID, State, FPS, ParticleState, ParticleID, SCORE_SIZE} from "./constants.js";
 import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
@@ -10,6 +10,10 @@ import { keydownHandler, keyupHandler } from "./events.js";
 import HitBox from "./HitBox.js";
 import Camera from "./Camera.js";
 import ExplosionParticle from "./particle.js";
+import Score from "./score.js";
+import renderScore from "./gameRender.js";
+
+
 
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
@@ -162,7 +166,7 @@ function initPlayer()
     const physics = new Physics(40, 40, 0.98) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(25, 45, 9, 2);
+    const hitBox = new HitBox(25, 37, 9, 5);
 
     //Creamos nuestr sprite
     const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 350, 260, imageSet, frames,physics, hitBox);
@@ -521,6 +525,93 @@ function initExplosion(sprite)
      }
 }
 
+function getDataBase()
+{
+  //Ruta o absoluta o elativa al fivchero que hace la peticion(HTML)
+  const url = "http://localhost/serverClient/server/routes/getAllHighscores.php"
+  const request = new XMLHttpRequest();
+
+  request.onreadystatechange = function()
+  {
+      if(this.readyState == 4)
+      {
+          if(this.status == 200)
+          {
+              if(this.responseText != null)
+              {
+                  const resultJSON = JSON.parse(this.responseText);
+                  console.log (resultJSON);
+                  console.log("entra");
+                  //Iniciamos los datos del juego
+                  initScores(resultJSON);
+              }
+              else
+                  alert("Communication erro: No data received");
+          }
+          else
+              alert("Communication error: " + this.statusText);
+      }
+  }
+  request.open('GET', url, true);
+  request.responseType = "text";
+  request.send();
+}
+
+function initScores(data)
+{
+    //Creamos las cartas
+    createScores(data);
+
+    //Dibujamos las cartas
+    renderScore();
+}
+
+function createScores(data)
+{
+    let score;
+
+    //Reseteamos las cartas
+    globals.scores = [];
+
+    for(let i = 0; i < data.length; ++i)
+    {
+        score = new Score(
+            0,
+            0,
+            data[i].name,
+            data[i].score,
+        )
+        globals.scores.push(score);
+    }
+    //Posicionamos las cartas en la pantalla
+    setScorePosition();
+}
+
+function setScorePosition()
+{
+    //Posicion inicial
+    let yPos = 100;
+    let xPos = 100;
+
+    for(let i = 0; i < globals.scores.length; ++i)
+    {
+        globals.scores[i].xInit = xPos;
+        globals.scores[i].yInit = yPos;
+
+        globals.scores[i].xPos = xPos;
+        globals.scores[i].yPos = yPos;
+
+        xPos += SCORE_SIZE + 20;
+
+        if(i % 6 === 5)
+        {
+            yPos += 20;
+            xPos = 10;
+        }
+    }
+}
+
+
 //Exportar funciones
 export {
     initHTMLelements,
@@ -532,5 +623,8 @@ export {
     initEvents,
     initDisparos,
     initCamera,
-    initParticles
+    initParticles,
+    getDataBase
+    
+    
 }

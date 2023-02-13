@@ -399,7 +399,7 @@ function updateSprites()
             updateSprite(sprite);
 
             if (sprite.state === State.STATE_OFF )
-            {
+            {   console.log("entra")
                 globals.sprites.splice(i,1);
                 i--;
             } 
@@ -454,7 +454,11 @@ function updateSprite(sprite)
 }
 
 function updateDisparos(sprite)
-{
+{ console.log(sprite.isCollidingWith);
+    if(sprite.isCollidingWith)
+    {  
+        sprite.state = State.STATE_OFF;
+    }
     //Calculamos distancia que se mueve (Y = Y +Vt)
     sprite.yPos += sprite.physics.vy * globals.deltaTime;
     sprite.xPos += sprite.physics.vx * globals.deltaTime;
@@ -817,46 +821,8 @@ function updateDied()
     } 
   }
 
-  function getDataBase()
-  {
-    //Ruta o absoluta o elativa al fivchero que hace la peticion(HTML)
-    const url = "http://localhost/serverClient/server/routes/getAllClassic.php"
-    const request = new XMLHttpRequest();
-
-    request.onreadystatechange = function()
-    {
-        if(this.readyState == 4)
-        {
-            if(this.status == 200)
-            {
-                if(this.responseText != null)
-                {
-                    const resultJSON = JSON.parse(this.responseText);
-                    console.log (resultJSON);
-                    console.log("entra");
-                    //Iniciamos los datos del juego
-                    initGame(resultJSON);
-                }
-                else
-                    alert("Communication erro: No data received");
-            }
-            else
-                alert("Communication error: " + this.statusText);
-        }
-    }
-    request.open('GET', url, true);
-    request.responseType = "text";
-    request.send();
-}
-  
-
   function upData ()
   {
-    console.log("Add button pressed");
-
-    //Generamos isbn aleatorio
-    const isbn = Math.floor(Math.random() * Math.pow(10,13));
-
     //Send data
     const objectToSend= {
         name:    "XG Erudite",
@@ -870,7 +836,7 @@ function updateDied()
     console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la peticion(testAjax.php)
-    const url = "http://localhost/serverClient/server/routes/postClassic.php";
+    const url = "http://localhost/serverClient/server/routes/postHighscores.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -891,7 +857,7 @@ function updateDied()
                     const arrayResult = [resultJSON];
 
                     //Iniciamos los datos
-                    initGame(arrayResult);
+                    initScores(arrayResult);
                     console.log(arrayResult);
                 }
                 else
@@ -903,7 +869,6 @@ function updateDied()
     }
     request.responseType = "text";
     request.send(dataToSend);
-
 }
   
 

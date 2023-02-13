@@ -117,3 +117,5 @@ export const ParticleState =
     OFF:   -1
 }
 
+export const SCORE_SIZE = 20;
+

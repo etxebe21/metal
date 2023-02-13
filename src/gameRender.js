@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
+import {Tile, Game, ParticleID, ParticleState, SCORE_SIZE} from "./constants.js";
 import Sprite from "./sprite.js";
 
 export default function render()
@@ -78,7 +78,8 @@ function renderHighScores()
         534, 320,               //The source height and width
         0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
-    );                 
+    );  
+    renderScore();             
 }
 
 function renderGameOver()
@@ -227,7 +228,7 @@ function drawHitBox (sprite)
         const w1 = sprite.hitBox.xSize;
         const h1 = sprite.hitBox.ySize;
 
-    globals.ctx.strokeStyle = "transparent";
+    globals.ctx.strokeStyle = "red";
     globals.ctx.strokeRect (x1, y1, w1, h1);
 }
 
@@ -322,4 +323,28 @@ function renderExplosionParticle(particle)
         globals.ctx.fill();
         globals.ctx.globalAlpha = 1.0;  //Restore alpha
     }
+}
+
+function renderScore()
+{
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    renderScores();
+}
+
+function renderScores()
+{
+    for (let i = 0; i < globals.scores.length; ++i)
+    {
+        const score = globals.scores[i];
+        renderScoreTable(score);    
+    }
+}
+
+function renderScoreTable(score)
+{
+     globals.ctx.fillRect(score.xPos, score.yPos, SCORE_SIZE, SCORE_SIZE);
+     globals.ctx.font = '30px emulogic';
+     globals.ctx.fillStyle = 'white';
+     globals.ctx.fillText(score.name, score.xPos + 20, score.yPos + 30);
+     globals.ctx.fillText(score.score, score.xPos + 20, score.yPos + 50);  
 }

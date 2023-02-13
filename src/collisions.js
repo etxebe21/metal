@@ -30,15 +30,14 @@ export default function detectCollisions()
         {
             for ( let j = 1; j < globals.sprites.length; ++j)
             {      
-                const sprite = globals.sprites[j];
-                // if(sprite.id === SpriteID.TORO || sprite.id === SpriteID.ZEZEN || sprite.id === SpriteID.BRUJA)
-                
-                    detectCollisionBetweenDisparoAndSprite( sprite);        
+                const enemy = globals.sprites[j];
+                if(enemy.id === SpriteID.TORO || enemy.id === SpriteID.ZEZEN || enemy.id === SpriteID.BRUJA || enemy.id === SpriteID.FIRE)
+                {
+                    detectCollisionBetweenDisparoAndSprite(sprite, enemy);        
+                }
             }
-        
         }
     }
-
     //Calculamos colision del player con los obstaculos del mapa
     detectCollisionBetweenPlayerAndMapObstacles();
 }
@@ -72,12 +71,11 @@ function detectCollisionBetweenPlayerAndSprite (sprite)
         }
 }
 
-function detectCollisionBetweenDisparoAndSprite ( sprite)
+function detectCollisionBetweenDisparoAndSprite ( bullet, sprite)
 {    
         //Reset collision state
         sprite.isCollidingWithDisparo = false;
-
-        const bullet = globals.sprites[0];
+        // bullet.isCollidingWith        = false;
 
         //Datos del disparo
         const x1 = bullet.xPos + bullet.hitBox.xOffset;
@@ -95,9 +93,11 @@ function detectCollisionBetweenDisparoAndSprite ( sprite)
         //console.log("entra hasta aqui");
         if(isOverlap)
         {
-            console.log("entra en funcion");
+    
             //Existe colision
             sprite.isCollidingWithDisparo = true;
+            bullet.isCollidingWith        = true;
+
         }
 }
 
@@ -128,23 +128,10 @@ function isCollidingWithObstacleAt (xPos, yPos,)
     return isColliding;
 }
 
-// function isCollidingWithObstacleAt(xPos, yPos)
-// {
-//     const id = getMapTiledId(xPos, yPos);
-
-//     //Cálculo de colisión
-//     if(id === Block.BROWN_1)
-//     {
-//         return true;
-//     }
-//     else
-//         return false;
-// }
-
 //Calculo de cvolision con los bloques del mapa
 function detectCollisionBetweenPlayerAndMapObstacles()
 {
-    const player = globals.sprites[1];
+    const player = globals.sprites[0];
 
     //Reset collision state
     player.isCollidingWithObstacleOnTheRight = false;
@@ -203,6 +190,69 @@ function detectCollisionBetweenPlayerAndMapObstacles()
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if(sprite.physics.vx > 0){
 
@@ -295,3 +345,16 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 // }       
 
 // globals.camera.x + globals.canvas.widt
+
+// function isCollidingWithObstacleAt(xPos, yPos)
+// {
+//     const id = getMapTiledId(xPos, yPos);
+
+//     //Cálculo de colisión
+//     if(id === Block.BROWN_1)
+//     {
+//         return true;
+//     }
+//     else
+//         return false;
+// }
