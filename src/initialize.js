@@ -166,7 +166,7 @@ function initPlayer()
     const physics = new Physics(40, 40, 0.98) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(25, 37, 9, 5);
+    const hitBox = new HitBox(25, 36, 9, 5);
 
     //Creamos nuestr sprite
     const player = new Sprite(SpriteID.PLAYER, State.STILL_RIGHT, 350, 260, imageSet, frames,physics, hitBox);
