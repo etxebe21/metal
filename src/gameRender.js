@@ -30,10 +30,7 @@ export default function render()
         
         case Game.GAME_OVER:
             renderGameOver();
-            break;
-
-
-        
+            break; 
         default:
             console.error("Error: Game State invalid");
     }
@@ -136,8 +133,6 @@ function renderHUD()
         globals.ctxHUD.fillText("TIME", 224, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
         globals.ctxHUD.fillText(time, 224, 16);
-
-
 }
 
 function drawGame()
@@ -341,14 +336,23 @@ function renderScores()
 }
 
 function renderScoreTable(score)
-{    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-     globals.ctx.font = '40px emulogic';
-     globals.ctx.fillStyle = 'white';
-     globals.ctx.fillText("HIGH SCORES", 50,60);
-     globals.ctx.font = '25px emulogic';
-     globals.ctx.fillText("MIK     20000", 80,120);
-     globals.ctx.fillText("JAV     15000", 80,170);
-     globals.ctx.fillText("ASI     12000", 80,220);
-     globals.ctx.fillText("EST     10000", 80,270);
-      
+{    
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+    globals.ctx.font = '42px emulogic';
+    globals.ctx.fillStyle = 'green';
+    globals.ctx.fillText("HIGH SCORES", 30,45);
+    globals.ctx.font = '20px emulogic';
+    globals.ctx.fillStyle = 'yellow';
+    globals.ctx.fillText("POS  NAME    SCORE", 40,90);
+    globals.ctx.font = '22px emulogic';
+    globals.ctx.fillText("1   MIK    20000", 60,130);
+    globals.ctx.fillText("2   JAV    15500", 60,165);
+    globals.ctx.fillText("3   ASI    12000", 60,200);
+    globals.ctx.fillText("4   EST    11500", 60,235);
+    globals.ctx.fillText("5   IGO    10000", 60,270); 
+    globals.ctx.font = '13px emulogic';
+    globals.ctx.fillStyle = 'red';
+    globals.ctx.fillText("4 HOME", 20,300);  
+    globals.ctx.backgroundStyle = 'black'; 
 }

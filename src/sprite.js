@@ -23,7 +23,6 @@ export default class Sprite
     }
 }
 
-// //cLASE Enemy
 // export class Enemy extends Sprite
 // {
 //     constructor (id, state, xPos, yPos, imageSet, frames, physics, maxTimeToChangeDirection, hitBox)
@@ -40,11 +39,10 @@ export class Disparo extends Sprite
 {
 constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {
-    //Llamamos al constructor de la clase Sprite
-    super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+        //Llamamos al constructor de la clase Sprite
+        super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
 
-    this.isCollidingWith = false;
-    
+        this.isCollidingWith = false;
     }
 }
 
@@ -52,8 +50,8 @@ export class Puntos extends Sprite
 {
 constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
     {
-    //Llamamos al constructor de la clase Sprite
-    super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
+        //Llamamos al constructor de la clase Sprite
+        super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
     }
 }
 

@@ -6,5 +6,4 @@ export default class Time
         this.timeChangeCounter     = 0;          //temporizador para cambiar valor(seconds)
         this.timeChangeValue       = timeChangeValue; //tiempo para cambiar valor(seconds)
     }
-
 }

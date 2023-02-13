@@ -473,7 +473,7 @@ function initFire2()
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
-    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1300, 100, imageSet,frames,physics,hitBox);
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1400, 100, imageSet,frames,physics,hitBox);
 
     //Añadimos array de sprites
     globals.sprites.push(fire);
@@ -499,7 +499,7 @@ function initFire3()
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
-    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1800, 100, imageSet,frames,physics,hitBox);
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1900, 100, imageSet,frames,physics,hitBox);
 
     //Añadimos array de sprites
     globals.sprites.push(fire);
@@ -524,46 +524,43 @@ function initDisparos(sprite)
 
     //Añadimos el DIPASRO al array de sprites
     globals.sprites.push(bullet);
-    
-    console.log(sprite.state);
 
     switch(sprite.state)
     {
-    case State.STILL_RIGHT:
-        console.log("entra");
-        bullet.physics.vx = bullet.physics.vLimit + 50;
-        break;
+        case State.STILL_RIGHT:
+            bullet.physics.vx = bullet.physics.vLimit + 50;
+            break;
 
-    case State.RIGHT:
-        bullet.physics.vx = bullet.physics.vLimit + 50;
-        break;
-    
-    case State.STILL_LEFT:
-        bullet.physics.vx = - bullet.physics.vLimit - 50;
-        break;
+        case State.RIGHT:
+            bullet.physics.vx = bullet.physics.vLimit + 50;
+            break;
+        
+        case State.STILL_LEFT:
+            bullet.physics.vx = - bullet.physics.vLimit - 50;
+            break;
 
-    case State.LEFT:
-        bullet.physics.vx = - bullet.physics.vLimit - 50;
-        break;
-    
-    case State.STILL_UP:
-        bullet.physics.vy = - bullet.physics.vLimit - 50;
-        break;
+        case State.LEFT:
+            bullet.physics.vx = - bullet.physics.vLimit - 50;
+            break;
+        
+        case State.STILL_UP:
+            bullet.physics.vy = - bullet.physics.vLimit - 50;
+            break;
 
-    case State.UP:
-        bullet.physics.vy = - bullet.physics.vLimit  - 50;
-        break;
-    
-    case State.STILL_DOWN:
-        bullet.physics.vy = bullet.physics.vLimit + 50;
-        break;
+        case State.UP:
+            bullet.physics.vy = - bullet.physics.vLimit  - 50;
+            break;
+        
+        case State.STILL_DOWN:
+            bullet.physics.vy = bullet.physics.vLimit + 50;
+            break;
 
-    case State.DOWN:
-        bullet.physics.vy = bullet.physics.vLimit + 50;
-        break;
+        case State.DOWN:
+            bullet.physics.vy = bullet.physics.vLimit + 50;
+            break;
 
-    default:
-        console.error("error: state invalid");
+        default:
+            console.error("error: state invalid");
     }
 }
 

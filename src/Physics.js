@@ -6,13 +6,13 @@ export default class Physics
         this.vy        = 0;               //velocidad actual en eje Y (pixels/seconds)
         this.vLimit    = vLimit;          //vELOCIDAD maxima a la que puede ir sprite//
         this.ax        = 0;               // Aceleracion en eje X
-        this.ay        = 0;                // Aceleracion en eje X
-        this.angle     = angle;                 //Angulo actual (rad)
-        this.yRef      = yRef;                   //Posicion incial en y de referencia
+        this.ay        = 0;               // Aceleracion en eje X
+        this.angle     = angle;           //Angulo actual (rad)
+        this.yRef      = yRef;            //Posicion incial en y de referencia
         this.omega     = omega;
-        // this.aLimit    = aLimit;           // Aceleracion limite
-        // this.friction  = friction;        //Fuerza de friccion
-        // this.jumpForce = jumpForce;  //Fuerza de salto (debe ser negativa por defecto)
-        // this.isOnGround= false;           //Variable que se pone a true si estamos en e suelo
+        // this.aLimit    = aLimit;        // Aceleracion limite
+        // this.friction  = friction;      //Fuerza de friccion
+        // this.jumpForce = jumpForce;     //Fuerza de salto (debe ser negativa por defecto)
+        // this.isOnGround= false;         //Variable que se pone a true si estamos en e suelo
     }
 }

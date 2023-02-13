@@ -90,6 +90,68 @@ function playGame()
     updateParticles();
 }
 
+function updateSprites()
+{
+    for(let i = 0; i < globals.sprites.length; i++)
+    {
+        const sprite = globals.sprites[i];
+            updateSprite(sprite);
+
+            if (sprite.state === State.STATE_OFF )
+            {   
+                globals.sprites.splice(i,1);
+                i--;
+            } 
+    }
+}
+
+function updateSprite(sprite)
+{
+    const type= sprite.id;
+    switch(type)
+    {
+        //Caso del jugador
+        case SpriteID.PLAYER:
+            updatePlayer(sprite);
+            break;
+
+        case SpriteID.ZEZEN:
+            updateZezen(sprite);
+            break;
+        
+        case SpriteID.TORO:
+            updateToro(sprite); 
+            break;
+
+        case SpriteID.AGUA:
+            updateAgua(sprite);
+            break;
+
+        case SpriteID.FRUTA:
+            updateFruta(sprite);
+            break;
+
+        case SpriteID.BULLET:
+            updateDisparos(sprite);
+            break;
+
+        case SpriteID.BRUJA:
+            updateBruja(sprite);
+            break;
+
+        case SpriteID.BRUJA:
+            updateBruja2(sprite);
+            break;
+        
+        case SpriteID.FIRE:
+            updateFire(sprite);
+            break;
+
+        default:
+            break;
+    }
+}
+
 //fUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
 {
@@ -385,67 +447,6 @@ function updateFire(sprite)
 
   quitarLife(sprite);
 }
-function updateSprites()
-{
-    for(let i = 0; i < globals.sprites.length; i++)
-    {
-        const sprite = globals.sprites[i];
-            updateSprite(sprite);
-
-            if (sprite.state === State.STATE_OFF )
-            {   console.log("entra")
-                globals.sprites.splice(i,1);
-                i--;
-            } 
-    }
-}
-
-function updateSprite(sprite)
-{
-    const type= sprite.id;
-    switch(type)
-    {
-        //Caso del jugador
-        case SpriteID.PLAYER:
-            updatePlayer(sprite);
-            break;
-
-        case SpriteID.ZEZEN:
-            updateZezen(sprite);
-            break;
-        
-        case SpriteID.TORO:
-            updateToro(sprite); 
-            break;
-
-        case SpriteID.AGUA:
-            updateAgua(sprite);
-            break;
-
-        case SpriteID.FRUTA:
-            updateFruta(sprite);
-            break;
-
-        case SpriteID.BULLET:
-            updateDisparos(sprite);
-            break;
-
-        case SpriteID.BRUJA:
-            updateBruja(sprite);
-            break;
-
-        case SpriteID.BRUJA:
-            updateBruja2(sprite);
-            break;
-        
-        case SpriteID.FIRE:
-            updateFire(sprite);
-            break;
-
-        default:
-            break;
-    }
-}
 
 function updateDisparos(sprite)
 { 
@@ -598,14 +599,14 @@ function updateAnimationFrame(sprite)
 
 function readKeyboardAndAssignState(sprite)
 {
-    sprite.state = globals.action.moveLeft       ? State.LEFT:      //Left Key
-                    globals.action.moveRight     ? State.RIGHT:       //rIGHT KEY
-                    globals.action.moveUp        ? State.UP:         //Uo key
-                    globals.action.moveDown      ? State.DOWN:          //Down key
-                    sprite.state === State.LEFT  ? State.STILL_LEFT:    //No key pressed and previous state LEFT
-                    sprite.state === State.RIGHT ? State.STILL_RIGHT:   //No key pressed and previous state RIGHT
-                    sprite.state === State.UP    ? State.STILL_UP:     //No key pressed and previous state UP
-                    sprite.state === State.DOWN  ? State.STILL_DOWN:  //No key pressed and previous state DOWN
+    sprite.state =  globals.action.moveLeft       ? State.LEFT:      //Left Key
+                    globals.action.moveRight      ? State.RIGHT:       //rIGHT KEY
+                    globals.action.moveUp         ? State.UP:         //Uo key
+                    globals.action.moveDown       ? State.DOWN:          //Down key
+                    sprite.state === State.LEFT   ? State.STILL_LEFT:    //No key pressed and previous state LEFT
+                    sprite.state === State.RIGHT  ? State.STILL_RIGHT:   //No key pressed and previous state RIGHT
+                    sprite.state === State.UP     ? State.STILL_UP:     //No key pressed and previous state UP
+                    sprite.state === State.DOWN   ? State.STILL_DOWN:  //No key pressed and previous state DOWN
                     sprite.state === State.ATTACK ? State.STILL:
                     sprite.state;
 }      
@@ -761,7 +762,7 @@ function updateExplosionParticle(particle)
             }
             break;
 
-       case ParticleState.OFF:
+        case ParticleState.OFF:
 
             break;
         default:
