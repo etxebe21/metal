@@ -637,7 +637,7 @@ function quitarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.life -= 50;
+        globals.life -= 5;
     }
 }
 
@@ -645,7 +645,7 @@ function sumarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.life += 10;
+        globals.life += 1;
     }
 }
 
@@ -789,7 +789,7 @@ function updateDied()
     if(globals.life <=0 )  //|| globals.levelTime.value >= 150
     {   globals.highscore = globals.score;
         globals.score = 0;
-        globals.life = 300;
+        globals.life = 30;
         globals.levelTime.value = 0;
         globals.sprites.splice(0)
         globals.gameState = Game.GAME_OVER;

@@ -8,6 +8,7 @@ export default function render()
     {
         case Game.LOADING:
             renderLoading();
+            renderBarra();
             break;
 
         case Game.PLAYING:
@@ -76,6 +77,20 @@ function renderLoading()
     );                 
 }
 
+function renderBarra()
+{
+    globals.ctx.fillStyle = "blue";
+    globals.ctx.fillRect(60, 240, globals.assetsLoaded * (430/globals.assetsToLoad.length), 32);
+
+    if(globals.assetsLoaded * (430/globals.assetsToLoad.length) === 430)
+    {
+        globals.ctx.font         = '14px emulogic';
+        globals.ctx.fillStyle    = 'blue';
+        globals.ctx.fillText("PRESS KEY A TO CONTINUE", 100, 300);
+    }
+
+}
+
 function renderHighScores()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
@@ -131,7 +146,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("LIFE", 168, 8);
         globals.ctxHUD.fillStyle =  'red';
-        globals.ctxHUD.fillRect(168,9, globals.life, 7, 16);
+        globals.ctxHUD.fillRect(168,9, globals.life, 16);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';

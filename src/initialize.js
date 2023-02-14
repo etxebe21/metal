@@ -58,9 +58,9 @@ function initVars()
         move5: false
     }
     //Variables logica juego
-    globals.life = 300;
+    globals.life = 30;
 
-    globals.highscore = 100;
+    globals.highscore = 0;
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS

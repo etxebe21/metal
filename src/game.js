@@ -38,7 +38,6 @@ function init()
 
     //Inciamos particulas
     
-
     getDataBase();
 
     //Start the first frame request
