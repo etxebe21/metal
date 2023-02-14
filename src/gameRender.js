@@ -336,6 +336,15 @@ function renderScore()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
     renderScores();
+    globals.ctx.font = '42px emulogic';
+    globals.ctx.fillStyle = 'green';
+    globals.ctx.fillText("HIGH SCORES", 30,45);
+    globals.ctx.font = '16px emulogic';
+    globals.ctx.fillStyle = 'yellow';
+    globals.ctx.fillText("NAME     SCORE", 110,80);
+    globals.ctx.font = '10px emulogic';
+    globals.ctx.fillStyle = 'red';
+    globals.ctx.fillText("4HOME", 485,75)
 }
 
 function renderScores()
@@ -347,17 +356,8 @@ function renderScores()
     }
 }
 
-
 function renderScoreTable(score)
  {
-    globals.ctx.font = '42px emulogic';
-    globals.ctx.fillStyle = 'green';
-    globals.ctx.fillText("HIGH SCORES", 30,45);
-    globals.ctx.font = '16px emulogic';
-    globals.ctx.fillStyle = 'yellow';
-    globals.ctx.fillText("NAME     SCORE", 110,80);
-    globals.ctx.font = '18px emulogic';
-    globals.ctx.fillStyle = 'white'; 
     globals.ctx.font = '30px emulogic';
     globals.ctx.fillStyle = 'white';
     globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 90);
