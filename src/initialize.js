@@ -694,8 +694,8 @@ function createScores(data)
 function setScorePosition()
 {
     //Posicion inicial
-    let yPos = 100;
-    let xPos = 100;
+    let yPos = 30;
+    let xPos = 25;
 
     for(let i = 0; i < globals.scores.length; ++i)
     {
@@ -705,13 +705,8 @@ function setScorePosition()
         globals.scores[i].xPos = xPos;
         globals.scores[i].yPos = yPos;
 
-        xPos += SCORE_SIZE + 200;
-
-        if(i % 6 === 5)
-        {
-            yPos += 200;
-            xPos = 100;
-        }
+        yPos += SCORE_SIZE + 20;
+  
     }
 }
 
