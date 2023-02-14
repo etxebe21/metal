@@ -1,10 +1,8 @@
 import globals from "./globals.js";
 import {Tile, Game, ParticleID, ParticleState, SCORE_SIZE} from "./constants.js";
-import Sprite from "./sprite.js";
 
 export default function render()
 {
-
     //Change what thw game is doing based game state
     switch(globals.gameState)
     {

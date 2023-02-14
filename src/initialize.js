@@ -41,7 +41,7 @@ function initVars()
     globals.frameTimeObj = 1 / FPS; //Frame time in secondsg
 
     //Iniciar el estado juego
-    globals.gameState = Game.PLAYING;
+    globals.gameState = Game.HOME;
 
     //Inicializamos los estados de las acciones
     globals.action = {
@@ -92,7 +92,7 @@ function loadAssets()
     //home
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/MENU1.png";
+    tileSet.src = "./images/MENU.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -106,7 +106,7 @@ function loadAssets()
     //history
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/HISTORY.png";
+    tileSet.src = "./images/history1.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -142,7 +142,7 @@ function loadHandler()
         console.log("Assets finished loading");
 
         //Start the game
-        globals.gameState = Game.PLAYING;
+        globals.gameState = Game.HOME;
     }
 }
 
