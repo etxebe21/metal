@@ -15,7 +15,7 @@ export const Game = {
 };
 
 //Velocidad del juego
-export const FPS = 20;
+export const FPS = 200;
 
 //Identificador de tipo de sprite 
 export const SpriteID = {

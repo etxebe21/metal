@@ -1,6 +1,7 @@
 import globals from "./globals.js";
 import {Tile, Game, ParticleID, ParticleState, SCORE_SIZE} from "./constants.js";
 
+
 export default function render()
 {
     //Change what thw game is doing based game state
@@ -347,25 +348,42 @@ function renderScores()
     }
 }
 
+// function renderScoreTable(score)
+// {    
+//     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+//     globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+//     globals.ctx.font = '42px emulogic';
+//     globals.ctx.fillStyle = 'green';
+//     globals.ctx.fillText("HIGH SCORES", 30,45);
+//     globals.ctx.font = '20px emulogic';
+//     globals.ctx.fillStyle = 'yellow';
+//     globals.ctx.fillText("POS  NAME    SCORE", 40,90);
+//     globals.ctx.font = '22px emulogic';
+//     globals.ctx.fillStyle = 'white';
+//     globals.ctx.fillText("1   MIK    50000", 60,130);
+//     globals.ctx.fillText("2   JAV    45500", 60,165);
+//     globals.ctx.fillText("3   ASI    32000", 60,200);
+//     globals.ctx.fillText("4   EST    21500", 60,235);
+//     globals.ctx.fillText("5   IGO    10000", 60,270); 
+//     globals.ctx.font = '13px emulogic';
+//     globals.ctx.fillStyle = 'red';
+//     globals.ctx.fillText("4 HOME", 20,300);  
+//     globals.ctx.backgroundStyle = 'black'; 
+// }
+
 function renderScoreTable(score)
-{    
-    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+ {
     globals.ctx.font = '42px emulogic';
     globals.ctx.fillStyle = 'green';
     globals.ctx.fillText("HIGH SCORES", 30,45);
-    globals.ctx.font = '20px emulogic';
+    globals.ctx.font = '16px emulogic';
     globals.ctx.fillStyle = 'yellow';
-    globals.ctx.fillText("POS  NAME    SCORE", 40,90);
-    globals.ctx.font = '22px emulogic';
-    globals.ctx.fillStyle = 'white';
-    globals.ctx.fillText("1   MIK    50000", 60,130);
-    globals.ctx.fillText("2   JAV    45500", 60,165);
-    globals.ctx.fillText("3   ASI    32000", 60,200);
-    globals.ctx.fillText("4   EST    21500", 60,235);
-    globals.ctx.fillText("5   IGO    10000", 60,270); 
-    globals.ctx.font = '13px emulogic';
-    globals.ctx.fillStyle = 'red';
-    globals.ctx.fillText("4 HOME", 20,300);  
-    globals.ctx.backgroundStyle = 'black'; 
-}
+    globals.ctx.fillText("NAME    SCORE", 90,80);
+     globals.ctx.font = '18px emulogic';
+     globals.ctx.fillStyle = 'white'; 
+     globals.ctx.fillText(globals.scores[0],  80, 120);
+     globals.ctx.fillText(globals.scores[1],  80, 160);
+     globals.ctx.fillText(globals.scores[2],  80, 200);
+     globals.ctx.fillText(globals.scores[3],  80, 240);
+
+ }
