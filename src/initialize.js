@@ -106,7 +106,7 @@ function loadAssets()
     //history
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/history1.png";
+    tileSet.src = "./images/history.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 

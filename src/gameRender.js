@@ -359,10 +359,10 @@ function renderScoreTable(score)
     globals.ctx.fillText("POS  NAME    SCORE", 40,90);
     globals.ctx.font = '22px emulogic';
     globals.ctx.fillStyle = 'white';
-    globals.ctx.fillText("1   MIK    20000", 60,130);
-    globals.ctx.fillText("2   JAV    15500", 60,165);
-    globals.ctx.fillText("3   ASI    12000", 60,200);
-    globals.ctx.fillText("4   EST    11500", 60,235);
+    globals.ctx.fillText("1   MIK    50000", 60,130);
+    globals.ctx.fillText("2   JAV    45500", 60,165);
+    globals.ctx.fillText("3   ASI    32000", 60,200);
+    globals.ctx.fillText("4   EST    21500", 60,235);
     globals.ctx.fillText("5   IGO    10000", 60,270); 
     globals.ctx.font = '13px emulogic';
     globals.ctx.fillStyle = 'red';
