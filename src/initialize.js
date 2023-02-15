@@ -127,7 +127,7 @@ function loadAssets()
     //playername
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/PLAYERNAME.png";
+    tileSet.src = "./images/NAME.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 }

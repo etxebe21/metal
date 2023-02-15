@@ -89,6 +89,12 @@ function updateHistory()
 
 function updatePlayerName()
 {
+    if( globals.action.move4)
+    globals.gameState = Game.HOME;
+
+    if( globals.action.move5)
+    globals.gameState = Game.HIGH_SCORES;
+
     console.log(writeName());
     writeName();
 }
@@ -836,10 +842,10 @@ function writeName()
     {
         if(globals.letterHighscoreTime.value > 0)
         {
-            globals.scorename += insertchar;
+            globals.highscorename += insertchar;
             globals.letterHighscoreTime.value = 0;
 
-            if(globals.name.length > 2)
+            if(globals.highscorename.length > 2)
             {
                 const objectToSend = upData();
                 
@@ -867,8 +873,8 @@ function searchScore()
   {
     //Send data
     const objectToSend= {
-        name:    "XG Erudite",
-        score:     "Lord of the kings"  
+        name:    "MIK",
+        score:     "20000"  
     }
 
     //String data to send

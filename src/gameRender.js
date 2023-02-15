@@ -92,7 +92,6 @@ function renderBarra()
         globals.ctx.fillStyle    = 'blue';
         globals.ctx.fillText("PRESS KEY  <A>  TO CONTINUE", 92, 290);
     }
-
 }
 
 function renderHighScores()
@@ -109,7 +108,6 @@ function renderHighScores()
     );  
     //moveCameraScore();
     renderScore();
-    
     //restoreCamera();             
 }
 
@@ -152,7 +150,6 @@ function renderHUD()
         const life = globals.life;
         const time = globals.levelTime.value;
         
-
         //Draw score
         globals.ctxHUD.font = '8px emulogic';
         globals.ctxHUD.fillStyle = 'lightgreen';
@@ -195,7 +192,6 @@ function drawGame()
     //Movemos la camara
     moveCamera();
     
-
     //DIBUJAR FOONDO
     renderBackground();
 
@@ -249,14 +245,12 @@ function drawSprites()
         renderSprite(sprite);
 
         //TEST: Dibuja el HitBox
-        drawHitBox(sprite);
-        
+        drawHitBox(sprite);   
     }
 }
 
 function drawSpriteRectangle(sprite)
 {
-
     //Datos del sprite
     const x1 = Math.floor(sprite.xPos);
     const y1 = Math.floor(sprite.yPos);
@@ -386,8 +380,8 @@ function renderScore()
     globals.ctx.fillStyle = 'green';
     globals.ctx.fillText("HIGH SCORES", 30,45);
     globals.ctx.font = '16px emulogic';
-    globals.ctx.fillStyle = 'yellow';
-    globals.ctx.fillText("NAME     SCORE", 110,80);
+    // globals.ctx.fillStyle = 'red';
+    // globals.ctx.fillText("NAME     SCORE", 110,80);
     globals.ctx.font = '10px emulogic';
     globals.ctx.fillStyle = 'red';
     globals.ctx.fillText("4HOME", 485,75)
@@ -407,7 +401,7 @@ function renderScoreTable(score)
     moveCameraScore();
     globals.ctx.font = '30px emulogic';
     globals.ctx.fillStyle = 'white';
-    globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 90);
-    globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 90);  
+    globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
+    globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
     restoreCamera();
  }
