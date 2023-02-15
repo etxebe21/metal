@@ -86,7 +86,7 @@ function renderBarra()
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
-        globals.ctx.fillText("PRESS KEY A TO CONTINUE", 100, 300);
+        globals.ctx.fillText("PRESS KEY  <A>  TO CONTINUE", 92, 290);
     }
 
 }

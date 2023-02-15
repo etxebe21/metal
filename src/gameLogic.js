@@ -27,6 +27,7 @@ export default function update()
 
         case Game.GAME_OVER:
             updateGameOver();
+            break;
 
         case Game.HIGH_SCORES:
             updateHighScores();
@@ -36,6 +37,8 @@ export default function update()
             console.error("Error: Game State invalid");
     }
 }
+ 
+///////////// UPDATES PANTALLAS JUEGO //////////////
 
 function updateLoading()
 {
@@ -56,7 +59,9 @@ function updateNewGame()
 }
 
 function updateGameOver()
-{
+{   console.log(writeName());
+    writeName();
+
     if( globals.action.move4)
         globals.gameState = Game.HOME;
 
@@ -96,6 +101,8 @@ function playGame()
     updateDied();
     updateParticles();
 }
+
+//////////////// UPDATES SPRITES/PERSONAJES /////////////
 
 function updateSprites()
 {
@@ -159,7 +166,7 @@ function updateSprite(sprite)
     }
 }
 
-//fUNCIÓN QUE ACTUALIZA EL PERSONAJE
+//FUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
 {
     //Lectura de teclado. Asignamos direccion a la tecla
@@ -280,8 +287,6 @@ sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 //Actualizamos la animación
 updateAnimationFrame(sprite)
-
-//calculateCollisionWithBorders();
 }
 
 function updateFruta(sprite)
@@ -810,6 +815,41 @@ function updateDied()
         globals.gameState = Game.GAME_OVER;
         initSprites();
     } 
+}
+
+function writeName()
+{
+    let insertchar = String.fromCharCode(globals.asciKey);
+
+    if(globals.asciKey > 64 && globals.asciKey < 91)
+    {
+        if(globals.letterHighscoreTime.value > 0)
+        {
+            globals.scorename += insertchar;
+            globals.letterHighscoreTime.value = 0;
+
+            if(globals.name.length > 2)
+            {
+                const objectToSend = upData();
+                
+                    searchScore(objectToSend);
+                
+                    globals.gameState = Game.HIGH_SCORES;       
+            }
+        }
+    }
+}
+
+function searchScore()
+{
+    for(let i = 0; i < globals.scores.length; i ++)
+    {
+        if(globals.score > globals.scores.length[i])
+        {
+            globals.scores.splice(-1, 0, globals.score);
+            i = globals.scores.length;
+        }
+    }
 }
 
   function upData ()

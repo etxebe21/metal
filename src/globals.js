@@ -68,6 +68,10 @@ export default {
 
     cameraStop: 0,
 
+    asciKey: -1,
+
+    highscorename: "",
+
 
     
 
