@@ -33,6 +33,10 @@ export default function update()
             updateHighScores();
             break;
 
+        case Game.PLAYERNAME:
+            updatePlayerName();
+            break;
+
         default:
             console.error("Error: Game State invalid");
     }
@@ -59,14 +63,15 @@ function updateNewGame()
 }
 
 function updateGameOver()
-{   console.log(writeName());
-    writeName();
-
+{   
     if( globals.action.move4)
         globals.gameState = Game.HOME;
 
     if( globals.action.move5)
         globals.gameState = Game.HIGH_SCORES;
+
+    if( globals.action.moveAttack)
+        globals.gameState = Game.PLAYERNAME; 
 }
 
 function updateHighScores()
@@ -80,6 +85,12 @@ function updateHistory()
 {
     if( globals.action.move4)
         globals.gameState = Game.HOME; 
+}
+
+function updatePlayerName()
+{
+    console.log(writeName());
+    writeName();
 }
 
 function playGame()

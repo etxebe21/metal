@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Tile, Game, ParticleID, ParticleState, SCORE_SIZE} from "./constants.js";
+import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
 
 export default function render()
 {
@@ -29,6 +29,10 @@ export default function render()
         
         case Game.GAME_OVER:
             renderGameOver();
+            break; 
+
+        case Game.PLAYERNAME:
+            renderPlayerName();
             break; 
         default:
             console.error("Error: Game State invalid");
@@ -120,7 +124,24 @@ function renderGameOver()
         534, 320,               //The source height and width
         0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
-    );                 
+    );  
+    globals.ctx.font         = '10px emulogic';
+    globals.ctx.fillStyle    = 'red';  
+    globals.ctx.fillText("PRESS KEY  <A>  TO ENTER NAME IN HIGHSCORES", 40, 250);
+}
+
+function renderPlayerName() 
+{
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+    globals.ctx.drawImage(
+        globals.tileSets[8],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width  
+    );  
 }
 
 function renderHUD()

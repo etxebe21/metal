@@ -123,6 +123,13 @@ function loadAssets()
     tileSet.src = "./images/loading.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
+
+    //playername
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/PLAYERNAME.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
 }
 
 
