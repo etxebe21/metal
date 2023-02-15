@@ -66,6 +66,7 @@ function updateGameOver()
 
 function updateHighScores()
 {
+    updatehighScoreCam();
     if( globals.action.move4)
         globals.gameState = Game.HOME;
 }
@@ -616,6 +617,9 @@ function readKeyboardAndAssignState(sprite)
                     sprite.state;
 }      
 
+
+/////////////////// CAMARA //////////////////////
+
 function updateCamera()
 {
     //Centramos la camara en el player
@@ -627,40 +631,12 @@ function updateCamera()
 
 function updatehighScoreCam()
 {
-    let speed = 15;
-    let stop = false;
-
-    if(globals.action.stop)
-    {
-    stop = true;
-    }
-
-    if(globals.action.resume)
-    {
-    globals.cameraStop = 0;
-    globals.highScoreCam.y = -20;
-    }
-
-    if(stop)
-    {
-        speed = 0;
-    }
-    else
-    {
-        speed = 15;
-    }
-
+    let speed = 10;
+    
     globals.highScoreCam.y -= speed * globals.deltaTime;
-
 }
 
-function moveCameraScore()
-{
-    const yTranslation = globals.highScoreCam.y;
-    globals.ctx.translate(0, yTranslation);
-}
-
-function 
+///////////////// FUNCIONES ACCION JUEGO //////////////////
 
 function sumPoints(sprite)
 {
@@ -748,6 +724,8 @@ function restartFire(sprite)
         sprite.yPos = 260;
     }
 }
+
+/////////////////////// FUNCIONES PARTICULAS ///////////////////
 
 function updateParticles()
 {

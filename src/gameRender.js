@@ -103,7 +103,10 @@ function renderHighScores()
         0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );  
-    renderScore();             
+    //moveCameraScore();
+    renderScore();
+    
+    //restoreCamera();             
 }
 
 function renderGameOver()
@@ -170,6 +173,7 @@ function drawGame()
 
     //Movemos la camara
     moveCamera();
+    
 
     //DIBUJAR FOONDO
     renderBackground();
@@ -305,6 +309,12 @@ function moveCamera()
     globals.ctx.translate(xTranslation, yTranslation);
 }
 
+function moveCameraScore()
+{
+    const yTranslation = globals.highScoreCam.y;
+    globals.ctx.translate(0, yTranslation);
+}
+
 function restoreCamera()
 {
     globals.ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -373,8 +383,10 @@ function renderScores()
 
 function renderScoreTable(score)
  {
+    moveCameraScore();
     globals.ctx.font = '30px emulogic';
     globals.ctx.fillStyle = 'white';
     globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 90);
     globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 90);  
+    restoreCamera();
  }
