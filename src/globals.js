@@ -57,8 +57,18 @@ export default {
     //Array particulas
     particles: [],
 
-    //Array de tarjetas
+    //Array de highscores
     scores: [],
+
+    letterHighscoreTime : {},
+
+    highScoreCam: {},
+
+    camera: {},
+
+    cameraStop: 0,
+
+
     
 
 };

@@ -585,6 +585,7 @@ function initTimers()
     //Creamos timer, con cambios cada 1 segundos
     globals.levelTime = new Timer(0, 1);
     globals.lifeTime = new Timer (3 ,1);
+    globals.letterHighscoreTime = new Timer (0,1);
 }
 
 function initEvents()
@@ -597,6 +598,7 @@ function initEvents()
 function initCamera()
 {
     globals.camera = new Camera(0, 0);
+    globals.highScoreCam = new Camera(0, 0);
 }
 
 function initParticles(sprite)
