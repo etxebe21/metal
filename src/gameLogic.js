@@ -625,6 +625,43 @@ function updateCamera()
     globals.camera.y = Math.floor(player.yPos) + Math.floor((player.imageSet.ySize - globals.canvas.height) + 10 );
 }
 
+function updatehighScoreCam()
+{
+    let speed = 15;
+    let stop = false;
+
+    if(globals.action.stop)
+    {
+    stop = true;
+    }
+
+    if(globals.action.resume)
+    {
+    globals.cameraStop = 0;
+    globals.highScoreCam.y = -20;
+    }
+
+    if(stop)
+    {
+        speed = 0;
+    }
+    else
+    {
+        speed = 15;
+    }
+
+    globals.highScoreCam.y -= speed * globals.deltaTime;
+
+}
+
+function moveCameraScore()
+{
+    const yTranslation = globals.highScoreCam.y;
+    globals.ctx.translate(0, yTranslation);
+}
+
+function 
+
 function sumPoints(sprite)
 {
     if(sprite.isCollidingWithPlayer)
