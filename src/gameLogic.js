@@ -19,6 +19,7 @@ export default function update()
 
         case Game.HOME:
             updateNewGame();
+            updateDied();
             break;
 
         case Game.HISTORY:
@@ -47,13 +48,14 @@ export default function update()
 function updateLoading()
 {
     if( globals.action.moveAttack)
-    globals.gameState = Game.PLAYING;  
+    globals.gameState = Game.HOME;  
 }
 
 function updateNewGame()
 {
+    
     if( globals.action.move1)
-        globals.gameState = Game.LOADING;
+        globals.gameState = Game.PLAYING;
 
     if ( globals.action.move3)
         globals.gameState = Game.HIGH_SCORES;
@@ -63,7 +65,8 @@ function updateNewGame()
 }
 
 function updateGameOver()
-{   
+{  
+     
     if( globals.action.move4)
         globals.gameState = Game.HOME;
 
@@ -97,6 +100,7 @@ function updatePlayerName()
 
     console.log(writeName());
     writeName();
+    upData();
 }
 
 function playGame()
@@ -115,7 +119,6 @@ function playGame()
     updateLifeTime();
     updateScoreTotal();
     updateSprites();
-    updateDied();
     updateParticles();
 }
 
@@ -823,7 +826,7 @@ function particlesDisparo(sprite)
 
 function updateDied()
 {
-    if(globals.life <=0 )  //|| globals.levelTime.value >= 150
+    if(globals.life <= 0 )  //|| globals.levelTime.value >= 150
     {   globals.highscore = globals.score;
         globals.score = 0;
         globals.life = 30;
@@ -874,7 +877,7 @@ function searchScore()
     //Send data
     const objectToSend= {
         name:    "MIK",
-        score:     "20000"  
+        score:     "2000"  
     }
 
     //String data to send

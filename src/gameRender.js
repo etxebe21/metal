@@ -376,12 +376,14 @@ function renderScore()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
     renderScores();
+    globals.ctx.fillStyle = 'rgb(189, 106, 161)';
+    globals.ctx.fillRect(0, 0,globals.canvas.width, 75);
     globals.ctx.font = '42px emulogic';
     globals.ctx.fillStyle = 'green';
     globals.ctx.fillText("HIGH SCORES", 30,45);
     globals.ctx.font = '16px emulogic';
-    // globals.ctx.fillStyle = 'red';
-    // globals.ctx.fillText("NAME     SCORE", 110,80);
+    globals.ctx.fillStyle = 'red';
+    globals.ctx.fillText("NAME     SCORE", 110,70);
     globals.ctx.font = '10px emulogic';
     globals.ctx.fillStyle = 'red';
     globals.ctx.fillText("4HOME", 485,75)
