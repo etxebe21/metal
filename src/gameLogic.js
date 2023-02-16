@@ -19,7 +19,6 @@ export default function update()
 
         case Game.HOME:
             updateNewGame();
-            updateDied();
             break;
 
         case Game.HISTORY:
@@ -70,8 +69,10 @@ function updateGameOver()
     if( globals.action.move4)
         globals.gameState = Game.HOME;
 
-    if( globals.action.move5)
-        globals.gameState = Game.HIGH_SCORES;
+    // if( globals.action.move5)
+    //     {
+    //     globals.gameState = Game.HIGH_SCORES;
+    //     }
 
     if( globals.action.moveAttack)
         globals.gameState = Game.PLAYERNAME; 
@@ -95,12 +96,14 @@ function updatePlayerName()
     if( globals.action.move4)
     globals.gameState = Game.HOME;
 
-    if( globals.action.move5)
+    if( globals.action.moveAttack)
+    {
     globals.gameState = Game.HIGH_SCORES;
-
-    console.log(writeName());
+    
+    // console.log(writeName);
     writeName();
     upData();
+    }
 }
 
 function playGame()
@@ -120,6 +123,7 @@ function playGame()
     updateScoreTotal();
     updateSprites();
     updateParticles();
+    updateDied();
 }
 
 //////////////// UPDATES SPRITES/PERSONAJES /////////////
@@ -905,11 +909,11 @@ function searchScore()
                     //console.log (resultJSON);
 
                     //Metemos los datos en un array , ya que lo que nos devuelve la ruta es un Objeto
-                    const arrayResult = [resultJSON];
+                    // const arrayResult = [resultJSON];
 
                     //Iniciamos los datos
-                    initScores(arrayResult);
-                    console.log(arrayResult);
+                    // initScores(arrayResult);
+                    // console.log(arrayResult);
                 }
                 else
                     alert("Communication error: No data received");
