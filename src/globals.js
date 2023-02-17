@@ -72,6 +72,12 @@ export default {
 
     highscorename: "",
 
+    //Sonidos
+    sounds: [],
+
+    //Current sound to play
+    currentSound: -1
+
 
     
 
