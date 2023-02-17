@@ -101,7 +101,7 @@ export function keyupHandler(event)
     }
 }
 
-export function updateMusic()
+export  function updateMusic()
 {
     const buffer = 0.28;
     const music = globals.sounds[Sound.GAME_MUSIC];

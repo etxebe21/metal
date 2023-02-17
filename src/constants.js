@@ -125,5 +125,5 @@ export const Sound =
 {
     NO_SOUND: -1,
     GAME_MUSIC: 0,
-    JUMP: 1
+    SHOOT: 1
 }

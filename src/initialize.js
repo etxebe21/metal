@@ -6,12 +6,14 @@ import Frames from "./frames.js";
 import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
-import { keydownHandler, keyupHandler } from "./events.js";
+import { keydownHandler, keyupHandler, updateMusic} from "./events.js";
 import HitBox from "./HitBox.js";
 import Camera from "./Camera.js";
 import ExplosionParticle from "./particle.js";
 import Score from "./score.js";
 import renderScore from "./gameRender.js";
+
+
 
 
 
@@ -142,13 +144,11 @@ function loadAssets()
     globals.assetsToLoad.push(gameMusic);
 
     let shootSound = document.querySelector("#shootSound");
-    gameMusic.addEventListener("canplaythrough", loadHandler, false);
+    shootSound.addEventListener("canplaythrough", loadHandler, false);
     shootSound.load();
     globals.sounds.push(shootSound);
     globals.assetsToLoad.push(shootSound);
-
 }
-
 
 //Funcion nque se llama cada vez que se carga un activo
 function loadHandler()

@@ -4,6 +4,7 @@ import update from "./gameLogic.js";
 import render from "./gameRender.js";
 
 
+
 //////////////////////////////////////////
 ///////  GAME INIT 
 /////////////////////////////////////////
@@ -39,6 +40,8 @@ function init()
     //Inciamos particulas
     
     getDataBase();
+
+    //updateMusic();
 
     //Start the first frame request
     window.requestAnimationFrame(gameLoop);

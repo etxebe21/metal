@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Game, State, SpriteID, Collision,ParticleState,ParticleID, GRAVITY} from "./constants.js";
+import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound} from "./constants.js";
 import Sprite from "./sprite.js";
 import {initDisparos, initSprites, initParticles} from "./initialize.js";
 import detectCollisions from "./collisions.js";
@@ -123,6 +123,7 @@ function playGame()
     updateScoreTotal();
     updateSprites();
     updateParticles();
+    playSound();
     updateDied();
 }
 
@@ -278,7 +279,7 @@ function updatePlayer(sprite)
     {
         case State.ATTACK:
             initDisparos(sprite);
-            console.log("disparo");
+            globals.currentSound = Sound.SHOOT;
             break;
 
         case State.RIGHT:
@@ -876,7 +877,19 @@ function searchScore()
     }
 }
 
+function playSound()
+{
+    //Reproducir el sonido que ha sido invocado
+    if(globals.currentSound != Sound.NO_SOUND)
+    {
+        //Reproducimos el sonido correspondiente
+        globals.sounds[globals.currentSound].currenTime = 0;
+        globals.sounds[globals.currentSound].play();
 
+        //Reseteamos current sound
+        globals.currentSound = Sound.NO_SOUND;
+    }
+}
 
   function upData ()
   {
