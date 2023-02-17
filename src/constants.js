@@ -120,3 +120,10 @@ export const ParticleState =
 
 export const SCORE_SIZE = 20;
 
+//Sonidos del juego
+export const Sound = 
+{
+    NO_SOUND: -1,
+    GAME_MUSIC: 0,
+    JUMP: 1
+}
