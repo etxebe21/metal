@@ -114,7 +114,8 @@ function playGame()
     //Musica Y sonidos
     updateGameMusic();
     updateShootMusic();
-    updateHitMusic(sprite);
+    updateAguaMusic(sprite);
+    updateFrutaMusic(sprite);
 
     //Colisiones
     detectCollisions();
@@ -703,6 +704,8 @@ function restartFruta(sprite)
     {  
         sprite.xPos = Math.round(Math.random()*(1500-0)) ;
         sprite.yPos = 267;
+
+        globals.currentSound = Sound.FRUTA;
     }
 }
 
@@ -872,7 +875,7 @@ function updateShootMusic()
     } 
 }
 
-function updateHitMusic(sprite)
+function updateAguaMusic(sprite)
 {
     if(restartAgua(sprite))
     {
@@ -880,6 +883,17 @@ function updateHitMusic(sprite)
      //Reproducimos GAME_MUSIC a un volumen inferior
      globals.sounds[Sound.HIT].play();
      globals.sounds[Sound.HIT].volume = 1;
+    } 
+}
+
+function updateFrutaMusic(sprite)
+{
+    if(restartFruta(sprite))
+    {
+    globals.gameState = Game.PLAYING;
+     //Reproducimos GAME_MUSIC a un volumen inferior
+     globals.sounds[Sound.FRUTA].play();
+     globals.sounds[Sound.FRUTA].volume = 1;
     } 
 }
 

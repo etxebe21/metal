@@ -84,13 +84,13 @@ function renderLoading()
 function renderBarra()
 {
     globals.ctx.fillStyle = "blue";
-    globals.ctx.fillRect(60, 240, globals.assetsLoaded * (430/globals.assetsToLoad.length), 32);
+    globals.ctx.fillRect(50, 240, globals.assetsLoaded * (450/globals.assetsToLoad.length), 32);
 
-    if(globals.assetsLoaded * (430/globals.assetsToLoad.length) === 430)
+    if(globals.assetsLoaded * (450/globals.assetsToLoad.length) === 450)
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
-        globals.ctx.fillText("PRESS KEY  <A>  TO CONTINUE", 92, 290);
+        globals.ctx.fillText("PRESS KEY  <A>  TO CONTINUE", 82, 292);
     }
 }
 
@@ -166,7 +166,7 @@ function renderHUD()
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("LIFE", 168, 8);
-        globals.ctxHUD.fillStyle =  'red';
+        globals.ctxHUD.fillStyle =  'green';
         globals.ctxHUD.fillRect(168,9, globals.life, 16);
 
         //Round corners. ( Remove 1 pixel per corner)

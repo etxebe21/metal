@@ -149,11 +149,17 @@ function loadAssets()
     globals.sounds.push(shootSound);
     globals.assetsToLoad.push(shootSound);
 
-    let hitSound = document.querySelector("#hitSound");
-    hitSound.addEventListener("canplaythrough", loadHandler, false);
-    hitSound.load();
-    globals.sounds.push(hitSound);
-    globals.assetsToLoad.push(hitSound);
+    let aguaSound = document.querySelector("#aguaSound");
+    aguaSound.addEventListener("canplaythrough", loadHandler, false);
+    aguaSound.load();
+    globals.sounds.push(aguaSound);
+    globals.assetsToLoad.push(aguaSound);
+
+    let frutaSound = document.querySelector("#frutaSound");
+    frutaSound.addEventListener("canplaythrough", loadHandler, false);
+    frutaSound.load();
+    globals.sounds.push(frutaSound);
+    globals.assetsToLoad.push(frutaSound);
 }
 
 //Funcion nque se llama cada vez que se carga un activo

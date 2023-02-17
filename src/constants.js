@@ -126,5 +126,6 @@ export const Sound =
     NO_SOUND: -1,
     GAME_MUSIC: 0,
     SHOOT: 1,
-    HIT: 2
+    HIT: 2,
+    FRUTA: 3
 }
