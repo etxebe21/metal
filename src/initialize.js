@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {Game, SpriteID, State, FPS, ParticleState, ParticleID, SCORE_SIZE} from "./constants.js";
+import {Game, SpriteID, State, FPS, ParticleState, ParticleID, SCORE_SIZE, Sound} from "./constants.js";
 import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
@@ -61,6 +61,8 @@ function initVars()
     globals.life = 30;
 
     globals.highscore = 0;
+
+    globals.currentSound = Sound.NO_SOUND;
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS
@@ -130,6 +132,21 @@ function loadAssets()
     tileSet.src = "./images/NAME.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
+
+    //Load sounds
+    let gameMusic = document.querySelector("#gameMusic");
+    gameMusic.addEventListener("canplaythrough", loadHandler, false);
+    gameMusic.addEventListener("timeupdate", updateMusic, false);
+    gameMusic.load();
+    globals.sounds.push(gameMusic);
+    globals.assetsToLoad.push(gameMusic);
+
+    let shootSound = document.querySelector("#shootSound");
+    gameMusic.addEventListener("canplaythrough", loadHandler, false);
+    shootSound.load();
+    globals.sounds.push(shootSound);
+    globals.assetsToLoad.push(shootSound);
+
 }
 
 
@@ -145,6 +162,11 @@ function loadHandler()
         for(let i = 0; i < globals.tileSets.length; ++i)
         {
         globals.tileSets[i].removeEventListener("load" , loadHandler, false);
+        }
+
+        for(let i = 0; i < globals.sounds.length; i++)
+        {
+            globals.sounds[i].removeEventListener("canplaythrough", loadHandler, false);
         }
         console.log("Assets finished loading");
 
