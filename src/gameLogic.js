@@ -853,18 +853,21 @@ function updateGameMusic()
     globals.gameState = Game.PLAYING;
     //Reproducimos GAME_MUSIC a un volumen inferior
     globals.sounds[Sound.GAME_MUSIC].play();
+    globals.sounds[Sound.GAME_MUSIC].volume = 1;
+
    } 
+   
 }
 
 function updateShootMusic()
 {
-   if(globals.action.moveAttack)
-   {
+    if(globals.action.moveAttack)
+    {
     globals.gameState = Game.PLAYING;
-    //Reproducimos GAME_MUSIC a un volumen inferior
-    globals.sounds[Sound.GAME_MUSIC].play();
-    globals.sounds[Sound.GAME_MUSIC].volume = 0,4;
-   } 
+     //Reproducimos GAME_MUSIC a un volumen inferior
+     globals.sounds[Sound.SHOOT].play();
+     globals.sounds[Sound.SHOOT].volume = 1;
+    } 
 }
 
 
