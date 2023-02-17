@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound} from "./constants.js";
-import Sprite from "./sprite.js";
+import sprite from "./sprite.js";
 import {initDisparos, initSprites, initParticles} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
@@ -114,6 +114,7 @@ function playGame()
     //Musica Y sonidos
     updateGameMusic();
     updateShootMusic();
+    updateHitMusic(sprite);
 
     //Colisiones
     detectCollisions();
@@ -711,6 +712,8 @@ function restartAgua(sprite)
     {  
         sprite.xPos = Math.round(Math.random() * 1500-10);
         sprite.yPos = 260;
+
+        globals.currentSound = Sound.HIT;
     }
 }
 
@@ -854,9 +857,8 @@ function updateGameMusic()
     //Reproducimos GAME_MUSIC a un volumen inferior
     globals.sounds[Sound.GAME_MUSIC].play();
     globals.sounds[Sound.GAME_MUSIC].volume = 1;
-
-   } 
-   
+    console.log("musica");
+   }  
 }
 
 function updateShootMusic()
@@ -870,9 +872,30 @@ function updateShootMusic()
     } 
 }
 
+function updateHitMusic(sprite)
+{
+    if(restartAgua(sprite))
+    {
+    globals.gameState = Game.PLAYING;
+     //Reproducimos GAME_MUSIC a un volumen inferior
+     globals.sounds[Sound.HIT].play();
+     globals.sounds[Sound.HIT].volume = 1;
+    } 
+}
 
+function playSound()
+{
+    //Reproducir el sonido que ha sido invocado
+    if(globals.currentSound != Sound.NO_SOUND)
+    {
+        //Reproducimos el sonido correspondiente
+        globals.sounds[globals.currentSound].currenTime = 0;
+        globals.sounds[globals.currentSound].play();
 
-
+        //Reseteamos current sound
+        globals.currentSound = Sound.NO_SOUND;
+    }
+}
 
 function writeName()
 {
@@ -906,20 +929,6 @@ function searchScore()
             globals.scores.splice(-1, 0, globals.score);
             i = globals.scores.length;
         }
-    }
-}
-
-function playSound()
-{
-    //Reproducir el sonido que ha sido invocado
-    if(globals.currentSound != Sound.NO_SOUND)
-    {
-        //Reproducimos el sonido correspondiente
-        globals.sounds[globals.currentSound].currenTime = 0;
-        globals.sounds[globals.currentSound].play();
-
-        //Reseteamos current sound
-        globals.currentSound = Sound.NO_SOUND;
     }
 }
 

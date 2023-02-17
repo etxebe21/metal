@@ -148,6 +148,12 @@ function loadAssets()
     shootSound.load();
     globals.sounds.push(shootSound);
     globals.assetsToLoad.push(shootSound);
+
+    let hitSound = document.querySelector("#hitSound");
+    hitSound.addEventListener("canplaythrough", loadHandler, false);
+    hitSound.load();
+    globals.sounds.push(hitSound);
+    globals.assetsToLoad.push(hitSound);
 }
 
 //Funcion nque se llama cada vez que se carga un activo
