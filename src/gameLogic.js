@@ -876,6 +876,8 @@ function searchScore()
     }
 }
 
+
+
   function upData ()
   {
     //Send data
