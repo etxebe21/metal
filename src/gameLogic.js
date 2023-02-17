@@ -111,6 +111,10 @@ function playGame()
     //Actualizacion de la fisica de Sprites
     updateSprites();
 
+    //Musica Y sonidos
+    updateGameMusic();
+    updateShootMusic();
+
     //Colisiones
     detectCollisions();
 
@@ -841,6 +845,31 @@ function updateDied()
         initSprites();
     } 
 }
+
+function updateGameMusic()
+{
+   if(globals.action.move1)
+   {
+    globals.gameState = Game.PLAYING;
+    //Reproducimos GAME_MUSIC a un volumen inferior
+    globals.sounds[Sound.GAME_MUSIC].play();
+   } 
+}
+
+function updateShootMusic()
+{
+   if(globals.action.moveAttack)
+   {
+    globals.gameState = Game.PLAYING;
+    //Reproducimos GAME_MUSIC a un volumen inferior
+    globals.sounds[Sound.GAME_MUSIC].play();
+    globals.sounds[Sound.GAME_MUSIC].volume = 0,4;
+   } 
+}
+
+
+
+
 
 function writeName()
 {

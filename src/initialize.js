@@ -164,9 +164,10 @@ function loadHandler()
         globals.tileSets[i].removeEventListener("load" , loadHandler, false);
         }
 
-        for(let i = 0; i < globals.sounds.length; i++)
+        for(let j = 0; j < globals.sounds.length; ++j)
         {
-            globals.sounds[i].removeEventListener("canplaythrough", loadHandler, false);
+            globals.sounds[j].removeEventListener("canplaythrough", loadHandler, false);
+            console.log("cargados sonidos");
         }
         console.log("Assets finished loading");
 
