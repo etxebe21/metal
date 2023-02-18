@@ -62,10 +62,9 @@ export default {
 
     letterHighscoreTime : {},
 
+    //Camara
     highScoreCam: {},
-
     camera: {},
-
     cameraStop: 0,
 
     asciKey: -1,
@@ -76,7 +75,13 @@ export default {
     sounds: [],
 
     //Current sound to play
-    currentSound: -1
+    currentSound: -1,
+
+    keyTimer: 0,
+    keyTimerDeelay: 0,
+
+    keyCode: 0,
+    name:"",
 
 
     

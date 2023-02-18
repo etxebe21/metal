@@ -98,14 +98,6 @@ function renderHighScores()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
     globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
-    globals.ctx.drawImage(
-        globals.tileSets[4],
-    
-        0, 0,                   //The source x and y position
-        534, 320,               //The source height and width
-        0, 0,                   //The destination x and y position
-        534, 320,             //The destination height and width
-    );  
     //moveCameraScore();
     renderScore();
     //restoreCamera();             
@@ -155,7 +147,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("SCORE", 8, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText( " " + globals.score, 8, 16);
+        globals.ctxHUD.fillText( " " + score, 8, 16);
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';
@@ -167,7 +159,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("LIFE", 168, 8);
         globals.ctxHUD.fillStyle =  'green';
-        globals.ctxHUD.fillRect(168,9, globals.life, 16);
+        globals.ctxHUD.fillRect(168,9, life, 16);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';
@@ -401,9 +393,10 @@ function renderScores()
 function renderScoreTable(score)
  {
     moveCameraScore();
+    restoreCamera();
     globals.ctx.font = '30px emulogic';
     globals.ctx.fillStyle = 'white';
     globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
     globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
-    restoreCamera();
+    
  }
