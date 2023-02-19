@@ -139,7 +139,7 @@ function renderGameOver()
     );  
     globals.ctx.font         = '10px emulogic';
     globals.ctx.fillStyle    = 'red';  
-    globals.ctx.fillText("PRESS KEY  <SPACE>  TO ENTER NAME IN HIGHSCORES", 37, 250);
+    globals.ctx.fillText("PRESS KEY  <SPACE>  TO ENTER NAME IN HIGHSCORES", 35, 250);
 }
 
 function renderPlayerName() 
@@ -174,9 +174,9 @@ function renderHUD()
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("HIGH SCORE", 70, 8);
+        globals.ctxHUD.fillText("HIGH SCORE", 66, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + highScore, 80, 16);
+        globals.ctxHUD.fillText(" " + highScore, 77, 16);
 
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';
@@ -192,8 +192,9 @@ function renderHUD()
         globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
 
         //Draw fruits
-        globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("FRUTAS", 205, 8);
+        // globals.ctxHUD.fillStyle = 'lightgreen';
+        // globals.ctxHUD.fillText("FRUTAS", 205, 8);
+        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3);
         globals.ctxHUD.fillStyle =  'lightgray';
         globals.ctxHUD.fillText(" " + frutas, 214, 16);
 }

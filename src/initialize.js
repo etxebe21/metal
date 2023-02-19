@@ -153,6 +153,13 @@ function loadAssets()
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
+     //frutas
+     tileSet = new Image();
+     tileSet.addEventListener("load", loadHandler, false);
+     tileSet.src = "./images/frutas.png";
+     globals.tileSets.push(tileSet);
+     globals.assetsToLoad.push(tileSet);
+
     //Load sounds
     let gameMusic = document.querySelector("#gameMusic");
     gameMusic.addEventListener("canplaythrough", loadHandler, false);
