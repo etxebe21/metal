@@ -18,6 +18,14 @@ export default function render()
         case Game.HOME:
             renderHome();
             break;
+
+        case Game.LEVEL2:
+            renderLevel2();
+            break;
+            
+        case Game.PLAYING2:
+            drawLevel2();
+            break;
         
         case Game.HISTORY:
             renderHistory();
@@ -45,6 +53,20 @@ function renderHome()
     globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
     globals.ctx.drawImage(
         globals.tileSets[3],
+    
+        0, 0,                   //The source x and y position
+        534, 320,               //The source height and width
+        0, 0,                   //The destination x and y position
+        534, 320,             //The destination height and width
+    );                 
+}
+
+function renderLevel2()
+{
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+    globals.ctx.drawImage(
+        globals.tileSets[10],
     
         0, 0,                   //The source x and y position
         534, 320,               //The source height and width
@@ -90,7 +112,7 @@ function renderBarra()
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
-        globals.ctx.fillText("PRESS KEY  <A>  TO CONTINUE", 82, 292);
+        globals.ctx.fillText("PRESS KEY  <SPACE>  TO CONTINUE", 82, 292);
     }
 }
 

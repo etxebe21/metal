@@ -145,6 +145,13 @@ function loadAssets()
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
+    //pantalla previa level2
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/HIGHSCORES.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
     //Load sounds
     let gameMusic = document.querySelector("#gameMusic");
     gameMusic.addEventListener("canplaythrough", loadHandler, false);

@@ -17,6 +17,14 @@ export default function update()
             playGame();
             break;
 
+        case Game.LEVEL2:
+            updateLevel2();
+            break;
+        
+        case Game.PLAYING2:
+            playLevel2();
+            break;
+
         case Game.HOME:
             updateNewGame();
             break;
@@ -47,7 +55,7 @@ export default function update()
 
 function updateLoading()
 {
-    if( globals.action.moveAttack)
+    if( globals.action.space)
     globals.gameState = Game.HOME;  
 }
 
@@ -65,6 +73,12 @@ function updateNewGame()
         globals.gameState = Game.HISTORY;
 }
 
+function updateLevel2()
+{
+    if( globals.action.space)
+        globals.gameState = Game.PLAYING2;
+}
+
 function updateGameOver()
 {  
      
@@ -76,7 +90,7 @@ function updateGameOver()
     //     globals.gameState = Game.HIGH_SCORES;
     //     }
 
-    if( globals.action.moveAttack)
+    if( globals.action.space)
         globals.gameState = Game.PLAYERNAME; 
 }
 
@@ -168,10 +182,37 @@ function playGame()
 
     if (globals.score > 500)
     {
-        aumentoVelocidad();
+        globals.gameState = Game.LEVEL2;
     }
     
    
+}
+
+function playLevel2()
+{
+//Actualizacion de la fisica de Sprites
+updateSprites();
+
+//Musica Y sonidos
+updateGameMusic();
+updateShootMusic();
+updateAguaMusic(sprite);
+updateFrutaMusic(sprite);
+
+//Colisiones
+detectCollisions();
+
+//Actualizacion de la camara
+updateCamera();
+
+//Actualizacion de la logica de juego
+updateLevelTime(); 
+updateLifeTime();
+updateScoreTotal();
+updateSprites();
+updateParticles();
+playSound();
+updateDied();
 }
 
 function aumentoVelocidad(sprite)
@@ -891,7 +932,9 @@ function particlesDisparo(sprite)
 function updateDied()
 {
     if(globals.life <= 0 )  //|| globals.levelTime.value >= 150
-    {   globals.highscore = globals.score;
+    {   
+        globals.name = "";
+        globals.highscore = globals.scores[0].score;
         globals.score = 0;
         globals.life = 30;
         globals.levelTime.value = 0;
@@ -984,15 +1027,15 @@ function playSound()
 //     }
 // }
 
-function saveScores()
+function saveScores(data)
 {
     for(let i = 0; i < globals.scores.length; i ++)
     {
-        //const scores = globals.scores[i];
-        if(globals.score > globals.scores.length[i])
+        const scores = globals.scores[i];
+        if(scores.score > data.score)
         {
-            globals.scores.splice(-1, 0, globals.score);
-            i = globals.scores.length;
+            globals.scores.splice(-1, 0, data);
+           
         }
     }
 }
@@ -1025,16 +1068,8 @@ function saveScores()
             {
                 if(this.responseText != null)
                 {
-                    //console.log(this.responseText);
-                    const resultJSON = JSON.parse(this.responseText);
-                    //console.log (resultJSON);
-
-                    //Metemos los datos en un array , ya que lo que nos devuelve la ruta es un Objeto
-                    // const arrayResult = [resultJSON];
-
                     //Iniciamos los datos
                     saveScores(objectToSend);
-                    // console.log(arrayResult);
                 }
                 else
                     alert("Communication error: No data received");

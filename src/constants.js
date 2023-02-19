@@ -12,7 +12,8 @@ export const Game = {
     HISTORY:     5,
     GAME_OVER:   6,
     PLAYERNAME:        7,
-
+    LEVEL2:       8,
+    PLAYING2:     9,
 };
 
 //Velocidad del juego
