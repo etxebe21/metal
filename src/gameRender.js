@@ -112,7 +112,7 @@ function renderBarra()
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
-        globals.ctx.fillText("PRESS KEY  <SPACE>  TO CONTINUE", 82, 292);
+        globals.ctx.fillText("PRESS KEY  <SPACE>  TO CONTINUE", 60, 292);
     }
 }
 
@@ -202,6 +202,7 @@ function drawGame()
   //Borramos la pntalla entera
   globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
   globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+  
 
     //Movemos la camara
     moveCamera();
@@ -222,10 +223,17 @@ function drawGame()
     renderHUD();
 
     renderParticles();
-    
-    if(globals.score > 500)
+
+    globals.ctx.font         = '40px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("LEVEL 1", 70, 50);
+   
+    if (globals.score > 500)
     {
         drawLevel2();
+        globals.ctx.font         = '40px emulogic';
+        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillText("LEVEL 2", 70, 50);
     }
 }
 
@@ -234,6 +242,7 @@ function drawLevel2()
   //Borramos la pntalla entera
   globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
   globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+  
 
     //Movemos la camara
     moveCamera();

@@ -6,14 +6,13 @@ export const Game = {
     INVALID:     -2,
     LOADING:     0,
     PLAYING:     1,
-    OVER:        2,
+    PLAYING2:      2,
     HOME:         3,
     HIGH_SCORES: 4,
     HISTORY:     5,
     GAME_OVER:   6,
     PLAYERNAME:        7,
     LEVEL2:       8,
-    PLAYING2:     9,
 };
 
 //Velocidad del juego

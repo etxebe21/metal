@@ -128,8 +128,6 @@ function updateSaveName()
 
 if( globals.action.moveSpace)
     {
-
-   
     if (globals.keyTimer <= globals.keyTimerDeelay) {
 
         globals.keyTimer += globals.deltaTime;
@@ -181,10 +179,9 @@ function playGame()
 
     if (globals.score > 500)
     {
-        globals.gameState = Game.LEVEL2;
+        playLevel2();
     }
     
-   
 }
 
 function playLevel2()

@@ -82,6 +82,7 @@ export default {
 
     keyCode: 0,
     name:"",
+    keyCodePressed: 0,
 
 
     
