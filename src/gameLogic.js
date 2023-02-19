@@ -765,6 +765,7 @@ function sumPoints(sprite)
     if(sprite.isCollidingWithPlayer)
     {
         globals.score += 50;
+        globals.frutas += 0.5;
     }
 }
 

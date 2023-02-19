@@ -139,7 +139,7 @@ function renderGameOver()
     );  
     globals.ctx.font         = '10px emulogic';
     globals.ctx.fillStyle    = 'red';  
-    globals.ctx.fillText("PRESS KEY  <A>  TO ENTER NAME IN HIGHSCORES", 40, 250);
+    globals.ctx.fillText("PRESS KEY  <SPACE>  TO ENTER NAME IN HIGHSCORES", 37, 250);
 }
 
 function renderPlayerName() 
@@ -163,25 +163,26 @@ function renderHUD()
         const highScore = globals.highscore;
         const life = globals.life;
         const time = globals.levelTime.value;
+        const frutas = globals.frutas;
         
         //Draw score
         globals.ctxHUD.font = '8px emulogic';
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("SCORE", 8, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText( " " + score, 8, 16);
+        globals.ctxHUD.fillText( " " + score, 6, 16);
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("HIGH SCORE", 72, 8);
+        globals.ctxHUD.fillText("HIGH SCORE", 70, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + highScore, 72, 16);
+        globals.ctxHUD.fillText(" " + highScore, 80, 16);
 
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("LIFE", 168, 8);
+        globals.ctxHUD.fillText("LIFE", 160, 8);
         globals.ctxHUD.fillStyle =  'green';
-        globals.ctxHUD.fillRect(168,9, life, 16);
+        globals.ctxHUD.fillRect(160,9, life, 16);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';
@@ -190,11 +191,11 @@ function renderHUD()
         globals.ctxHUD.fillRect(168 + life - 1, 9, 1, 1);
         globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
 
-        //Draw time
+        //Draw fruits
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("TIME", 224, 8);
+        globals.ctxHUD.fillText("FRUTAS", 205, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(time, 224, 16);
+        globals.ctxHUD.fillText(" " + frutas, 214, 16);
 }
 
 function drawGame()
@@ -226,14 +227,21 @@ function drawGame()
 
     globals.ctx.font         = '40px emulogic';
     globals.ctx.fillStyle    = 'pink';
-    globals.ctx.fillText("LEVEL 1", 70, 50);
+    globals.ctx.fillText("LEVEL 1", 75, 50);
+    globals.ctx.font         = '15px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("TIME:" + globals.levelTime.value, 415, 30);
+
    
     if (globals.score > 500)
     {
         drawLevel2();
         globals.ctx.font         = '40px emulogic';
         globals.ctx.fillStyle    = 'red';
-        globals.ctx.fillText("LEVEL 2", 70, 50);
+        globals.ctx.fillText("LEVEL 2", 75, 50);
+        globals.ctx.font         = '15px emulogic';
+        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillText("TIME:" + globals.levelTime.value, 415, 30);
     }
 }
 

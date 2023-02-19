@@ -61,10 +61,11 @@ function initVars()
     }
     //Variables logica juego
     globals.life = 30;
-
     globals.highscore = 0;
+    globals.frutas = 0;
 
     globals.currentSound = Sound.NO_SOUND;
+    
 
     globals.keyTimer = 0;
     globals.keyTimerDeelay = 0.5;

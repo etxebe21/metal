@@ -54,6 +54,9 @@ export default {
 
     highscore: 0,
 
+    //FRUTAS
+    frutas: 0,
+
     //Array particulas
     particles: [],
 
