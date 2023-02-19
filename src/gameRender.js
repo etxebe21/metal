@@ -201,7 +201,7 @@ function drawGame()
 
     renderParticles();
     
-    if(globals.score > 2000)
+    if(globals.score > 500)
     {
         drawLevel2();
     }

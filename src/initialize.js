@@ -3,7 +3,7 @@ import {Game, SpriteID, State, FPS, ParticleState, ParticleID, SCORE_SIZE, Sound
 import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
-import {Level, level1} from "./Level.js";
+import {Level, level1, level2} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler, updateMusic} from "./events.js";
@@ -52,7 +52,7 @@ function initVars()
         moveUp: false,
         moveDown: false,
         attack: false,
-        jump: false,
+        space: false,
         move1: false,
         move2: false,
         move3: false,
@@ -632,6 +632,15 @@ function initLevel()
     globals.level = new Level(level1, imageSet);
 }
 
+function initLevel2()
+{
+    //Creamos las propiedades de las imagemnes del mapa; initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+    const imageSet = new ImageSet(0, 0, 16, 16, 16, 0, 0);
+
+    //Creamos y guardamos nuestro livel
+    globals.level = new Level(level2, imageSet);
+}
+
 function initTimers()
 {
     //Creamos timer, con cambios cada 1 segundos
@@ -772,6 +781,7 @@ export {
     loadAssets,
     initSprites,
     initLevel,
+    initLevel2,
     initTimers,
     initEvents,
     initDisparos,

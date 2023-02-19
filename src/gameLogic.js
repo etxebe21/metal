@@ -68,8 +68,8 @@ function updateNewGame()
 function updateGameOver()
 {  
      
-    if( globals.action.move4)
-        globals.gameState = Game.HOME;
+    // if( globals.action.move4)
+    //     globals.gameState = Game.HOME;
 
     // if( globals.action.move5)
     //     {
@@ -113,7 +113,7 @@ function updateHistory()
 function updateSaveName() 
 {
 
-if( globals.action.moveAttack)
+if( globals.action.Space)
     {
 
    
@@ -165,40 +165,21 @@ function playGame()
     updateParticles();
     playSound();
     updateDied();
-    
-    if(globals.score > 2000)
+
+    if (globals.score > 500)
     {
-        playLevel2();
-    
+        aumentoVelocidad();
     }
+    
    
 }
 
-function playLevel2()
+function aumentoVelocidad(sprite)
 {
-    //Actualizacion de la fisica de Sprites
-    updateSprites();
-
-    //Musica Y sonidos
-    updateGameMusic();
-    updateShootMusic();
-    updateAguaMusic(sprite);
-    updateFrutaMusic(sprite);
-
-    //Colisiones
-    detectCollisions();
-
-    //Actualizacion de la camara
-    updateCamera();
-
-    //Actualizacion de la logica de juego
-    updateLevelTime(); 
-    updateLifeTime();
-    updateScoreTotal();
-    updateSprites();
-    updateParticles();
-    playSound();
-    updateDied();
+    if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600 )
+    {
+        sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
+    }
 }
 
 //////////////// UPDATES SPRITES/PERSONAJES /////////////
@@ -995,7 +976,7 @@ function playSound()
 //             {
 //                 const objectToSend = upData();
                 
-//                     searchScore(objectToSend);
+//                     saveScores(objectToSend);
                 
 //                     globals.gameState = Game.HIGH_SCORES;       
 //             }

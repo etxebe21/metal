@@ -21,8 +21,8 @@ export function keydownHandler(event)
             globals.action.moveRight = true;
             break;
 
-        case Key.JUMP:
-            globals.action.jump = true;
+        case Key.SPACE:
+            globals.action.space = true;
             break;
 
         case Key.ATTACK:
@@ -71,8 +71,8 @@ export function keyupHandler(event)
             globals.action.moveRight = false;
             break;
 
-        case Key.JUMP:
-            globals.action.jump = false;
+        case Key.SPACE:
+            globals.action.space = false;
             break;
 
         case Key.ATTACK:
