@@ -55,7 +55,7 @@ export default function update()
 
 function updateLoading()
 {
-    if( globals.action.space)
+    if( globals.action.moveSpace)
     globals.gameState = Game.HOME;  
 }
 
@@ -75,7 +75,7 @@ function updateNewGame()
 
 function updateLevel2()
 {
-    if( globals.action.space)
+    if( globals.action.moveSpace)
         globals.gameState = Game.PLAYING2;
 }
 
@@ -90,13 +90,12 @@ function updateGameOver()
     //     globals.gameState = Game.HIGH_SCORES;
     //     }
 
-    if( globals.action.space)
+    if( globals.action.moveSpace)
         globals.gameState = Game.PLAYERNAME; 
 }
 
 function updateHighScores()
-{
-    
+{ 
     if( globals.action.move4)
         globals.gameState = Game.HOME;
         updatehighScoreCam();
@@ -127,7 +126,7 @@ function updateHistory()
 function updateSaveName() 
 {
 
-if( globals.action.Space)
+if( globals.action.moveSpace)
     {
 
    

@@ -22,7 +22,7 @@ export function keydownHandler(event)
             break;
 
         case Key.SPACE:
-            globals.action.space = true;
+            globals.action.moveSpace = true;
             break;
 
         case Key.ATTACK:
@@ -72,7 +72,7 @@ export function keyupHandler(event)
             break;
 
         case Key.SPACE:
-            globals.action.space = false;
+            globals.action.moveSpace = false;
             break;
 
         case Key.ATTACK:
