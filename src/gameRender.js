@@ -84,9 +84,9 @@ function renderLoading()
 function renderBarra()
 {
     globals.ctx.fillStyle = "blue";
-    globals.ctx.fillRect(50, 240, globals.assetsLoaded * (450/globals.assetsToLoad.length), 32);
+    globals.ctx.fillRect(38, 240, globals.assetsLoaded * (470/globals.assetsToLoad.length), 32);
 
-    if(globals.assetsLoaded * (450/globals.assetsToLoad.length) === 450)
+    if(globals.assetsLoaded * (470/globals.assetsToLoad.length) === 470)
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
@@ -186,6 +186,38 @@ function drawGame()
     
     //DIBUJAR FOONDO
     renderBackground();
+
+    //Dibujamos mapa (nivel)
+    renderMap();
+
+    //Dibujamos los elementos
+    drawSprites();  
+
+    //Restauramos la camara
+    restoreCamera();
+
+    //Dibujamos el HUD
+    renderHUD();
+
+    renderParticles();
+    
+    if(globals.score > 2000)
+    {
+        drawLevel2();
+    }
+}
+
+function drawLevel2()
+{
+  //Borramos la pntalla entera
+  globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+  globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+
+    //Movemos la camara
+    moveCamera();
+    
+    //DIBUJAR FOONDO
+    renderLevel2Background();
 
     //Dibujamos mapa (nivel)
     renderMap();
@@ -308,6 +340,18 @@ function renderBackground()
     );               
 }
 
+function renderLevel2Background()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[9],
+    
+        0, 0,                   //The source x and y position
+        3200, 320,               //The source height and width
+        -500, 0,                   //The destination x and y position
+        3200, 320,             //The destination height and width
+    );       
+}
+
 function moveCamera()
 {
     const xTranslation = -globals.camera.x;
@@ -393,10 +437,9 @@ function renderScores()
 function renderScoreTable(score)
  {
     moveCameraScore();
-    restoreCamera();
     globals.ctx.font = '30px emulogic';
     globals.ctx.fillStyle = 'white';
     globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
     globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
-    
+    restoreCamera();
  }

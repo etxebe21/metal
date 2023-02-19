@@ -82,9 +82,10 @@ function updateGameOver()
 
 function updateHighScores()
 {
-    updatehighScoreCam();
+    
     if( globals.action.move4)
         globals.gameState = Game.HOME;
+        updatehighScoreCam();
 }
 
 function updateHistory()
@@ -140,6 +141,40 @@ if( globals.action.moveAttack)
 }
 
 function playGame()
+{
+    //Actualizacion de la fisica de Sprites
+    updateSprites();
+
+    //Musica Y sonidos
+    updateGameMusic();
+    updateShootMusic();
+    updateAguaMusic(sprite);
+    updateFrutaMusic(sprite);
+
+    //Colisiones
+    detectCollisions();
+
+    //Actualizacion de la camara
+    updateCamera();
+
+    //Actualizacion de la logica de juego
+    updateLevelTime(); 
+    updateLifeTime();
+    updateScoreTotal();
+    updateSprites();
+    updateParticles();
+    playSound();
+    updateDied();
+    
+    if(globals.score > 2000)
+    {
+        playLevel2();
+    
+    }
+   
+}
+
+function playLevel2()
 {
     //Actualizacion de la fisica de Sprites
     updateSprites();
@@ -943,6 +978,7 @@ function playSound()
         globals.currentSound = Sound.NO_SOUND;
     }
 }
+
 
 // function writeName()
 // {

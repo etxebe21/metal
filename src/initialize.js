@@ -65,6 +65,9 @@ function initVars()
     globals.highscore = 0;
 
     globals.currentSound = Sound.NO_SOUND;
+
+    globals.keyTimer = 0;
+    globals.keyTimerDeelay = 0.5;
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS
@@ -132,6 +135,13 @@ function loadAssets()
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
     tileSet.src = "./images/NAME.png";
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    //Fondo pantalla nivel 2
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/fondoMontes.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
