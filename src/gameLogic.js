@@ -790,7 +790,7 @@ function restartFruta(sprite)
     if(sprite.isCollidingWithPlayer)
     {  
         sprite.xPos = Math.round(Math.random()*(1400-220) + 220) ;
-        sprite.yPos = 267;
+        sprite.yPos = 253;
 
         globals.currentSound = Sound.FRUTA;
     }
@@ -801,7 +801,7 @@ function restartAgua(sprite)
     if(sprite.isCollidingWithPlayer)
     {  
         sprite.xPos = Math.round(Math.random() * (1400-220) + 220);
-        sprite.yPos = 260;
+        sprite.yPos = 248;
 
         globals.currentSound = Sound.HIT;
     }
@@ -830,7 +830,7 @@ function restartToro(sprite)
     if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
         sprite.xPos = -400;
-        sprite.yPos = 254;
+        sprite.yPos = 242;
     }
 }
 
@@ -839,7 +839,7 @@ function restartZezen(sprite)
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = 3000;
-        sprite.yPos = 258;
+        sprite.yPos = 246;
     }
 }
 
@@ -848,7 +848,7 @@ function restartFire(sprite)
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.xPos = 2000;
-        sprite.yPos = 260;
+        sprite.yPos = 250;
     }
 }
 
@@ -934,6 +934,8 @@ function updateDied()
         globals.highscore = globals.scores[0].score;
         globals.score = 0;
         globals.life = 30;
+        globals.agua = 0;
+        globals.frutas = 0;
         globals.levelTime.value = 0;
         globals.sprites.splice(0)
         globals.gameState = Game.GAME_OVER;

@@ -170,19 +170,19 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("SCORE", 8, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText( " " + score, 6, 16);
+        globals.ctxHUD.fillText( " " + score, 6, 18);
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("HIGH SCORE", 64, 8);
+        globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + highScore, 75, 16);
+        globals.ctxHUD.fillText(" " + highScore, 75, 18);
 
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("LIFE", 155, 8);
         globals.ctxHUD.fillStyle =  'green';
-        globals.ctxHUD.fillRect(157,9, life, 16);
+        globals.ctxHUD.fillRect(157,10, life, 8);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';
@@ -192,9 +192,9 @@ function renderHUD()
         globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
 
         //Draw fruits
-        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3.5);
+        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + frutas, 214, 16);
+        globals.ctxHUD.fillText(" " + frutas, 214, 18);
 }
 
 function drawGame()
@@ -226,13 +226,13 @@ function drawGame()
 
     drawStats();
     
-    if (globals.score > 500)
+    if (globals.score > 1000)
     {
         drawLevel2();
         const agua = globals.agua;
         globals.ctx.font         = '40px emulogic';
         globals.ctx.fillStyle    = 'red';
-        globals.ctx.fillText("LEVEL 2", 75, 50);
+        globals.ctx.fillText("LEVEL 2", 90, 50);
         globals.ctx.font         = '15px emulogic';
         globals.ctx.fillStyle    = 'red';
         globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
