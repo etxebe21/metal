@@ -61,11 +61,12 @@ function updateLoading()
 
 function updateNewGame()
 {   
-    // updateDied();
-    
     if( globals.action.move1)
-        globals.gameState = Game.PLAYING;
-
+    {
+        updateStart();
+        globals.gameState = Game.PLAYING
+    }
+      
     if ( globals.action.move3)
         globals.gameState = Game.HIGH_SCORES;
 
@@ -82,14 +83,6 @@ function updateLevel2()
 function updateGameOver()
 {  
     //updateGameOverMusic();
-    // if( globals.action.move4)
-    //     globals.gameState = Game.HOME;
-
-    // if( globals.action.move5)
-    //     {
-    //     globals.gameState = Game.HIGH_SCORES;
-    //     }
-
     if( globals.action.moveSpace)
         globals.gameState = Game.PLAYERNAME; 
 }
@@ -147,11 +140,11 @@ function playGame()
     playSound();
     updateDied();
 
-    if (globals.score > 1000)
+    if (globals.score > 1500)
     {
         playLevel2();
     }
-    if (globals.score > 3000)
+    if (globals.score > 4000)
     {
         playLevel2();
     }
@@ -915,15 +908,31 @@ function updateDied()
         globals.name = "";
         globals.highscore = globals.scores[0];
         globals.score = globals.score;
-        globals.life = 30;
-        globals.agua = 0;
-        globals.frutas = 0;
+        globals.life = globals.life;
+        globals.agua = globals.agua;
+        globals.frutas = globals.frutas;
         globals.levelTime.value = 0;
         globals.sprites.splice(0)
         globals.gameState = Game.GAME_OVER;
-        initSprites();
     } 
 }
+
+function updateStart()
+{    
+    //updateGameOverMusic();
+    globals.name = "";
+    globals.highscore = globals.scores[0];
+    globals.score = 0;
+    globals.life = 30;
+    globals.agua = 0;
+    globals.frutas = 0;
+    globals.levelTime.value = 0;
+    globals.sprites.splice(0)
+    globals.gameState = Game.PLAYING;
+    initSprites();
+} 
+
+
 
 function updateGameMusic()
 {

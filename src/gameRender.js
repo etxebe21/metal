@@ -157,12 +157,28 @@ function renderPlayerName()
     );  
 
     updateLetterTime();
-    globals.ctx.font         = '10px emulogic';
-    globals.ctx.fillStyle    = 'red';  
-    globals.ctx.fillText("PRESS 3 KEYS TO SAVE NAME IN HIGHSCORES", 35, 250);
-    globals.ctx.font         = '10px emulogic';
-    globals.ctx.fillStyle    = 'red';  
-    globals.ctx.fillText(globals.highscorename, 70, 270);
+    const agua = globals.agua;
+    const frutas = globals.frutas;
+    const score = globals.score;
+    globals.ctx.font         = '50px emulogic';
+    globals.ctx.fillStyle    = 'blue';  
+    globals.ctx.fillText(globals.highscorename, 180, 170);
+
+    globals.ctx.font = '18px emulogic';
+    globals.ctx.fillText("WATER", 375, 260);
+    globals.ctx.fillStyle =  'black';
+    globals.ctx.fillText(agua, 385, 290);
+
+    globals.ctx.fillStyle =  'green';
+    globals.ctx.fillText("FRUIT", 215, 260);
+    globals.ctx.fillStyle =  'black';
+    globals.ctx.fillText(frutas, 230, 290);
+
+    globals.ctx.font = '18px emulogic';
+    globals.ctx.fillStyle = 'red';
+    globals.ctx.fillText("SCORE", 50, 260);
+    globals.ctx.fillStyle =  'black';
+    globals.ctx.fillText(score, 70, 290);
 }
 
 function renderHUD()
@@ -236,33 +252,13 @@ function drawGame()
 
     drawStats();
     
-    if (globals.score > 1000)
+    if (globals.score > 1500)
     {
         drawLevel2();
-        const agua = globals.agua;
-        globals.ctx.font         = '40px emulogic';
-        globals.ctx.fillStyle    = 'brown';
-        globals.ctx.fillText("LEVEL 2", 95, 50);
-        globals.ctx.font         = '15px emulogic';
-        globals.ctx.fillStyle    = 'brown';
-        globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
-        globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-        globals.ctx.fillStyle =  'lightbrown';
-        globals.ctx.fillText(":" + agua, 30, 33);
     }
-    if(globals.score > 3000)
+    if(globals.score > 4000)
     {
         drawLevel3();
-        const agua = globals.agua;
-        globals.ctx.font         = '40px emulogic';
-        globals.ctx.fillStyle    = 'pink';
-        globals.ctx.fillText("LEVEL 3", 95, 50);
-        globals.ctx.font         = '15px emulogic';
-        globals.ctx.fillStyle    = 'pink';
-        globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
-        globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-        globals.ctx.fillStyle =  'lightpink';
-        globals.ctx.fillText(":" + agua, 30, 33);
     }
     
 }
@@ -283,10 +279,9 @@ function drawStats()
 
 function drawLevel2()
 {
-  //Borramos la pntalla entera
-  globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-  globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
-  
+    //Borramos la pntalla entera
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
 
     //Movemos la camara
     moveCamera();
@@ -307,6 +302,17 @@ function drawLevel2()
     renderHUD();
 
     renderParticles();
+
+    const agua = globals.agua;
+    globals.ctx.font         = '40px emulogic';
+    globals.ctx.fillStyle    = 'brown';
+    globals.ctx.fillText("LEVEL 2", 95, 50);
+    globals.ctx.font         = '15px emulogic';
+    globals.ctx.fillStyle    = 'brown';
+    globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
+    globals.ctx.drawImage(globals.tileSets[12], 8, 0);
+    globals.ctx.fillStyle =  'lightbrown';
+    globals.ctx.fillText(":" + agua, 30, 33);
 }
 
 function drawLevel3()
@@ -335,6 +341,17 @@ function drawLevel3()
     renderHUD();
 
     renderParticles();
+
+    const agua = globals.agua;
+    globals.ctx.font         = '40px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("LEVEL 3", 95, 50);
+    globals.ctx.font         = '15px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
+    globals.ctx.drawImage(globals.tileSets[12], 8, 0);
+    globals.ctx.fillStyle =  'lightpink';
+    globals.ctx.fillText(":" + agua, 30, 33);
 }
 
 function renderSprite(sprite)
@@ -517,7 +534,7 @@ function renderExplosionParticle(particle)
         globals.ctx.fillStyle = 'red';
         globals.ctx.globalAlpha = particle.alpha; //Set alpha
         globals.ctx.beginPath();
-        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0,5 * Math.PI );
+        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0.5 * Math.PI );
         globals.ctx.fill();
         globals.ctx.globalAlpha = 1.0;  //Restore alpha
     }
@@ -551,10 +568,18 @@ function renderScores()
 
 function renderScoreTable(score)
  {
-    moveCameraScore();
-    globals.ctx.font = '30px emulogic';
-    globals.ctx.fillStyle = 'white';
-    globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
-    globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
-    restoreCamera();
+    
+    for( let i = 0; i < globals.scores.length; ++i)
+    {
+        moveCameraScore();
+        globals.ctx.font = '30px emulogic';
+        globals.ctx.fillStyle = 'white';
+        globals.ctx.fillText((i + 1),score.xPos + 30, score.yPos + 100); 
+        globals.ctx.font = '30px emulogic';
+        globals.ctx.fillStyle = 'white';
+        globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
+        globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
+        restoreCamera();
+    }
+    
  }
