@@ -71,7 +71,7 @@ export default {
     camera: {},
     cameraStop: 0,
 
-    asciKey: -1,
+    asciKey: 0,
 
     highscorename: "",
 
@@ -85,8 +85,7 @@ export default {
     keyTimerDeelay: 0,
 
     keyCode: 0,
-    name:"",
-    keyCodePressed: 0,
+    
 
 
     

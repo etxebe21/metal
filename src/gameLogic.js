@@ -43,7 +43,7 @@ export default function update()
 
         case Game.PLAYERNAME:
             //updatePlayerName();
-            updateSaveName();
+            updatePlayerName();
             break;
 
         default:
@@ -107,47 +107,18 @@ function updateHistory()
         globals.gameState = Game.HOME; 
 }
 
-// function updatePlayerName()
-// {
-//     if( globals.action.move4)
-//     globals.gameState = Game.HOME;
-
-//     if( globals.action.moveAttack)
-//     {
-//     globals.gameState = Game.HIGH_SCORES;
-    
-//     // console.log(writeName);
-//     //writeName();
-//     upData();
-//     }
-// }
-
-
-function updateSaveName() 
+function updatePlayerName()
 {
+    if( globals.action.move4)
+    globals.gameState = Game.HOME;
 
-if( globals.action.moveSpace)
+    if( globals.action.moveSpace)
     {
-    if (globals.keyTimer <= globals.keyTimerDeelay) {
-
-        globals.keyTimer += globals.deltaTime;
-    }
-
-    if ((globals.keyCode >= 65 && globals.keyCode <= 90) && globals.keyTimer > globals.keyTimerDeelay) {
-
-        globals.name += String.fromCharCode(globals.keyCodePressed);
-        globals.keyTimer = 0;
-    }
-
-    if (globals.name.length === 3) {
-
-        upData();
-        globals.gameState = Game.HIGH_SCORES;
-    }
-    }
-    if( globals.action.move5)
-    {
-        globals.gameState = Game.HIGH_SCORES;
+    globals.gameState = Game.HIGH_SCORES;
+    
+    // console.log(writeName);
+    writeName();
+    upData();
     }
 }
 
@@ -1024,28 +995,29 @@ function playSound()
 }
 
 
-// function writeName()
-// {
-//     let insertchar = String.fromCharCode(globals.asciKey);
+function writeName()
+{   console.log(asciKey);
+    console.log(globals.highscorename);
+    let insertchar = String.fromCharCode(globals.asciKey);
 
-//     if(globals.asciKey > 64 && globals.asciKey < 91)
-//     {
-//         if(globals.letterHighscoreTime.value > 0)
-//         {
-//             globals.highscorename += insertchar;
-//             globals.letterHighscoreTime.value = 0;
+    if(globals.asciKey > 64 && globals.asciKey < 91)
+    {
+        // if(globals.letterHighscoreTime.value > 0)
+        // {
+            globals.highscorename += insertchar;
+            globals.letterHighscoreTime.value = 0;
 
-//             if(globals.highscorename.length > 2)
-//             {
-//                 const objectToSend = upData();
+            if(globals.highscorename.length > 2)
+            {
+                const objectToSend = upData();
                 
-//                     saveScores(objectToSend);
+                    saveScores(objectToSend);
                 
-//                     globals.gameState = Game.HIGH_SCORES;       
-//             }
-//         }
-//     }
-// }
+                    globals.gameState = Game.HIGH_SCORES;       
+            }
+        
+    }
+}
 
 function saveScores(data)
 {
@@ -1055,7 +1027,6 @@ function saveScores(data)
         if(scores.score > data.score)
         {
             globals.scores.splice(-1, 0, data);
-           
         }
     }
 }
@@ -1064,7 +1035,7 @@ function saveScores(data)
   {
     //Send data
     const objectToSend= {
-        name:    globals.name,
+        name:    globals.highscorename,
         score:   globals.score,  
     }
 

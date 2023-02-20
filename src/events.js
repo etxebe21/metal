@@ -2,7 +2,8 @@ import { Key, Sound } from "./constants.js";
 import globals from "./globals.js";
 
 export function keydownHandler(event)
-{
+{   
+    globals.asciKey = event.keyCode;
     switch(event.keyCode)
     {
         case Key.UP:
@@ -53,6 +54,7 @@ export function keydownHandler(event)
 
 export function keyupHandler(event)
 {
+    globals.asciKey = -1;
     switch(event.keyCode)
     {
         case Key.UP:

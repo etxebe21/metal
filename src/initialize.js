@@ -66,7 +66,8 @@ function initVars()
     globals.agua = 0;
 
     globals.currentSound = Sound.NO_SOUND;
-    
+    globals.asciKey = 0;
+    globals.keyCode = 0;
 
     globals.keyTimer = 0;
     globals.keyTimerDeelay = 0.5;
@@ -685,7 +686,7 @@ function initTimers()
     //Creamos timer, con cambios cada 1 segundos
     globals.levelTime = new Timer(0, 1);
     globals.lifeTime = new Timer (3 ,1);
-    globals.letterHighscoreTime = new Timer (0,1);
+    globals.letterHighscoreTime = new Timer (0, 0.5);
 }
 
 function initEvents()
