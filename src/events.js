@@ -114,10 +114,10 @@ export  function updateMusic()
         music.currentTime = 0;
         music.play();
     }
-    if(globals.life <= 0)
-    {
-         music = globals.sounds[Sound.GAME_OVER]; 
-    }
+    // if(globals.life <= 0)
+    // {
+    //      music = globals.sounds[Sound.GAME_OVER]; 
+    // }
 }
 
 // export  function updateGOMusic()

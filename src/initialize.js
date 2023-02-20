@@ -43,7 +43,7 @@ function initVars()
     globals.frameTimeObj = 1 / FPS; //Frame time in secondsg
 
     //Iniciar el estado juego
-    globals.gameState = Game.LOADING;
+    globals.gameState = Game.PLAYERNAME;
 
     //Inicializamos los estados de las acciones
     globals.action = {
@@ -60,11 +60,11 @@ function initVars()
         move5: false
     }
     //Variables logica juego
+    
+    globals.score = 0;
     globals.life = 30;
-    globals.highscore = 0;
     globals.frutas = 0;
     globals.agua = 0;
-    globals.score = 0;
 
     globals.currentSound = Sound.NO_SOUND;
 
@@ -235,7 +235,7 @@ function loadHandler()
         console.log("Assets finished loading");
 
         //Start the game
-        globals.gameState = Game.LOADING;
+        globals.gameState = Game.PLAYERNAME;
     }
 }
 

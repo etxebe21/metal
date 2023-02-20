@@ -169,7 +169,8 @@ function renderHUD()
 {
         //TEST: Datos metidos en bruto
         const score = globals.score;
-        const highScore = globals.highscore;
+        const highScore = globals.scores[0].score;
+        const name = globals.scores[0].name;
         const life = globals.life;
         const time = globals.levelTime.value;
         const frutas = globals.frutas;
@@ -185,7 +186,7 @@ function renderHUD()
         globals.ctxHUD.fillStyle = 'lightgreen';
         globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + highScore, 75, 18);
+        globals.ctxHUD.fillText(name+" " + highScore, 70, 18);
 
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';

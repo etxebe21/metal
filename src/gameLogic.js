@@ -913,7 +913,7 @@ function updateDied()
     {    
         //updateGameOverMusic();
         globals.name = "";
-        globals.highscore = globals.scores[0].score;
+        globals.highscore = globals.scores[0];
         globals.score = globals.score;
         globals.life = 30;
         globals.agua = 0;
@@ -1073,7 +1073,7 @@ function saveScores(objectToSend)
                 {   
                     const resultJSON = JSON.parse(this.responseText);
                     //Iniciamos los datos
-                    //saveScores(objectToSend);
+                    saveScores(objectToSend);
                 }
                 else
                     alert("Communication error: No data received");
