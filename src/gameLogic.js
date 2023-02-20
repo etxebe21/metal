@@ -81,7 +81,7 @@ function updateLevel2()
 
 function updateGameOver()
 {  
-     
+    updateGameOverMusic();
     // if( globals.action.move4)
     //     globals.gameState = Game.HOME;
 
@@ -161,6 +161,7 @@ function playGame()
     updateShootMusic();
     updateAguaMusic(sprite);
     updateFrutaMusic(sprite);
+    updateHitMusic(sprite);
 
     //Colisiones
     detectCollisions();
@@ -194,6 +195,7 @@ updateGameMusic();
 updateShootMusic();
 updateAguaMusic(sprite);
 updateFrutaMusic(sprite);
+updateHitMusic(sprite);
 
 //Colisiones
 detectCollisions();
@@ -803,7 +805,7 @@ function restartAgua(sprite)
         sprite.xPos = Math.round(Math.random() * (1400-220) + 220);
         sprite.yPos = 248;
 
-        globals.currentSound = Sound.HIT;
+        globals.currentSound = Sound.AGUA;
     }
 }
 
@@ -829,8 +831,9 @@ function restartToro(sprite)
 {
     if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
-        sprite.xPos = -400;
+        sprite.xPos = -300;
         sprite.yPos = 242;
+        // globals.currentSound = Sound.HIT;
     }
 }
 
@@ -951,6 +954,16 @@ function updateGameMusic()
     //Reproducimos GAME_MUSIC a un volumen inferior
     globals.sounds[Sound.GAME_MUSIC].play();
     globals.sounds[Sound.GAME_MUSIC].volume = 1;
+   }  
+}
+
+function updateGameOverMusic()
+{
+   if(globals.gameState = Game.GAME_OVER)
+   {
+    //Reproducimos GAME_MUSIC a un volumen inferior
+    globals.sounds[Sound.GAME_OVER].play();
+    globals.sounds[Sound.GAME_OVER].volume = 1;
     console.log("musica");
    }  
 }
@@ -985,6 +998,17 @@ function updateFrutaMusic(sprite)
      //Reproducimos GAME_MUSIC a un volumen inferior
      globals.sounds[Sound.FRUTA].play();
      globals.sounds[Sound.FRUTA].volume = 1;
+    } 
+}
+
+function updateHitMusic(sprite)
+{
+    if(restartToro(sprite))
+    {
+    globals.gameState = Game.PLAYING;
+     //Reproducimos GAME_MUSIC a un volumen inferior
+     globals.sounds[Sound.HIT].play();
+     globals.sounds[Sound.HIT].volume = 1;
     } 
 }
 

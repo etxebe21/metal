@@ -193,6 +193,21 @@ function loadAssets()
     frutaSound.load();
     globals.sounds.push(frutaSound);
     globals.assetsToLoad.push(frutaSound);
+
+    let hitSound = document.querySelector("#hitSound");
+    hitSound.addEventListener("canplaythrough", loadHandler, false);
+    hitSound.load();
+    globals.sounds.push(hitSound);
+    globals.assetsToLoad.push(hitSound);
+
+    // let gameOverMusic = document.querySelector("#gameOverMusic");
+    // gameOverMusic.addEventListener("canplaythrough", loadHandler, false);
+    // gameOverMusic.addEventListener("timeupdate", updateGOMusic, false);
+    // gameOverMusic.load();
+    // globals.sounds.push(gameOverMusic);
+    // globals.assetsToLoad.push(gameOverMusic);
+
+
 }
 
 //Funcion nque se llama cada vez que se carga un activo
