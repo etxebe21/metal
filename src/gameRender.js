@@ -231,27 +231,27 @@ function drawGame()
         drawLevel2();
         const agua = globals.agua;
         globals.ctx.font         = '40px emulogic';
-        globals.ctx.fillStyle    = 'red';
-        globals.ctx.fillText("LEVEL 2", 90, 50);
+        globals.ctx.fillStyle    = 'brown';
+        globals.ctx.fillText("LEVEL 2", 95, 50);
         globals.ctx.font         = '15px emulogic';
-        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillStyle    = 'brown';
         globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
         globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-        globals.ctx.fillStyle =  'lightred';
+        globals.ctx.fillStyle =  'lightbrown';
         globals.ctx.fillText(":" + agua, 30, 33);
     }
-    if(globals.score > 1500)
+    if(globals.score > 3000)
     {
         drawLevel3();
         const agua = globals.agua;
         globals.ctx.font         = '40px emulogic';
-        globals.ctx.fillStyle    = 'red';
-        globals.ctx.fillText("LEVEL 3", 90, 50);
+        globals.ctx.fillStyle    = 'pink';
+        globals.ctx.fillText("LEVEL 3", 95, 50);
         globals.ctx.font         = '15px emulogic';
-        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillStyle    = 'pink';
         globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
         globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-        globals.ctx.fillStyle =  'lightred';
+        globals.ctx.fillStyle =  'lightpink';
         globals.ctx.fillText(":" + agua, 30, 33);
     }
     
@@ -261,13 +261,13 @@ function drawStats()
 {
     const agua = globals.agua;
     globals.ctx.font         = '40px emulogic';
-    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillStyle    = 'green';
     globals.ctx.fillText("LEVEL 1", 100, 50);
     globals.ctx.font         = '15px emulogic';
-    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillStyle    = 'green';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-    globals.ctx.fillStyle =  'lightgray';
+    globals.ctx.fillStyle =  'green';
     globals.ctx.fillText(":" + agua, 30, 33);
 }
 

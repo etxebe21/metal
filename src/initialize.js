@@ -94,7 +94,7 @@ function loadAssets()
     //fondo pantalla
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/mundos.png";
+    tileSet.src = "./images/fondoMontes.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -143,14 +143,14 @@ function loadAssets()
     //Fondo pantalla nivel 2
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/fondoMontes.png";
+    tileSet.src = "./images/cueva.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
     //Fondo pantalla nivel 3
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/cueva.png";
+    tileSet.src = "./images/mundos.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -263,8 +263,8 @@ function initPlayer()
     //Creamos los datos de la animación. 8 frmaes / state
     const frames = new Frames(8, 5);
 
-    //Creamos nuestro objeto physics con vLimit = 50 pixels/seconds, aLimit= 40 y friction = 0,98
-    const physics = new Physics(50, 40, 0.98) //,-100 ;
+    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
+    const physics = new Physics(40, 40, 0.98) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(25, 36, 9, 5);
@@ -286,7 +286,7 @@ function initZezen()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(30);
+    const physics = new Physics(20);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 44, 9, 3);
@@ -309,7 +309,7 @@ function initZezen2()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(25);
+    const physics = new Physics(15);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 44, 9, 3);
@@ -331,7 +331,7 @@ function initToro()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(35);
+    const physics = new Physics(25);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 43, 13, 9);
@@ -353,7 +353,7 @@ function initToro2()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(25);
+    const physics = new Physics(15);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 43, 13, 9);
@@ -484,7 +484,7 @@ function initBruja()
     const frames = new Frames(2, 5);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(30);
+    const physics = new Physics(25);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(15, 28, 9, 9);
@@ -539,7 +539,7 @@ function initFire()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(20, 0.001, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(15, 0.001, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
@@ -565,7 +565,7 @@ function initFire2()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(20, 0.002, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(16, 0.002, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
@@ -591,7 +591,7 @@ function initFire3()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(20, 0.003, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(14, 0.003, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
@@ -612,7 +612,7 @@ function initDisparos(sprite)
     const frames = new Frames(4, 10);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(40);
+    const physics = new Physics(35);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(35, 30, 10,11);

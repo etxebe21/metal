@@ -182,6 +182,10 @@ function playGame()
     {
         playLevel2();
     }
+    if (globals.score > 3000)
+    {
+        playLevel2();
+    }
     
 }
 
@@ -784,7 +788,7 @@ function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(1400-220) + 220) ;
+        sprite.xPos = Math.round(Math.random()*(1400-250) + 250) ;
         sprite.yPos = 253;
 
         globals.currentSound = Sound.FRUTA;
@@ -795,7 +799,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * (1400-220) + 220);
+        sprite.xPos = Math.round(Math.random() * (1400-250) + 250);
         sprite.yPos = 248;
 
         globals.currentSound = Sound.AGUA;
@@ -806,8 +810,8 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 0;
-        sprite.yPos = 0;
+        sprite.xPos = -50;
+        sprite.yPos = -50;
     }
 }
 
