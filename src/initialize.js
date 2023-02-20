@@ -64,8 +64,10 @@ function initVars()
     globals.highscore = 0;
     globals.frutas = 0;
     globals.agua = 0;
+    globals.score = 0;
 
     globals.currentSound = Sound.NO_SOUND;
+
     globals.asciKey = 0;
     globals.keyCode = 0;
 

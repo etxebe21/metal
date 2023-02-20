@@ -1,8 +1,10 @@
-import { Key, Sound } from "./constants.js";
+import { Sound } from "./constants.js";
+import { Key } from "./constants.js";
 import globals from "./globals.js";
 
+
 export function keydownHandler(event)
-{   
+{   console.log(globals.asciKey);
     globals.asciKey = event.keyCode;
     switch(event.keyCode)
     {

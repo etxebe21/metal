@@ -72,7 +72,6 @@ export default {
     cameraStop: 0,
 
     asciKey: 0,
-
     highscorename: "",
 
     //Sonidos
@@ -81,10 +80,10 @@ export default {
     //Current sound to play
     currentSound: -1,
 
-    keyTimer: 0,
-    keyTimerDeelay: 0,
+    // keyTimer: 0,
+    // keyTimerDeelay: 0,
 
-    keyCode: 0,
+    
     
 
 

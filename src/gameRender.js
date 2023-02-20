@@ -1,5 +1,6 @@
 import globals from "./globals.js";
 import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
+import { updateLetterTime } from "./gameLogic.js";
 
 export default function render()
 {
@@ -154,6 +155,14 @@ function renderPlayerName()
         0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width  
     );  
+
+    updateLetterTime();
+    globals.ctx.font         = '10px emulogic';
+    globals.ctx.fillStyle    = 'red';  
+    globals.ctx.fillText("PRESS 3 KEYS TO SAVE NAME IN HIGHSCORES", 35, 250);
+    globals.ctx.font         = '10px emulogic';
+    globals.ctx.fillStyle    = 'red';  
+    globals.ctx.fillText(globals.highscorename, 70, 270);
 }
 
 function renderHUD()

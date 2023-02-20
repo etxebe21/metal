@@ -109,16 +109,14 @@ function updateHistory()
 
 function updatePlayerName()
 {
-    if( globals.action.move4)
-    globals.gameState = Game.HOME;
-
-    if( globals.action.moveSpace)
-    {
-    globals.gameState = Game.HIGH_SCORES;
-    
-    // console.log(writeName);
     writeName();
-    upData();
+    // if( globals.action.move4)
+    // globals.gameState = Game.HOME;
+
+    if( globals.action.move5)
+    {
+        globals.gameState = Game.HIGH_SCORES;
+        upData();
     }
 }
 
@@ -595,6 +593,20 @@ function updateLifeTime()
     }
 }
 
+export function updateLetterTime()
+{
+    //Incrementamos el contador de cambio de valor
+    globals.letterHighscoreTime.timeChangeCounter += globals.deltaTime;
+
+    //Si ha pasado el tiempo necesario, cambiamos el valor del timer
+    if (globals.letterHighscoreTime.timeChangeCounter > globals.letterHighscoreTime.timeChangeValue && globals.letterHighscoreTime != 0)
+    {
+        globals.letterHighscoreTime.value++;
+        //Reseteamos timeChangeCounter
+        globals.letterHighscoreTime.timeChangeCounter = 0;
+    }
+}
+
 function swapDirection(sprite)
 {
     sprite.state = sprite.state === State.RIGHT_2 ? State.LEFT_2 : State.RIGHT_2;
@@ -902,7 +914,7 @@ function updateDied()
         //updateGameOverMusic();
         globals.name = "";
         globals.highscore = globals.scores[0].score;
-        globals.score = 0;
+        globals.score = globals.score;
         globals.life = 30;
         globals.agua = 0;
         globals.frutas = 0;
@@ -996,14 +1008,14 @@ function playSound()
 
 
 function writeName()
-{   console.log(asciKey);
+{   console.log(globals.asciKey);
     console.log(globals.highscorename);
-    let insertchar = String.fromCharCode(globals.asciKey);
+    const insertchar = String.fromCharCode(globals.asciKey);
 
     if(globals.asciKey > 64 && globals.asciKey < 91)
     {
-        // if(globals.letterHighscoreTime.value > 0)
-        // {
+        if(globals.letterHighscoreTime.value > 0)
+        {
             globals.highscorename += insertchar;
             globals.letterHighscoreTime.value = 0;
 
@@ -1015,18 +1027,18 @@ function writeName()
                 
                     globals.gameState = Game.HIGH_SCORES;       
             }
-        
+        }   
     }
 }
 
-function saveScores(data)
+function saveScores(objectToSend)
 {
     for(let i = 0; i < globals.scores.length; i ++)
     {
-        const scores = globals.scores[i];
-        if(scores.score > data.score)
+        if(globals.score > globals.scores)
         {
-            globals.scores.splice(-1, 0, data);
+            globals.scores.splice(i, 0, objectToSend);
+            i = globals.scores.length;
         }
     }
 }
@@ -1040,7 +1052,7 @@ function saveScores(data)
     }
 
     //String data to send
-    const dataToSend = 'name=' + objectToSend.name + '&score=' + 
+    const dataToSend = '&name=' + objectToSend.name + '&score=' + 
     objectToSend.score; 
 
     console.log(dataToSend);
@@ -1058,9 +1070,10 @@ function saveScores(data)
             if(this.status == 200)
             {
                 if(this.responseText != null)
-                {
+                {   
+                    const resultJSON = JSON.parse(this.responseText);
                     //Iniciamos los datos
-                    saveScores(objectToSend);
+                    //saveScores(objectToSend);
                 }
                 else
                     alert("Communication error: No data received");
