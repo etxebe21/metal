@@ -177,7 +177,7 @@ function playGame()
     playSound();
     updateDied();
 
-    if (globals.score > 500)
+    if (globals.score > 1000)
     {
         playLevel2();
     }
@@ -416,7 +416,6 @@ restartFruta(sprite);
 
 function updateAgua(sprite)
 {
-sumPoints(sprite);
 restartAgua(sprite);
 sumarLife(sprite);
 } 
@@ -781,7 +780,8 @@ function sumarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {
-        globals.life += 1;
+        globals.life += 1.5;
+        globals.agua += 0.5;
     }
 }
 
@@ -789,7 +789,7 @@ function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(1500-0)) ;
+        sprite.xPos = Math.round(Math.random()*(1400-220) + 220) ;
         sprite.yPos = 267;
 
         globals.currentSound = Sound.FRUTA;
@@ -800,7 +800,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random() * 1500-10);
+        sprite.xPos = Math.round(Math.random() * (1400-220) + 220);
         sprite.yPos = 260;
 
         globals.currentSound = Sound.HIT;

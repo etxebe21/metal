@@ -174,15 +174,15 @@ function renderHUD()
 
         //Draw High Score 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("HIGH SCORE", 66, 8);
+        globals.ctxHUD.fillText("HIGH SCORE", 64, 8);
         globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + highScore, 77, 16);
+        globals.ctxHUD.fillText(" " + highScore, 75, 16);
 
         //Draw life 
         globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("LIFE", 160, 8);
+        globals.ctxHUD.fillText("LIFE", 155, 8);
         globals.ctxHUD.fillStyle =  'green';
-        globals.ctxHUD.fillRect(160,9, life, 16);
+        globals.ctxHUD.fillRect(157,9, life, 16);
 
         //Round corners. ( Remove 1 pixel per corner)
         globals.ctxHUD.fillStyle = 'black';
@@ -192,9 +192,7 @@ function renderHUD()
         globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
 
         //Draw fruits
-        // globals.ctxHUD.fillStyle = 'lightgreen';
-        // globals.ctxHUD.fillText("FRUTAS", 205, 8);
-        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3);
+        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3.5);
         globals.ctxHUD.fillStyle =  'lightgray';
         globals.ctxHUD.fillText(" " + frutas, 214, 16);
 }
@@ -226,24 +224,36 @@ function drawGame()
 
     renderParticles();
 
-    globals.ctx.font         = '40px emulogic';
-    globals.ctx.fillStyle    = 'pink';
-    globals.ctx.fillText("LEVEL 1", 75, 50);
-    globals.ctx.font         = '15px emulogic';
-    globals.ctx.fillStyle    = 'pink';
-    globals.ctx.fillText("TIME:" + globals.levelTime.value, 415, 30);
-
-   
+    drawStats();
+    
     if (globals.score > 500)
     {
         drawLevel2();
+        const agua = globals.agua;
         globals.ctx.font         = '40px emulogic';
         globals.ctx.fillStyle    = 'red';
         globals.ctx.fillText("LEVEL 2", 75, 50);
         globals.ctx.font         = '15px emulogic';
         globals.ctx.fillStyle    = 'red';
-        globals.ctx.fillText("TIME:" + globals.levelTime.value, 415, 30);
+        globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
+        globals.ctx.drawImage(globals.tileSets[12], 8, 0);
+        globals.ctx.fillStyle =  'lightred';
+        globals.ctx.fillText(":" + agua, 30, 33);
     }
+}
+
+function drawStats()
+{
+    const agua = globals.agua;
+    globals.ctx.font         = '40px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("LEVEL 1", 100, 50);
+    globals.ctx.font         = '15px emulogic';
+    globals.ctx.fillStyle    = 'pink';
+    globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
+    globals.ctx.drawImage(globals.tileSets[12], 8, 0);
+    globals.ctx.fillStyle =  'lightgray';
+    globals.ctx.fillText(":" + agua, 30, 33);
 }
 
 function drawLevel2()

@@ -63,6 +63,7 @@ function initVars()
     globals.life = 30;
     globals.highscore = 0;
     globals.frutas = 0;
+    globals.agua = 0;
 
     globals.currentSound = Sound.NO_SOUND;
     
@@ -160,6 +161,13 @@ function loadAssets()
      globals.tileSets.push(tileSet);
      globals.assetsToLoad.push(tileSet);
 
+     //agua
+     tileSet = new Image();
+     tileSet.addEventListener("load", loadHandler, false);
+     tileSet.src = "./images/agua.png";
+     globals.tileSets.push(tileSet);
+     globals.assetsToLoad.push(tileSet);
+
     //Load sounds
     let gameMusic = document.querySelector("#gameMusic");
     gameMusic.addEventListener("canplaythrough", loadHandler, false);
@@ -241,7 +249,7 @@ function initPlayer()
     const frames = new Frames(8, 5);
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
-    const physics = new Physics(40, 40, 0.98) //,-100 ;
+    const physics = new Physics(50, 40, 0.98) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(25, 36, 9, 5);
@@ -263,7 +271,7 @@ function initZezen()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(40);
+    const physics = new Physics(30);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 44, 9, 3);
@@ -285,7 +293,7 @@ function initZezen2()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(30);
+    const physics = new Physics(25);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 44, 9, 3);
@@ -307,7 +315,7 @@ function initToro()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(40);
+    const physics = new Physics(35);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 43, 13, 9);
@@ -329,7 +337,7 @@ function initToro2()
     const frames = new Frames(8, 8);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(30);
+    const physics = new Physics(25);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(18, 43, 13, 9);
@@ -423,7 +431,7 @@ function initPlatano()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 15, 267, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 230, 267, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -460,7 +468,7 @@ function initBruja()
     const frames = new Frames(2, 5);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(40);
+    const physics = new Physics(30);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(15, 28, 9, 9);
@@ -485,7 +493,7 @@ function initBruja2()
     const frames = new Frames(2, 3);
 
     //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(30);
+    const physics = new Physics(20);
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(15, 30, 11, 5);
@@ -602,35 +610,35 @@ function initDisparos(sprite)
     switch(sprite.state)
     {
         case State.STILL_RIGHT:
-            bullet.physics.vx = bullet.physics.vLimit + 50;
+            bullet.physics.vx = bullet.physics.vLimit + 60;
             break;
 
         case State.RIGHT:
-            bullet.physics.vx = bullet.physics.vLimit + 50;
+            bullet.physics.vx = bullet.physics.vLimit + 60;
             break;
         
         case State.STILL_LEFT:
-            bullet.physics.vx = - bullet.physics.vLimit - 50;
+            bullet.physics.vx = - bullet.physics.vLimit - 60;
             break;
 
         case State.LEFT:
-            bullet.physics.vx = - bullet.physics.vLimit - 50;
+            bullet.physics.vx = - bullet.physics.vLimit - 60;
             break;
         
         case State.STILL_UP:
-            bullet.physics.vy = - bullet.physics.vLimit - 50;
+            bullet.physics.vy = - bullet.physics.vLimit - 60;
             break;
 
         case State.UP:
-            bullet.physics.vy = - bullet.physics.vLimit  - 50;
+            bullet.physics.vy = - bullet.physics.vLimit  - 60;
             break;
         
         case State.STILL_DOWN:
-            bullet.physics.vy = bullet.physics.vLimit + 50;
+            bullet.physics.vy = bullet.physics.vLimit + 60;
             break;
 
         case State.DOWN:
-            bullet.physics.vy = bullet.physics.vLimit + 50;
+            bullet.physics.vy = bullet.physics.vLimit + 60;
             break;
 
         default:

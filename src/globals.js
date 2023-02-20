@@ -56,6 +56,7 @@ export default {
 
     //FRUTAS
     frutas: 0,
+    agua : 0,
 
     //Array particulas
     particles: [],
