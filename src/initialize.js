@@ -94,7 +94,7 @@ function loadAssets()
     //fondo pantalla
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/fondoGame.png";
+    tileSet.src = "./images/mundos.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -147,10 +147,10 @@ function loadAssets()
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
-    //pantalla previa level2
+    //Fondo pantalla nivel 3
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/HIGHSCORES.png";
+    tileSet.src = "./images/cueva.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -200,12 +200,12 @@ function loadAssets()
     globals.sounds.push(hitSound);
     globals.assetsToLoad.push(hitSound);
 
-    // let gameOverMusic = document.querySelector("#gameOverMusic");
-    // gameOverMusic.addEventListener("canplaythrough", loadHandler, false);
-    // gameOverMusic.addEventListener("timeupdate", updateGOMusic, false);
-    // gameOverMusic.load();
-    // globals.sounds.push(gameOverMusic);
-    // globals.assetsToLoad.push(gameOverMusic);
+    let gameOverMusic = document.querySelector("#gameOverMusic");
+    gameOverMusic.addEventListener("canplaythrough", loadHandler, false);
+    gameOverMusic.addEventListener("timeupdate", updateMusic, false);
+    gameOverMusic.load();
+    globals.sounds.push(gameOverMusic);
+    globals.assetsToLoad.push(gameOverMusic);
 
 
 }
@@ -263,7 +263,7 @@ function initPlayer()
     //Creamos los datos de la animación. 8 frmaes / state
     const frames = new Frames(8, 5);
 
-    //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
+    //Creamos nuestro objeto physics con vLimit = 50 pixels/seconds, aLimit= 40 y friction = 0,98
     const physics = new Physics(50, 40, 0.98) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
@@ -295,7 +295,8 @@ function initZezen()
     const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1000, 247, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(sprite);
+    globals.sprites.push(sprite)
+    ;
 }
 
 function initZezen2()

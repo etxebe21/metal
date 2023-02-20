@@ -240,6 +240,21 @@ function drawGame()
         globals.ctx.fillStyle =  'lightred';
         globals.ctx.fillText(":" + agua, 30, 33);
     }
+    if(globals.score > 1500)
+    {
+        drawLevel3();
+        const agua = globals.agua;
+        globals.ctx.font         = '40px emulogic';
+        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillText("LEVEL 3", 90, 50);
+        globals.ctx.font         = '15px emulogic';
+        globals.ctx.fillStyle    = 'red';
+        globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
+        globals.ctx.drawImage(globals.tileSets[12], 8, 0);
+        globals.ctx.fillStyle =  'lightred';
+        globals.ctx.fillText(":" + agua, 30, 33);
+    }
+    
 }
 
 function drawStats()
@@ -268,6 +283,34 @@ function drawLevel2()
     
     //DIBUJAR FOONDO
     renderLevel2Background();
+
+    //Dibujamos mapa (nivel)
+    renderMap();
+
+    //Dibujamos los elementos
+    drawSprites();  
+
+    //Restauramos la camara
+    restoreCamera();
+
+    //Dibujamos el HUD
+    renderHUD();
+
+    renderParticles();
+}
+
+function drawLevel3()
+{
+  //Borramos la pntalla entera
+  globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+  globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+  
+
+    //Movemos la camara
+    moveCamera();
+    
+    //DIBUJAR FOONDO
+    renderLevel3Background();
 
     //Dibujamos mapa (nivel)
     renderMap();
@@ -394,6 +437,18 @@ function renderLevel2Background()
 {
     globals.ctx.drawImage(
         globals.tileSets[9],
+    
+        0, 0,                   //The source x and y position
+        3200, 320,               //The source height and width
+        -500, 0,                   //The destination x and y position
+        3200, 320,             //The destination height and width
+    );       
+}
+
+function renderLevel3Background()
+{
+    globals.ctx.drawImage(
+        globals.tileSets[10],
     
         0, 0,                   //The source x and y position
         3200, 320,               //The source height and width

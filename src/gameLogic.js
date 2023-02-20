@@ -81,7 +81,7 @@ function updateLevel2()
 
 function updateGameOver()
 {  
-    updateGameOverMusic();
+    //updateGameOverMusic();
     // if( globals.action.move4)
     //     globals.gameState = Game.HOME;
 
@@ -211,14 +211,6 @@ updateSprites();
 updateParticles();
 playSound();
 updateDied();
-}
-
-function aumentoVelocidad(sprite)
-{
-    if(globals.levelTime.value % 20 === 0 && sprite.physics.vLimit < 600 )
-    {
-        sprite.physics.vLimit = sprite.physics.vLimit + (sprite.physics.vLimit * 0.0010);
-    }
 }
 
 //////////////// UPDATES SPRITES/PERSONAJES /////////////
@@ -775,6 +767,7 @@ function quitarLife(sprite)
     if(sprite.isCollidingWithPlayer)
     {
         globals.life -= 5;
+        globals.currentSound = Sound.HIT;
     }
 }
 
@@ -813,8 +806,8 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = Math.round(Math.random() * 80) + 1;
-        sprite.yPos = Math.round(Math.random() * 80) + 1;
+        sprite.xPos = 0;
+        sprite.yPos = 0;
     }
 }
 
@@ -822,8 +815,8 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = Math.round(Math.random() * (1500-0));
-        sprite.yPos = Math.round(Math.random() * (500-100));
+        sprite.xPos = 1300;
+        sprite.yPos = 200;
     }
 }
 
@@ -831,9 +824,8 @@ function restartToro(sprite)
 {
     if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
-        sprite.xPos = -300;
+        sprite.xPos = -200;
         sprite.yPos = 242;
-        // globals.currentSound = Sound.HIT;
     }
 }
 
@@ -841,7 +833,7 @@ function restartZezen(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 3000;
+        sprite.xPos = 2000;
         sprite.yPos = 246;
     }
 }
@@ -861,15 +853,14 @@ function updateParticles()
 {
   for (let i = 0; i < globals.particles.length; ++i)
     {  
-      const particle = globals.particles[i];
-      updateParticle(particle);
+        const particle = globals.particles[i];
+        updateParticle(particle);
 
-      if(particle.state === ParticleState.OFF)
-      {
-
-        globals.particles.splice(i,1);
-        i--;
-    }
+        if(particle.state === ParticleState.OFF)
+        {
+            globals.particles.splice(i,1);
+            i--;
+        }
     }
 }
 
@@ -932,7 +923,8 @@ function particlesDisparo(sprite)
 function updateDied()
 {
     if(globals.life <= 0 )  //|| globals.levelTime.value >= 150
-    {   
+    {    
+        //updateGameOverMusic();
         globals.name = "";
         globals.highscore = globals.scores[0].score;
         globals.score = 0;
@@ -957,16 +949,16 @@ function updateGameMusic()
    }  
 }
 
-function updateGameOverMusic()
-{
-   if(globals.gameState = Game.GAME_OVER)
-   {
-    //Reproducimos GAME_MUSIC a un volumen inferior
-    globals.sounds[Sound.GAME_OVER].play();
-    globals.sounds[Sound.GAME_OVER].volume = 1;
-    console.log("musica");
-   }  
-}
+// function updateGameOverMusic()
+// {
+//    if(globals.life <= 0)
+//    {
+//     //Reproducimos GAME_MUSIC a un volumen inferior
+//     globals.sounds[Sound.GAME_OVER].play();
+//     globals.sounds[Sound.GAME_OVER].volume = 1;
+//     console.log("musica");
+//    }  
+// }
 
 function updateShootMusic()
 {
@@ -1003,12 +995,13 @@ function updateFrutaMusic(sprite)
 
 function updateHitMusic(sprite)
 {
-    if(restartToro(sprite))
+    if(sprite.isCollidingWithPlayer)
     {
-    globals.gameState = Game.PLAYING;
-     //Reproducimos GAME_MUSIC a un volumen inferior
-     globals.sounds[Sound.HIT].play();
-     globals.sounds[Sound.HIT].volume = 1;
+        globals.gameState = Game.PLAYING;
+        //Reproducimos GAME_MUSIC a un volumen inferior
+        globals.sounds[Sound.HIT].play();
+        globals.sounds[Sound.HIT].volume = 1;
+        
     } 
 }
 
