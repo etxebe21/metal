@@ -1046,11 +1046,9 @@ function writeName()
             {
                 const objectToSend = upData();
                 
-                    saveScores(objectToSend);
-                
-                    globals.gameState = Game.HIGH_SCORES;       
+                saveScores(objectToSend);              
             }
-        }   
+        }  
     }
 }
 
@@ -1062,6 +1060,7 @@ function saveScores(objectToSend)
         {
             globals.scores.splice(i, 0, objectToSend);
             i = globals.scores.length;
+            globals.gameState = Game.HIGH_SCORES;
         }
     }
 }
