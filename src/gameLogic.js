@@ -1046,12 +1046,12 @@ function writeName()
             {
                 const objectToSend = upData();
                 
-                saveScores(objectToSend);              
+                saveScores(objectToSend); 
+                globals.gameState = Game.HIGH_SCORES;             
             }
         }  
     }
 }
-
 function saveScores(objectToSend)
 {
     for(let i = 0; i < globals.scores.length; i ++)
@@ -1060,7 +1060,6 @@ function saveScores(objectToSend)
         {
             globals.scores.splice(i, 0, objectToSend);
             i = globals.scores.length;
-            globals.gameState = Game.HIGH_SCORES;
         }
     }
 }
