@@ -538,7 +538,7 @@ function updateDisparos(sprite)
 { 
     if(sprite.isCollidingWith)
     {   
-        particlesDisparo(sprite);
+        initParticles(sprite);
         sprite.state = State.STATE_OFF;
     }
     //Calculamos distancia que se mueve (Y = Y +Vt)
@@ -775,6 +775,7 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
+        initParticles(sprite);
         sprite.xPos = Math.round(Math.random() * (1400-250) + 250);
         sprite.yPos = 248;
 
@@ -876,7 +877,7 @@ function updateExplosionParticle(particle)
             break;
 
         case ParticleState.FADE:
-            particle.alpha -= 0.5;
+            particle.alpha -= 0.4;
             if (particle.alpha <= 0)
             {
                 particle.state = ParticleState.OFF;
@@ -892,13 +893,6 @@ function updateExplosionParticle(particle)
       particle.yPos += particle.physics.vy * globals.deltaTime;
   }
 
-function particlesDisparo(sprite)
-{
-    if(sprite.isCollidingWith)
-    {
-        initParticles(sprite);
-    }
-}
 
 function updateDied()
 {
@@ -1017,8 +1011,9 @@ function playSound()
 
 
 function writeName()
-{   console.log(globals.asciKey);
-    console.log(globals.highscorename);
+{   
+    //console.log(globals.asciKey);
+    //console.log(globals.highscorename);
     const insertchar = String.fromCharCode(globals.asciKey);
 
     if(globals.asciKey > 64 && globals.asciKey < 91)
@@ -1052,8 +1047,8 @@ function saveScores(objectToSend)
     }
 }
 
-  function upData ()
-  {
+function upData ()
+{
     //Send data
     const objectToSend= {
         name:    globals.highscorename,
@@ -1061,7 +1056,7 @@ function saveScores(objectToSend)
     }
 
     //String data to send
-    const dataToSend = '&name=' + objectToSend.name + '&score=' + 
+    const dataToSend = 'name=' + objectToSend.name + '&score=' + 
     objectToSend.score; 
 
     console.log(dataToSend);

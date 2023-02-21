@@ -534,7 +534,7 @@ function renderExplosionParticle(particle)
         globals.ctx.fillStyle = 'red';
         globals.ctx.globalAlpha = particle.alpha; //Set alpha
         globals.ctx.beginPath();
-        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0.5 * Math.PI );
+        globals.ctx.arc(particle.xPos, particle.yPos, particle.radius, 0, 5 * Math.PI );
         globals.ctx.fill();
         globals.ctx.globalAlpha = 1.0;  //Restore alpha
     }

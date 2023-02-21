@@ -709,18 +709,19 @@ function initParticles(sprite)
     initExplosion(sprite);
 }
 
-function initExplosion(sprite)
+function initExplosion(bullet)
 {
+    //sprite.hitBox.xOffset;
     const numParticles = 50;
-    const xInit = sprite.xPos + 5;
-    const yInit = sprite.yPos + 5;
-    const radius = 1;
-    const timeToFadeMax = 3;
-    const alpha = 1.0;
+    const xInit = bullet.xPos; 
+    const yInit = bullet.yPos;
+    const radius = 0.7;
+    const timeToFadeMax = 0.3;
+    const alpha = 0.7;
 
     for (let i = 0; i < numParticles; ++i)
      {
-        const velocity = Math.random() * 15 + 5;
+        const velocity = Math.random() * 30 + 5;
         const physics = new Physics(velocity);
         const timeToFade = timeToFadeMax * Math.random() + 1;
         const particle = new ExplosionParticle(ParticleID.EXPLOSION, ParticleState.ON, xInit, yInit, radius, alpha, physics, timeToFade);
