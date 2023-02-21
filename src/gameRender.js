@@ -543,6 +543,7 @@ function renderExplosionParticle(particle)
 function renderScore()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+
     renderScores();
     globals.ctx.fillStyle = 'rgb(189, 106, 161)';
     globals.ctx.fillRect(0, 0,globals.canvas.width, 75);
@@ -568,7 +569,6 @@ function renderScores()
 
 function renderScoreTable(score)
  {
-    
     for( let i = 0; i < globals.scores.length; ++i)
     {
         moveCameraScore();
@@ -580,6 +580,5 @@ function renderScoreTable(score)
         globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
         globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
         restoreCamera();
-    }
-    
+    } 
  }

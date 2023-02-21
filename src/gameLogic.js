@@ -68,7 +68,7 @@ function updateNewGame()
     }
       
     if ( globals.action.move3)
-        globals.gameState = Game.HIGH_SCORES;
+        globals.gameState = Game.HIGH_SCORES; 
 
     if ( globals.action.move2)
         globals.gameState = Game.HISTORY;
@@ -89,9 +89,12 @@ function updateGameOver()
 
 function updateHighScores()
 { 
+    updatehighScoreCam();
     if( globals.action.move4)
+    {
         globals.gameState = Game.HOME;
-        updatehighScoreCam();
+        globals.highScoreCam.y = 0;
+    }  
 }
 
 function updateHistory()
