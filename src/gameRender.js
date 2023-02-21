@@ -121,9 +121,8 @@ function renderHighScores()
 {
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
     globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
-    //moveCameraScore();
-    renderScore();
-    //restoreCamera();             
+    
+    renderScore();            
 }
 
 function renderGameOver()
@@ -545,7 +544,7 @@ function renderScore()
     globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
 
     renderScores();
-    globals.ctx.fillStyle = 'rgb(189, 106, 161)';
+    globals.ctx.fillStyle = 'black';
     globals.ctx.fillRect(0, 0,globals.canvas.width, 75);
     globals.ctx.font = '42px emulogic';
     globals.ctx.fillStyle = 'green';
@@ -560,25 +559,25 @@ function renderScore()
 
 function renderScores()
 {
+    moveCameraScore();
     for (let i = 0; i < globals.scores.length; ++i)
     {
         const score = globals.scores[i];
         renderScoreTable(score);    
     }
+    restoreCamera();
 }
 
 function renderScoreTable(score)
  {
-    for( let i = 0; i < globals.scores.length; ++i)
+    for( let  i= 0; i < globals.scores.length; ++i)
     {
-        moveCameraScore();
         globals.ctx.font = '30px emulogic';
         globals.ctx.fillStyle = 'white';
-        globals.ctx.fillText((i + 1),score.xPos + 30, score.yPos + 100); 
+        //globals.ctx.fillText(i + 1, score.xPos + 30, score.yPos + 100); 
         globals.ctx.font = '30px emulogic';
         globals.ctx.fillStyle = 'white';
         globals.ctx.fillText(score.name, score.xPos + 70, score.yPos + 100);
         globals.ctx.fillText(score.score, score.xPos + 220, score.yPos + 100); 
-        restoreCamera();
     } 
  }
