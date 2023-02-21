@@ -1066,6 +1066,8 @@ function upData ()
 
     //Ruta relativa al fichero que hace la peticion(testAjax.php)
     const url = "http://localhost/serverClient/server/routes/postHighscores.php";
+    //const url = "http://2223arcadetalde2.aegcloud.pro/server/MikelServer/routes/postHighscores.php";
+
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
