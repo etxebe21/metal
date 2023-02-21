@@ -539,6 +539,7 @@ function updateFire(sprite)
 
 function updateDisparos(sprite)
 { 
+    updateDisparoTime();
     if(sprite.isCollidingWith)
     {   
         initParticles(sprite);
@@ -600,6 +601,21 @@ export function updateLetterTime()
         globals.letterHighscoreTime.value++;
         //Reseteamos timeChangeCounter
         globals.letterHighscoreTime.timeChangeCounter = 0;
+    }
+}
+
+
+function updateDisparoTime()
+{
+    //Incrementamos el contador de cambio de valor
+    globals.disparoTime.timeChangeCounter += globals.deltaTime;
+
+    //Si ha pasado el tiempo necesario, cambiamos el valor del timer
+    if (globals.disparoTime.timeChangeCounter > globals.disparoTime.timeChangeValue && globals.disparoTime != 0)
+    {
+        globals.disparoTime.value++;
+        //Reseteamos timeChangeCounter
+        globals.disparoTime.timeChangeCounter = 0;
     }
 }
 

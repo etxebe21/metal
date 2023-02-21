@@ -65,6 +65,7 @@ export default {
     scores: [],
 
     letterHighscoreTime : {},
+    disparoTime: {},
 
     //Camara
     highScoreCam: {},
