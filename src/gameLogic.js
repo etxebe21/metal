@@ -137,6 +137,7 @@ function playGame()
     //Actualizacion de la logica de juego
     updateLevelTime(); 
     updateLifeTime();
+    updateDisparoTime();
     updateScoreTotal();
     updateSprites();
     updateParticles();
@@ -251,6 +252,7 @@ function updatePlayer(sprite)
 {
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
+    
 
     // const isLeftOrRightPressed = globals.action.moveLeft || globals.action.moveRight;
 
@@ -539,7 +541,6 @@ function updateFire(sprite)
 
 function updateDisparos(sprite)
 { 
-    updateDisparoTime();
     if(sprite.isCollidingWith)
     {   
         initParticles(sprite);
@@ -550,7 +551,8 @@ function updateDisparos(sprite)
     sprite.xPos += sprite.physics.vx * globals.deltaTime;
 
     //Actualizamos la animación
-    updateAnimationFrame(sprite);  
+    updateAnimationFrame(sprite); 
+    updateDisparoTime(); 
 }
 
 function updateScoreTotal()
@@ -604,8 +606,7 @@ export function updateLetterTime()
     }
 }
 
-
-function updateDisparoTime()
+export function updateDisparoTime()
 {
     //Incrementamos el contador de cambio de valor
     globals.disparoTime.timeChangeCounter += globals.deltaTime;
@@ -944,8 +945,6 @@ function updateStart()
     globals.gameState = Game.PLAYING;
     initSprites();
 } 
-
-
 
 function updateGameMusic()
 {

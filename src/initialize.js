@@ -17,6 +17,7 @@ import renderScore from "./gameRender.js";
 
 
 
+
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
 {
@@ -298,8 +299,7 @@ function initZezen()
     const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1000, 247, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
-    globals.sprites.push(sprite)
-    ;
+    globals.sprites.push(sprite);
 }
 
 function initZezen2()
@@ -625,7 +625,7 @@ function initDisparos(sprite)
 
     //Añadimos el DIPASRO al array de sprites
     globals.sprites.push(bullet);
-
+    
     switch(sprite.state)
     {
         case State.STILL_RIGHT:

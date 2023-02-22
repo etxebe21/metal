@@ -92,7 +92,8 @@ export const Key = {
     TWO:       50,
     THREE:     51,
     FOUR:      52,
-    FIVE:      53
+    FIVE:      53,
+    JUMP:      84
 }
 //Aceleración
 export const GRAVITY = 80;

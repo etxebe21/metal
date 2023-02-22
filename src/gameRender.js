@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
-import { updateLetterTime } from "./gameLogic.js";
+import { updateLetterTime, updateDisparoTime } from "./gameLogic.js";
 
 export default function render()
 {
@@ -182,53 +182,52 @@ function renderPlayerName()
 
 function renderHUD()
 {
-        //TEST: Datos metidos en bruto
-        const score = globals.score;
-        const highScore = globals.scores[0].score;
-        const name = globals.scores[0].name;
-        const life = globals.life;
-        const time = globals.levelTime.value;
-        const frutas = globals.frutas;
-        
-        //Draw score
-        globals.ctxHUD.font = '8px emulogic';
-        globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("SCORE", 8, 8);
-        globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText( " " + score, 6, 18);
+    //TEST: Datos metidos en bruto
+    const score = globals.score;
+    const highScore = globals.scores[0].score;
+    const name = globals.scores[0].name;
+    const life = globals.life;
+    const time = globals.levelTime.value;
+    const frutas = globals.frutas;
+    
+    //Draw score
+    globals.ctxHUD.font = '8px emulogic';
+    globals.ctxHUD.fillStyle = 'lightgreen';
+    globals.ctxHUD.fillText("SCORE", 8, 8);
+    globals.ctxHUD.fillStyle =  'lightgray';
+    globals.ctxHUD.fillText( " " + score, 6, 18);
 
-        //Draw High Score 
-        globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
-        globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(name+" " + highScore, 70, 18);
+    //Draw High Score 
+    globals.ctxHUD.fillStyle = 'lightgreen';
+    globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
+    globals.ctxHUD.fillStyle =  'lightgray';
+    globals.ctxHUD.fillText(name+" " + highScore, 70, 18);
 
-        //Draw life 
-        globals.ctxHUD.fillStyle = 'lightgreen';
-        globals.ctxHUD.fillText("LIFE", 155, 8);
-        globals.ctxHUD.fillStyle =  'green';
-        globals.ctxHUD.fillRect(157,10, life, 8);
+    //Draw life 
+    globals.ctxHUD.fillStyle = 'lightgreen';
+    globals.ctxHUD.fillText("LIFE", 155, 8);
+    globals.ctxHUD.fillStyle =  'green';
+    globals.ctxHUD.fillRect(157,10, life, 8);
 
-        //Round corners. ( Remove 1 pixel per corner)
-        globals.ctxHUD.fillStyle = 'black';
-        globals.ctxHUD.fillRect(168, 9, 1, 1);
-        globals.ctxHUD.fillRect(168, 15, 1, 1); 
-        globals.ctxHUD.fillRect(168 + life - 1, 9, 1, 1);
-        globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
+    //Round corners. ( Remove 1 pixel per corner)
+    globals.ctxHUD.fillStyle = 'black';
+    globals.ctxHUD.fillRect(168, 9, 1, 1);
+    globals.ctxHUD.fillRect(168, 15, 1, 1); 
+    globals.ctxHUD.fillRect(168 + life - 1, 9, 1, 1);
+    globals.ctxHUD.fillRect(168, + life - 1, 15, 1, 1);
 
-        //Draw fruits
-        globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3);
-        globals.ctxHUD.fillStyle =  'lightgray';
-        globals.ctxHUD.fillText(" " + frutas, 214, 18);
+    //Draw fruits
+    globals.ctxHUD.drawImage(globals.tileSets[11], 200, -3);
+    globals.ctxHUD.fillStyle =  'lightgray';
+    globals.ctxHUD.fillText(" " + frutas, 214, 18);
 }
 
 function drawGame()
 {
-  //Borramos la pntalla entera
-  globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-  globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
+    //Borramos la pntalla entera
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+    globals.ctxHUD.clearRect(0, 0, globals.canvasHUD.width, globals.canvasHUD.height);
   
-
     //Movemos la camara
     moveCamera();
     

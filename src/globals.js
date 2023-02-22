@@ -81,9 +81,6 @@ export default {
     //Current sound to play
     currentSound: -1,
 
-    // keyTimer: 0,
-    // keyTimerDeelay: 0,
-
     
     
 
