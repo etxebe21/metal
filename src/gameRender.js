@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import {Tile, Game, ParticleID, ParticleState} from "./constants.js";
-import { updateLetterTime, updateDisparoTime } from "./gameLogic.js";
+import { updateLetterTime } from "./gameLogic.js";
 
 export default function render()
 {
