@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound, GRAVITY} from "./constants.js";
 import sprite from "./sprite.js";
-import {initDisparos, initSprites, initParticles} from "./initialize.js";
+import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -105,12 +105,6 @@ function updateHistory()
 function updatePlayerName()
 {
     writeName();
-    
-    // if( globals.action.move5)
-    // {
-    //     globals.gameState = Game.HIGH_SCORES;
-    //     upData();
-    // }
 }
 
 function playGame()
@@ -144,8 +138,9 @@ function playGame()
     if (globals.score > 1500)
     {
         playLevel2();
+        //globals.gameState = Game.LEVEL2;
     }
-    if (globals.score > 4000)
+    if (globals.score > 4500)
     {
         playLevel2();
     }
@@ -339,14 +334,12 @@ function updatePlayer(sprite)
             //Si se mueve a la derecha vx (+)
             sprite.physics.vx = sprite.physics.vLimit;
             sprite.physics.vy = 0;
-            console.log("derecha");
             break;
 
         case State.LEFT:
             //Si se mueve a la izquierda asignamos vx (-)
             sprite.physics.vx = -sprite.physics.vLimit;
             sprite.physics.vy = 0;
-            console.log("izquierda");
             break;
 
         default: //Resto de casos( parado)
@@ -803,8 +796,12 @@ function restartBruja(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = -50;
-        sprite.yPos = -50;
+        sprite.state = State.STATE_OFF;
+        globals.kills += 1;
+        globals.score += 50;
+        initBruja();
+        // sprite.xPos = -50;
+        // sprite.yPos = -50;
     }
 }
 
@@ -812,8 +809,12 @@ function restartBruja2(sprite)
 {
     if(sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 1300;
-        sprite.yPos = 200;
+        sprite.state = State.STATE_OFF;
+        globals.kills += 1;
+        globals.score += 50;
+        initBruja();
+        // sprite.xPos = 1300;
+        // sprite.yPos = 200;
     }
 }
 
@@ -821,8 +822,12 @@ function restartToro(sprite)
 {
     if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
-        sprite.xPos = -200;
-        sprite.yPos = 242;
+        sprite.state = State.STATE_OFF;
+        initToro();
+        globals.kills += 1;
+        globals.score += 50;
+        // sprite.xPos = -100;
+        // sprite.yPos = 240;
     }
 }
 
@@ -830,8 +835,12 @@ function restartZezen(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 2000;
-        sprite.yPos = 246;
+        sprite.state = State.STATE_OFF;
+        initZezen();
+        globals.kills += 1;
+        globals.score += 50;
+        // sprite.xPos = 1800;
+        // sprite.yPos = 246;
     }
 }
 
@@ -839,8 +848,12 @@ function restartFire(sprite)
 {
     if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
-        sprite.xPos = 2000;
-        sprite.yPos = 250;
+        sprite.state = State.STATE_OFF;
+        globals.kills += 1;
+        globals.score += 50;
+        initFire3();
+        // sprite.xPos = 2000;
+        // sprite.yPos = 250;
     }
 }
 
@@ -921,6 +934,7 @@ function updateDied()
         globals.life = globals.life;
         globals.agua = globals.agua;
         globals.frutas = globals.frutas;
+        globals.kills = globals.kills;
         globals.levelTime.value = 0;
         globals.sprites.splice(0)
         globals.gameState = Game.GAME_OVER;
@@ -929,13 +943,13 @@ function updateDied()
 
 function updateStart()
 {    
-    //updateGameOverMusic();
     globals.name = "";
     globals.highscore = globals.scores[0];
     globals.score = 0;
     globals.life = 30;
     globals.agua = 0;
     globals.frutas = 0;
+    globals.kills = 0;
     globals.levelTime.value = 0;
     globals.sprites.splice(0)
     globals.gameState = Game.PLAYING;
@@ -968,7 +982,7 @@ function updateShootMusic()
 {
     if(globals.action.moveAttack)
     {
-    globals.gameState = Game.PLAYING;
+    //globals.gameState = Game.PLAYING;
      //Reproducimos GAME_MUSIC a un volumen inferior
      globals.sounds[Sound.SHOOT].play();
      globals.sounds[Sound.SHOOT].volume = 1;

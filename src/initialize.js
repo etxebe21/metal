@@ -14,10 +14,6 @@ import Score from "./score.js";
 import renderScore from "./gameRender.js";
 
 
-
-
-
-
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
 {
@@ -67,6 +63,7 @@ function initVars()
     globals.life = 30;
     globals.frutas = 0;
     globals.agua = 0;
+    globals.kills = 0;
 
     globals.currentSound = Sound.NO_SOUND;
 
@@ -211,8 +208,6 @@ function loadAssets()
     gameOverMusic.load();
     globals.sounds.push(gameOverMusic);
     globals.assetsToLoad.push(gameOverMusic);
-
-
 }
 
 //Funcion nque se llama cada vez que se carga un activo
@@ -297,7 +292,7 @@ function initZezen()
     const hitBox = new HitBox(18, 44, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1000, 247, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1550, 247, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -711,12 +706,12 @@ function initParticles(sprite)
     initExplosion(sprite);
 }
 
-function initExplosion(bullet)
+function initExplosion(player)
 {
     //sprite.hitBox.xOffset;
     const numParticles = 50;
-    const xInit = bullet.xPos; 
-    const yInit = bullet.yPos;
+    const xInit = player.xPos; 
+    const yInit = player.yPos;
     const radius = 0.7;
     const timeToFadeMax = 0.3;
     const alpha = 0.7;
@@ -833,5 +828,9 @@ export {
     initDisparos,
     initCamera,
     initParticles,
-    getDataBase   
+    getDataBase ,
+    initToro,
+    initZezen,
+    initFire3,
+    initBruja
 }

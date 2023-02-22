@@ -264,14 +264,15 @@ function drawGame()
 function drawStats()
 {
     const agua = globals.agua;
+    const kills = globals.kills;
     globals.ctx.font         = '40px emulogic';
     globals.ctx.fillStyle    = 'green';
-    globals.ctx.fillText("LEVEL 1", 100, 50);
+    globals.ctx.fillText("LEVEL 1", 105, 60);
+    globals.ctx.font         = '12px emulogic';
+    globals.ctx.fillText("DEATHS:" + kills, 410, 40);
     globals.ctx.font         = '15px emulogic';
-    globals.ctx.fillStyle    = 'green';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
-    globals.ctx.fillStyle =  'green';
     globals.ctx.fillText(":" + agua, 30, 33);
 }
 
@@ -306,7 +307,6 @@ function drawLevel2()
     globals.ctx.fillStyle    = 'brown';
     globals.ctx.fillText("LEVEL 2", 95, 50);
     globals.ctx.font         = '15px emulogic';
-    globals.ctx.fillStyle    = 'brown';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
     globals.ctx.fillStyle =  'lightbrown';
@@ -345,7 +345,6 @@ function drawLevel3()
     globals.ctx.fillStyle    = 'pink';
     globals.ctx.fillText("LEVEL 3", 95, 50);
     globals.ctx.font         = '15px emulogic';
-    globals.ctx.fillStyle    = 'pink';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
     globals.ctx.fillStyle =  'lightpink';
