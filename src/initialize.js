@@ -53,6 +53,7 @@ function initVars()
         moveUp: false,
         moveDown: false,
         moveAttack: false,
+        jump: false,
         moveSpace: false,
         move1: false,
         move2: false,
@@ -268,7 +269,7 @@ function initPlayer()
     const frames = new Frames(8, 5);
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
-    const physics = new Physics(40, 40, 0.98) //,-100 ;
+    const physics = new Physics(40, 40, 0.9, -100) //,-100 ;
 
     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
     const hitBox = new HitBox(25, 36, 9, 5);

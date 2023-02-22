@@ -32,6 +32,10 @@ export function keydownHandler(event)
             globals.action.moveAttack = true;
             break;
 
+        case Key.JUMP:
+            globals.action.jump = true;
+            break;
+
         case Key.ONE:
             globals.action.move1 = true;
             break;
@@ -81,6 +85,10 @@ export function keyupHandler(event)
 
         case Key.ATTACK:
             globals.action.moveAttack = false;
+            break;
+
+        case Key.JUMP:
+            globals.action.jump = false;
             break;
 
         case Key.ONE:
