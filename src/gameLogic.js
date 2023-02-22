@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound, GRAVITY} from "./constants.js";
 import sprite from "./sprite.js";
-import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3} from "./initialize.js";
+import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua, initFresa, initManzana,initPera, initPlatano} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -215,7 +215,10 @@ function updateSprite(sprite)
             break;
 
         case SpriteID.FRUTA:
-            updateFruta(sprite);
+            updateFresa(sprite);
+            // updatePlatano(sprite);
+            // updateManzana(sprite);
+            // updatePera(sprite);
             break;
 
         case SpriteID.BULLET:
@@ -361,19 +364,39 @@ sprite.yPos += sprite.physics.vy * globals.deltaTime;
 updateAnimationFrame(sprite);
 }
 
-function updateFruta(sprite)
+function updateFresa(sprite)
 { 
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-sumPoints(sprite);
-restartFruta(sprite);
+//sumPoints(sprite);
+restartFresa(sprite);
 }
 
 function updateAgua(sprite)
 {
 restartAgua(sprite);
-sumarLife(sprite);
 } 
+
+function updatePera(sprite)
+{ 
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+//sumPoints(sprite);
+restartPera(sprite);
+}
+function updateManzana(sprite)
+{ 
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+//sumPoints(sprite);
+restartManzana(sprite);
+}
+
+function updatePlatano(sprite)
+{ 
+//Actualizamos la animación
+updateAnimationFrame(sprite);
+//sumPoints(sprite);
+restartPlatano(sprite);
+}
 
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
@@ -742,15 +765,6 @@ function updatehighScoreCam()
 
 ///////////////// FUNCIONES ACCION JUEGO //////////////////
 
-function sumPoints(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {
-        globals.score += 50;
-        globals.frutas += 0.5;
-    }
-}
-
 function quitarLife(sprite)
 {
     if(sprite.isCollidingWithPlayer)
@@ -760,22 +774,50 @@ function quitarLife(sprite)
     }
 }
 
-function sumarLife(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {
-        globals.life += 1.5;
-        globals.agua += 0.5;
-    }
-}
-
-function restartFruta(sprite)
+function restartFresa(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.xPos = Math.round(Math.random()*(1400-250) + 250) ;
-        sprite.yPos = 253;
+        sprite.state = State.STATE_OFF;
+        globals.score += 100;
+        globals.frutas += 1;
+        initFresa();
+        globals.currentSound = Sound.FRUTA;
+    }
+}
 
+function restartPera(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.state = State.STATE_OFF;
+        globals.score += 100;
+        globals.frutas += 1;
+        initPera();
+        globals.currentSound = Sound.FRUTA;
+    }
+}
+
+function restartManzana(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.state = State.STATE_OFF;
+        globals.score += 100;
+        globals.frutas += 1;
+        initManzana();
+        globals.currentSound = Sound.FRUTA;
+    }
+}
+
+function restartPlatano(sprite)
+{
+    if(sprite.isCollidingWithPlayer)
+    {  
+        sprite.state = State.STATE_OFF;
+        globals.score += 100;
+        globals.frutas += 1;
+        initPlatano();
         globals.currentSound = Sound.FRUTA;
     }
 }
@@ -784,10 +826,11 @@ function restartAgua(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
+        sprite.state = State.STATE_OFF;
+        globals.life += 1.5;
+        globals.agua += 1;
         initParticles(sprite);
-        sprite.xPos = Math.round(Math.random() * (1400-250) + 250);
-        sprite.yPos = 248;
-
+        initAgua();
         globals.currentSound = Sound.AGUA;
     }
 }
@@ -800,8 +843,6 @@ function restartBruja(sprite)
         globals.kills += 1;
         globals.score += 50;
         initBruja();
-        // sprite.xPos = -50;
-        // sprite.yPos = -50;
     }
 }
 
@@ -813,8 +854,6 @@ function restartBruja2(sprite)
         globals.kills += 1;
         globals.score += 50;
         initBruja();
-        // sprite.xPos = 1300;
-        // sprite.yPos = 200;
     }
 }
 
@@ -826,8 +865,6 @@ function restartToro(sprite)
         initToro();
         globals.kills += 1;
         globals.score += 50;
-        // sprite.xPos = -100;
-        // sprite.yPos = 240;
     }
 }
 
@@ -839,8 +876,6 @@ function restartZezen(sprite)
         initZezen();
         globals.kills += 1;
         globals.score += 50;
-        // sprite.xPos = 1800;
-        // sprite.yPos = 246;
     }
 }
 
@@ -852,8 +887,6 @@ function restartFire(sprite)
         globals.kills += 1;
         globals.score += 50;
         initFire3();
-        // sprite.xPos = 2000;
-        // sprite.yPos = 250;
     }
 }
 
@@ -1002,7 +1035,7 @@ function updateAguaMusic(sprite)
 
 function updateFrutaMusic(sprite)
 {
-    if(restartFruta(sprite))
+    if(restartFresa(sprite) ||restartPlatano(sprite) || restartManzana(sprite) || restartPera(sprite))
     {
     globals.gameState = Game.PLAYING;
      //Reproducimos GAME_MUSIC a un volumen inferior

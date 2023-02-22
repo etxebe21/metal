@@ -292,7 +292,7 @@ function initZezen()
     const hitBox = new HitBox(18, 44, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1550, 247, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1650, 247, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -380,7 +380,7 @@ function initFresa()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 720, 255, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, Math.round(Math.random()*(1400-250) + 250), 255, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -402,7 +402,7 @@ function initManzana()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 900, 255, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, Math.round(Math.random()*(1400-250) + 250), 255, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -424,7 +424,7 @@ function initPera()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 600, 255, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL,Math.round(Math.random()*(1400-250) + 250), 255, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -446,7 +446,7 @@ function initPlatano()
     const hitBox = new HitBox(22, 30, 9, 8);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos (SpriteID.FRUTA, State.STILL, 230, 255, imageSet, frames, physics,hitBox);
+    const puntos = new Puntos (SpriteID.FRUTA, State.STILL,Math.round(Math.random()*(1400-250) + 250), 255, imageSet, frames, physics,hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -468,7 +468,7 @@ function initAgua()
     const hitBox = new HitBox(15, 33, 10, 11);
 
     //Creamos nuestro sprite
-    const puntos = new Puntos(SpriteID.AGUA, State.STILL, 480, 247, imageSet, frames, physics , hitBox);
+    const puntos = new Puntos(SpriteID.AGUA, State.STILL, Math.round(Math.random() * (1400-250) + 250), 247, imageSet, frames, physics , hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(puntos);
@@ -832,5 +832,10 @@ export {
     initToro,
     initZezen,
     initFire3,
-    initBruja
+    initBruja,
+    initAgua,
+    initFresa,
+    initPlatano,
+    initManzana,
+    initPera
 }
