@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound, GRAVITY} from "./constants.js";
 import sprite from "./sprite.js";
-import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua} from "./initialize.js";
+import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua, getDataBase} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -35,6 +35,7 @@ export default function update()
 
         case Game.GAME_OVER:
             updateGameOver();
+            updateGameOverMusic();
             break;
 
         case Game.HIGH_SCORES:
@@ -898,7 +899,6 @@ function updateExplosionParticle(particle)
       particle.yPos += particle.physics.vy * globals.deltaTime;
   }
 
-
 function updateDied()
 {
     if(globals.life <= 0 )  //|| globals.levelTime.value >= 150
@@ -930,6 +930,8 @@ function updateStart()
     globals.sprites.splice(0)
     globals.gameState = Game.PLAYING;
     initSprites();
+    globals.sounds[Sound.GAME_OVER].pause();
+    globals.sounds[Sound.GAME_MUSIC].play();
 } 
 
 function updateGameMusic()
@@ -943,16 +945,16 @@ function updateGameMusic()
    }  
 }
 
-// function updateGameOverMusic()
-// {
-//    if(globals.life <= 0)
-//    {
-//     //Reproducimos GAME_MUSIC a un volumen inferior
-//     globals.sounds[Sound.GAME_OVER].play();
-//     globals.sounds[Sound.GAME_OVER].volume = 1;
-//     console.log("musica");
-//    }  
-// }
+function updateGameOverMusic()
+{
+   {
+    //Reproducimos GAME_MUSIC a un volumen inferior
+    globals.sounds[Sound.GAME_MUSIC].pause();
+    globals.sounds[Sound.GAME_OVER].play();
+    globals.sounds[Sound.GAME_OVER].volume = 1;
+    console.log("musica");
+   }  
+}
 
 function updateShootMusic()
 {
@@ -1094,6 +1096,7 @@ function upData ()
                     const resultJSON = JSON.parse(this.responseText);
                     //Iniciamos los datos
                     saveScores(objectToSend);
+                    getDataBase();
                 }
                 else
                     alert("Communication error: No data received");
