@@ -97,9 +97,9 @@ function renderLoading()
     globals.ctx.drawImage(
         globals.tileSets[7],
     
-        30, 0,                   //The source x and y position
+        0, 0,                   //The source x and y position
         534, 320,               //The source height and width
-        30, 0,                   //The destination x and y position
+        0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );                 
 }
@@ -107,13 +107,13 @@ function renderLoading()
 function renderBarra()
 {
     globals.ctx.fillStyle = "blue";
-    globals.ctx.fillRect(44, 240, globals.assetsLoaded * (470/globals.assetsToLoad.length), 32);
+    globals.ctx.fillRect(35, 240, globals.assetsLoaded * (470/globals.assetsToLoad.length), 20);
 
     if(globals.assetsLoaded * (470/globals.assetsToLoad.length) === 470)
     {
         globals.ctx.font         = '14px emulogic';
         globals.ctx.fillStyle    = 'blue';
-        globals.ctx.fillText("PRESS KEY  <SPACE>  TO CONTINUE", 60, 292);
+        globals.ctx.fillText("PRESS KEY  <SPACE>  TO CONTINUE", 57, 292);
     }
 }
 
@@ -132,9 +132,9 @@ function renderGameOver()
     globals.ctx.drawImage(
         globals.tileSets[6],
     
-        0, 0,                   //The source x and y position
+        15, 0,                   //The source x and y position
         534, 320,               //The source height and width
-        0, 0,                   //The destination x and y position
+        15, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );  
 }
@@ -198,7 +198,7 @@ function renderHUD()
     globals.ctxHUD.fillStyle = 'lightgreen';
     globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
     globals.ctxHUD.fillStyle =  'lightgray';
-    globals.ctxHUD.fillText(name+" " + highScore, 70, 18);
+    globals.ctxHUD.fillText(highScore, 75, 18);
 
     //Draw life 
     globals.ctxHUD.fillStyle = 'lightgreen';
