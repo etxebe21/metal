@@ -130,5 +130,6 @@ export const Sound =
     AGUA: 2,
     FRUTA: 3,
     HIT:    4,
-    GAME_OVER: 5
+    GAME_OVER: 5,
+    ENEMY:    6
 }

@@ -238,15 +238,15 @@ function drawGame()
     renderMap();
 
     //Dibujamos los elementos
-    drawSprites();  
+    drawSprites(); 
+    
+    renderParticles();
 
     //Restauramos la camara
     restoreCamera();
 
     //Dibujamos el HUD
     renderHUD();
-
-    renderParticles();
 
     drawStats();
     
@@ -292,15 +292,15 @@ function drawLevel2()
     renderMap();
 
     //Dibujamos los elementos
-    drawSprites();  
+    drawSprites(); 
+    
+    renderParticles();
 
     //Restauramos la camara
     restoreCamera();
 
     //Dibujamos el HUD
     renderHUD();
-
-    renderParticles();
 
     const agua = globals.agua;
     globals.ctx.font         = '40px emulogic';
@@ -332,13 +332,13 @@ function drawLevel3()
     //Dibujamos los elementos
     drawSprites();  
 
+    renderParticles();
+
     //Restauramos la camara
     restoreCamera();
 
     //Dibujamos el HUD
     renderHUD();
-
-    renderParticles();
 
     const agua = globals.agua;
     globals.ctx.font         = '40px emulogic';

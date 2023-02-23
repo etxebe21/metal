@@ -208,6 +208,14 @@ function loadAssets()
     gameOverMusic.load();
     globals.sounds.push(gameOverMusic);
     globals.assetsToLoad.push(gameOverMusic);
+
+    let enemySound = document.querySelector("#enemySound");
+    enemySound.addEventListener("canplaythrough", loadHandler, false);
+    enemySound.load();
+    globals.sounds.push(enemySound);
+    globals.assetsToLoad.push(enemySound);
+
+
 }
 
 //Funcion nque se llama cada vez que se carga un activo
@@ -706,12 +714,12 @@ function initParticles(sprite)
     initExplosion(sprite);
 }
 
-function initExplosion(player)
+function initExplosion(sprite)
 {
     //sprite.hitBox.xOffset;
     const numParticles = 50;
-    const xInit = player.xPos; 
-    const yInit = player.yPos;
+    const xInit = sprite.xPos + 5; 
+    const yInit = sprite.yPos;
     const radius = 0.7;
     const timeToFadeMax = 0.3;
     const alpha = 0.7;
@@ -730,6 +738,8 @@ function initExplosion(player)
 
         globals.particles.push(particle);
      }
+
+     console.log(xInit);
 }
 
 function getDataBase()

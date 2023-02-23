@@ -118,6 +118,7 @@ function playGame()
     updateAguaMusic(sprite);
     updateFrutaMusic(sprite);
     updateHitMusic(sprite);
+    updateEnemyMusic(sprite);
 
     //Colisiones
     detectCollisions();
@@ -135,16 +136,15 @@ function playGame()
     playSound();
     updateDied();
 
-    if (globals.score > 1500)
+    if (globals.score > 3000)
     {
         playLevel2();
         //globals.gameState = Game.LEVEL2;
     }
-    if (globals.score > 4500)
+    if (globals.score > 7500)
     {
         playLevel2();
-    }
-    
+    }  
 }
 
 function playLevel2()
@@ -158,6 +158,7 @@ updateShootMusic();
 updateAguaMusic(sprite);
 updateFrutaMusic(sprite);
 updateHitMusic(sprite);
+updateEnemyMusic(sprite);
 
 //Colisiones
 detectCollisions();
@@ -176,7 +177,6 @@ updateDied();
 }
 
 //////////////// UPDATES SPRITES/PERSONAJES /////////////
-
 function updateSprites()
 {
     for(let i = 0; i < globals.sprites.length; i++)
@@ -781,6 +781,7 @@ function restartBruja(sprite)
         globals.kills += 1;
         globals.score += 50;
         initBruja();
+        globals.currentSound = Sound.ENEMY;
     }
 }
 
@@ -792,6 +793,7 @@ function restartBruja2(sprite)
         globals.kills += 1;
         globals.score += 50;
         initBruja();
+        globals.currentSound = Sound.ENEMY;
     }
 }
 
@@ -803,6 +805,7 @@ function restartToro(sprite)
         initToro();
         globals.kills += 1;
         globals.score += 50;
+        globals.currentSound = Sound.ENEMY;
     }
 }
 
@@ -814,6 +817,7 @@ function restartZezen(sprite)
         initZezen();
         globals.kills += 1;
         globals.score += 50;
+        globals.currentSound = Sound.ENEMY;
     }
 }
 
@@ -825,6 +829,7 @@ function restartFire(sprite)
         globals.kills += 1;
         globals.score += 50;
         initFire3();
+        globals.currentSound = Sound.ENEMY;
     }
 }
 
@@ -990,6 +995,18 @@ function updateHitMusic(sprite)
         //Reproducimos GAME_MUSIC a un volumen inferior
         globals.sounds[Sound.HIT].play();
         globals.sounds[Sound.HIT].volume = 1;
+        
+    } 
+}
+
+function updateEnemyMusic(sprite)
+{
+    if(sprite.isCollidingWithDisparo)
+    {
+        globals.gameState = Game.PLAYING;
+        //Reproducimos GAME_MUSIC a un volumen inferior
+        globals.sounds[Sound.ENEMY].play();
+        globals.sounds[Sound.ENEMY].volume = 1;
         
     } 
 }
