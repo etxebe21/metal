@@ -718,7 +718,7 @@ function initExplosion(sprite)
 {
     //sprite.hitBox.xOffset;
     const numParticles = 50;
-    const xInit = sprite.xPos + 5; 
+    const xInit = sprite.xPos + sprite.hitBox.xSize;; 
     const yInit = sprite.yPos;
     const radius = 0.7;
     const timeToFadeMax = 0.3;
@@ -738,8 +738,6 @@ function initExplosion(sprite)
 
         globals.particles.push(particle);
      }
-
-     console.log(xInit);
 }
 
 function getDataBase()

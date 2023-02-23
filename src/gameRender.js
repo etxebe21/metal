@@ -250,11 +250,11 @@ function drawGame()
 
     drawStats();
     
-    if (globals.score > 1500)
+    if (globals.score > 3000)
     {
         drawLevel2();
     }
-    if(globals.score > 4000)
+    if(globals.score > 9000)
     {
         drawLevel3();
     }
