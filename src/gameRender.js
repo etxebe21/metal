@@ -83,9 +83,9 @@ function renderHistory()
     globals.ctx.drawImage(
         globals.tileSets[5],
     
-        0, 0,                   //The source x and y position
+        10, 0,                   //The source x and y position
         534, 320,               //The source height and width
-        0, 0,                   //The destination x and y position
+        10, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );                 
 }
@@ -97,9 +97,9 @@ function renderLoading()
     globals.ctx.drawImage(
         globals.tileSets[7],
     
-        0, 0,                   //The source x and y position
+        30, 0,                   //The source x and y position
         534, 320,               //The source height and width
-        0, 0,                   //The destination x and y position
+        30, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );                 
 }
@@ -107,7 +107,7 @@ function renderLoading()
 function renderBarra()
 {
     globals.ctx.fillStyle = "blue";
-    globals.ctx.fillRect(38, 240, globals.assetsLoaded * (470/globals.assetsToLoad.length), 32);
+    globals.ctx.fillRect(44, 240, globals.assetsLoaded * (470/globals.assetsToLoad.length), 32);
 
     if(globals.assetsLoaded * (470/globals.assetsToLoad.length) === 470)
     {
@@ -137,9 +137,6 @@ function renderGameOver()
         0, 0,                   //The destination x and y position
         534, 320,             //The destination height and width
     );  
-    globals.ctx.font         = '10px emulogic';
-    globals.ctx.fillStyle    = 'red';  
-    globals.ctx.fillText("PRESS KEY  <SPACE>  TO ENTER NAME IN HIGHSCORES", 35, 250);
 }
 
 function renderPlayerName() 
