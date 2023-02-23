@@ -833,9 +833,5 @@ export {
     initZezen,
     initFire3,
     initBruja,
-    initAgua,
-    initFresa,
-    initPlatano,
-    initManzana,
-    initPera
+    initAgua
 }

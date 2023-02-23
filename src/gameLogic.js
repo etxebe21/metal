@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound, GRAVITY} from "./constants.js";
 import sprite from "./sprite.js";
-import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua, initFresa, initManzana,initPera, initPlatano} from "./initialize.js";
+import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -215,10 +215,7 @@ function updateSprite(sprite)
             break;
 
         case SpriteID.FRUTA:
-            updateFresa(sprite);
-            // updatePlatano(sprite);
-            // updateManzana(sprite);
-            // updatePera(sprite);
+            updateFruta(sprite);
             break;
 
         case SpriteID.BULLET:
@@ -364,39 +361,16 @@ sprite.yPos += sprite.physics.vy * globals.deltaTime;
 updateAnimationFrame(sprite);
 }
 
-function updateFresa(sprite)
+function updateFruta(sprite)
 { 
 //sumPoints(sprite);
-restartFresa(sprite);
+restartFruta(sprite);
 }
 
 function updateAgua(sprite)
 {
 restartAgua(sprite);
 } 
-
-function updatePera(sprite)
-{ 
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-//sumPoints(sprite);
-restartPera(sprite);
-}
-function updateManzana(sprite)
-{ 
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-//sumPoints(sprite);
-restartManzana(sprite);
-}
-
-function updatePlatano(sprite)
-{ 
-//Actualizamos la animación
-updateAnimationFrame(sprite);
-//sumPoints(sprite);
-restartPlatano(sprite);
-}
 
 //Funcion que actualiza el ZEZEN
 function updateZezen(sprite)
@@ -774,50 +748,14 @@ function quitarLife(sprite)
     }
 }
 
-function restartFresa(sprite)
+function restartFruta(sprite)
 {
     if(sprite.isCollidingWithPlayer)
     {  
-        sprite.state = State.STATE_OFF;
-        globals.score += 100;
-        globals.frutas += 1;
-        initFresa();
-        globals.currentSound = Sound.FRUTA;
-    }
-}
-
-function restartPera(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {  
-        sprite.state = State.STATE_OFF;
-        globals.score += 100;
-        globals.frutas += 1;
-        initPera();
-        globals.currentSound = Sound.FRUTA;
-    }
-}
-
-function restartManzana(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {  
-        sprite.state = State.STATE_OFF;
-        globals.score += 100;
-        globals.frutas += 1;
-        initManzana();
-        globals.currentSound = Sound.FRUTA;
-    }
-}
-
-function restartPlatano(sprite)
-{
-    if(sprite.isCollidingWithPlayer)
-    {  
-        sprite.state = State.STATE_OFF;
-        globals.score += 100;
-        globals.frutas += 1;
-        initPlatano();
+        globals.score += 50;
+        globals.frutas += 0.5;
+        sprite.xPos = Math.round(Math.random()*(1400-250) + 250);
+        sprite.yPos = 250;
         globals.currentSound = Sound.FRUTA;
     }
 }
@@ -1035,7 +973,7 @@ function updateAguaMusic(sprite)
 
 function updateFrutaMusic(sprite)
 {
-    if(restartFresa(sprite) ||restartPlatano(sprite) || restartManzana(sprite) || restartPera(sprite))
+    if(restartFruta(sprite))
     {
     globals.gameState = Game.PLAYING;
      //Reproducimos GAME_MUSIC a un volumen inferior
