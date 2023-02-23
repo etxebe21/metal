@@ -117,7 +117,7 @@ function loadAssets()
     //history
     tileSet = new Image();
     tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/history.png";
+    tileSet.src = "./images/STORY.png";
     globals.tileSets.push(tileSet);
     globals.assetsToLoad.push(tileSet);
 
@@ -744,7 +744,7 @@ function getDataBase()
 {
   //Ruta o absoluta o elativa al fivchero que hace la peticion(HTML)
   const url = "http://localhost/serverClient/server/routes/getAllHighscores.php"
-  //const url = "http://2223arcadetalde2.aegcloud.pro/server/MikelServer/routes/getAllHighscores.php"
+  //const url = "http://2223arcadetalde2.aegcloud.pro/Server/MikelServer/routes/getAllHighscores.php"
   const request = new XMLHttpRequest();
 
   request.onreadystatechange = function()

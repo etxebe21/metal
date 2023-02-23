@@ -35,7 +35,7 @@ export default function update()
 
         case Game.GAME_OVER:
             updateGameOver();
-            updateGameOverMusic();
+            //updateGameOverMusic();
             break;
 
         case Game.HIGH_SCORES:
@@ -82,7 +82,7 @@ function updateLevel2()
 
 function updateGameOver()
 {  
-    //updateGameOverMusic();
+    updateGameOverMusic();
     if( globals.action.moveSpace)
         globals.gameState = Game.PLAYERNAME; 
 }
@@ -142,7 +142,7 @@ function playGame()
         playLevel2();
         //globals.gameState = Game.LEVEL2;
     }
-    if (globals.score > 7500)
+    if (globals.score > 9000)
     {
         playLevel2();
     }  
@@ -1079,7 +1079,7 @@ function upData ()
 
     //Ruta relativa al fichero que hace la peticion(testAjax.php)
     const url = "http://localhost/serverClient/server/routes/postHighscores.php";
-    //const url = "http://2223arcadetalde2.aegcloud.pro/server/MikelServer/routes/postHighscores.php";
+    //const url = "http://2223arcadetalde2.aegcloud.pro/Server/MikelServer/routes/postHighscores.php";
 
     const request = new XMLHttpRequest();
     request.open('POST', url, true);

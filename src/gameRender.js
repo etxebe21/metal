@@ -302,10 +302,13 @@ function drawLevel2()
     //Dibujamos el HUD
     renderHUD();
 
+    const kills = globals.kills;
     const agua = globals.agua;
     globals.ctx.font         = '40px emulogic';
     globals.ctx.fillStyle    = 'brown';
     globals.ctx.fillText("LEVEL 2", 95, 50);
+    globals.ctx.font         = '12px emulogic';
+    globals.ctx.fillText("DEATHS:" + kills, 410, 40);
     globals.ctx.font         = '15px emulogic';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
@@ -340,10 +343,13 @@ function drawLevel3()
     //Dibujamos el HUD
     renderHUD();
 
+    const kills = globals.kills;
     const agua = globals.agua;
     globals.ctx.font         = '40px emulogic';
     globals.ctx.fillStyle    = 'pink';
     globals.ctx.fillText("LEVEL 3", 95, 50);
+    globals.ctx.font         = '12px emulogic';
+    globals.ctx.fillText("DEATHS:" + kills, 410, 40);
     globals.ctx.font         = '15px emulogic';
     globals.ctx.fillText("TIME:" + globals.levelTime.value, 410, 25);
     globals.ctx.drawImage(globals.tileSets[12], 8, 0);
