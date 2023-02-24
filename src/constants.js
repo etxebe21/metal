@@ -11,7 +11,7 @@ export const Game = {
     HIGH_SCORES: 4,
     HISTORY:     5,
     GAME_OVER:   6,
-    PLAYERNAME:        7,
+    PLAYERNAME:   7,
     LEVEL2:       8,
 };
 
@@ -28,7 +28,8 @@ export const SpriteID = {
     AGUA:  5,
     BULLET: 6,
     BRUJA:  7 ,
-    FIRE:   8
+    FIRE:   8,
+    BRUJA2:   9
 }
 
 //Identificador de estado de sprite ( dirección)
@@ -55,8 +56,6 @@ export const State = {
     DOWN_2:     3,
     //Estado FRUTA AGUA HACHA
     STILL:      0
-
-    //Estados 
 }
 
 //Diferentes tileSet

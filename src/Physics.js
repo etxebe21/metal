@@ -11,8 +11,8 @@ export default class Physics
         this.yRef      = yRef;            //Posicion incial en y de referencia
         this.omega     = omega;
         this.aLimit    = aLimit;        // Aceleracion limite
-        this.friction  = friction;      //Fuerza de friccion
-        this.jumpForce = jumpForce;     //Fuerza de salto (debe ser negativa por defecto)
-        this.isOnGround= false;         //Variable que se pone a true si estamos en e suelo
+        // this.friction  = friction;      //Fuerza de friccion
+        // this.jumpForce = jumpForce;     //Fuerza de salto (debe ser negativa por defecto)
+        // this.isOnGround= false;         //Variable que se pone a true si estamos en e suelo
     }
 }

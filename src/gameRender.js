@@ -254,8 +254,7 @@ function drawGame()
     if(globals.score > 9000)
     {
         drawLevel3();
-    }
-    
+    } 
 }
 
 function drawStats()

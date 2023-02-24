@@ -227,7 +227,7 @@ function updateSprite(sprite)
             updateBruja(sprite);
             break;
 
-        case SpriteID.BRUJA:
+        case SpriteID.BRUJA2:
             updateBruja2(sprite);
             break;
         
@@ -245,85 +245,7 @@ function updatePlayer(sprite)
 {
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
-    // const isLeftOrRightPressed = globals.action.moveLeft || globals.action.moveRight;
-
-    // switch(sprite.state)
-    // {
-    //     case State.ATTACK:
-    //         initDisparos(sprite);
-    //         break;
-
-    //     case State.RIGHT:
-    //         //Si se mueve a la derecha vx (+)
-    //         sprite.physics.ax = sprite.physics.aLimit;
-    //         break;
-
-    //     case State.LEFT:
-    //         //Si se mueve a la izquierda asignamos vx (-)
-    //         sprite.physics.ax = -sprite.physics.aLimit;
-    //         break;
-
-    //     default: //Resto de casos( parado)
-    //         sprite.physics.ax = 0;       
-    // }
-
-    // //Calculamos velocidad en X y en Y (V 0 V +aT)
-    // sprite.physics.vx += sprite.physics.ax * globals.deltaTime;
-
-    // //Aplicamos friccion en los cambios de direccion y cuando no haya teclas pulsadas
-    // if((sprite.state === State.LEFT && sprite.physics.vx > 0)||
-    //     (sprite.state === State.RIGHT && sprite.physics.vx < 0)||
-    //     (!isLeftOrRightPressed))
-    // {
-    //     sprite.physics.vx *= sprite.physics.friction;
-    // }
-
-    // //Limitamos a la velocidad maxima en direccion horizontal
-    // if(sprite.physics.vx > sprite.physics.vLimit) //Derecha velocidad +
-    // {
-    //     sprite.physics.vx = sprite.physics.vLimit;
-    // }
-    // else if (sprite.physics.vx < -sprite.physics.vLimit) //izquierda velocidad -
-    // {
-    //     sprite.physics.vx =- sprite.physics.vLimit;
-    // }
-
-    // //Calculamos distancia que se mueve (X = X + Vt)
-    // //xPos seguira un movimiento unif. acelerado
-    // sprite.xPos += sprite.physics.vx * globals.deltaTime;
-
-    // //////// MOVIMIENTO VERTICAL ////////
-
-    // sprite.physics.ay = GRAVITY;
-    // //No estamos en el suelo
-    // if (!sprite.physics.isOnGround)
-    // {
-    //     //Calculamos velocidad en Y (V = V + A*t)
-    //     sprite.physics.vy += sprite.physics.ay * globals.deltaTime;
-    // }
-    // else //Estamos en el suelo
-    // {
-    //     if(globals.action.jump) //Pulsamos la tecla de salto
-    //     {
-    //         sprite.physics.isOnGround = false;
-    //         //Asignamos velocidad inicial de salto
-    //         sprite.physics.vy += sprite.physics.jumpForce;
-    //     }
-    // }
-
-    // //Calculamos distancia que se mueve (Y = Y + Vt)
-    // //yPos seguira un movimiento unif. acelerado
-    // sprite.yPos += sprite.physics.vy * deltaTime;
-
-    // //COLISION CON EL SUELO (PASAREMOS LUEGO A COLISIONS)
-
-    // if( sprite.yPos > globals.canvas.height - sprite.imageSet.ySize)
-    // {
-    //     sprite.physics.isOnGround = true;
-    //     sprite.yPos = globals.canvas.height - sprite.imageSet.ySize;
-    //     sprite.physics.vy = 0;
-    // }
-
+   
     switch(sprite.state)
     {
         case State.ATTACK:
@@ -1027,11 +949,8 @@ function playSound()
     }
 }
 
-
 function writeName()
 {   
-    //console.log(globals.asciKey);
-    //console.log(globals.highscorename);
     const insertchar = String.fromCharCode(globals.asciKey);
 
     if(globals.asciKey > 64 && globals.asciKey < 91)
@@ -1051,6 +970,7 @@ function writeName()
         }  
     }
 }
+
 function saveScores(objectToSend)
 {
     for(let i = 0; i < globals.scores.length; i ++)

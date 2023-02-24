@@ -19,7 +19,6 @@ export default class Sprite
         this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
         this.isCollidingWithObstacleOnTheRight  = false;  //Indica si ha habido colision con n obstaculo hacia derecha
         this.isCollision = false;
-  
     }
 }
 
@@ -43,10 +42,6 @@ constructor (id, state, xPos, yPos, imageSet, frames, physics, hitBox)
         super (id, state, xPos, yPos, imageSet, frames, physics, hitBox);
 
         this.isCollidingWith = false;
-        // this.isCollidingWithObstacleOnTheTop  = false;   //Indica si ha habido colision con n obstaculo hacia arriba 
-        // this.isCollidingWithObstacleOnTheLeft = false;    //Indica si ha habido colision con n obstaculo hacia izuiqerda
-        // this.isCollidingWithObstacleOnTheBottom = false;  //Indica si ha habido colision con n obstaculo hacia abajo 
-        // this.isCollidingWithObstacleOnTheRight  = false;  //Indica si ha habido colision con n obstaculo hacia derecha
     }
 }
 

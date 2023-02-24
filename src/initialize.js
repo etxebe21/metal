@@ -3,7 +3,7 @@ import {Game, SpriteID, State, FPS, ParticleState, ParticleID, SCORE_SIZE, Sound
 import Sprite, { Bruja, Disparo, Puntos } from "./sprite.js";
 import ImageSet from "./imageSet.js";
 import Frames from "./frames.js";
-import {Level, level1, level2} from "./Level.js";
+import {Level, level1} from "./Level.js";
 import Timer from "./Timers.js";
 import Physics from "./Physics.js";
 import { keydownHandler, keyupHandler, updateMusic} from "./events.js";
@@ -12,7 +12,6 @@ import Camera from "./Camera.js";
 import ExplosionParticle from "./particle.js";
 import Score from "./score.js";
 import renderScore from "./gameRender.js";
-
 
 //Función que inicializa los elementos  HTML
 function initHTMLelements()
@@ -69,9 +68,6 @@ function initVars()
 
     globals.asciKey = 0;
     globals.keyCode = 0;
-
-    globals.keyTimer = 0;
-    globals.keyTimerDeelay = 0.5;
 }
 
 //Carga de activos: TILEMAPS, IMAGES, SOUNDS
@@ -214,8 +210,6 @@ function loadAssets()
     enemySound.load();
     globals.sounds.push(enemySound);
     globals.assetsToLoad.push(enemySound);
-
-
 }
 
 //Funcion nque se llama cada vez que se carga un activo
@@ -522,7 +516,7 @@ function initBruja2()
     const hitBox = new HitBox(15, 30, 11, 5);
 
     //Creamos nuestro sprite
-    const bruja = new Bruja (SpriteID.BRUJA, State.STILL, 10, 7, imageSet, frames, physics,hitBox);
+    const bruja = new Bruja (SpriteID.BRUJA2, State.STILL, 10, 7, imageSet, frames, physics,hitBox);
 
     //Iniciamos velocidades
     bruja.physics.vx = -bruja.physics.vLimit;
