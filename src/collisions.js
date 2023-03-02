@@ -33,11 +33,18 @@ export default function detectCollisions()
                 const enemy = globals.sprites[j];
                 if(enemy.id === SpriteID.TORO || enemy.id === SpriteID.ZEZEN || enemy.id === SpriteID.BRUJA || enemy.id === SpriteID.BRUJA2|| enemy.id === SpriteID.FIRE)
                 {
-                    detectCollisionBetweenDisparoAndSprite(sprite, enemy);        
+                    detectCollisionBetweenDisparoAndSprite(sprite, enemy); 
+                    
+                    
+                }
+                if(sprite.isCollidingWith)
+                {
+                    return;
                 }
             }
         }
     }
+    
     //Calculamos colision del player con los obstaculos del mapa
     detectCollisionBetweenPlayerAndMapObstacles();
 }
