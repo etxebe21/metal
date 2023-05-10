@@ -263,7 +263,7 @@ function initPlayer()
     const imageSet = new ImageSet(0, 0, 40, 50, 65, 32, 28);
 
     //Creamos los datos de la animación. 8 frmaes / state
-    const frames = new Frames(8, 5);
+    const frames = new Frames(6, 4);
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds, aLimit= 40 y friction = 0,98
     const physics = new Physics(40, 40, 0.9, -100) //,-100 ;
@@ -540,7 +540,7 @@ function initFire()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(15, 0.001, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(10, 0.001, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
@@ -566,7 +566,7 @@ function initFire2()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(16, 0.002, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(10, 0.002, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
@@ -592,7 +592,7 @@ function initFire3()
     const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(14, 0.003, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(8, 0.003, 1, 0, omega, initAngle, yRef);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
