@@ -687,7 +687,7 @@ function initTimers()
     globals.levelTime = new Timer(0, 1);
     globals.lifeTime = new Timer (3 ,1);
     globals.letterHighscoreTime = new Timer (0, 0.5);
-    globals.disparoTime = new Timer (0, 1);
+    globals.disparoTime = new Timer (0, 0.3);
 }
 
 function initEvents()

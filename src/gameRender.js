@@ -187,14 +187,14 @@ function renderHUD()
     const time = globals.levelTime.value;
     const frutas = globals.frutas;
     
-    //Draw score
+    // //Draw score
     globals.ctxHUD.font = '8px emulogic';
     globals.ctxHUD.fillStyle = 'lightgreen';
     globals.ctxHUD.fillText("SCORE", 8, 8);
     globals.ctxHUD.fillStyle =  'lightgray';
     globals.ctxHUD.fillText( " " + score, 6, 18);
 
-    //Draw High Score 
+    // //Draw High Score 
     globals.ctxHUD.fillStyle = 'lightgreen';
     globals.ctxHUD.fillText("HIGH SCORE", 62, 8);
     globals.ctxHUD.fillStyle =  'lightgray';
@@ -245,7 +245,7 @@ function drawGame()
     //Dibujamos el HUD
     renderHUD();
 
-    drawStats();
+    // drawStats();
     
     if (globals.score > 3000)
     {
