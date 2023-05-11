@@ -722,7 +722,7 @@ function restartBruja2(sprite)
 
 function restartToro(sprite)
 {
-    if(sprite.xPos  > 2000 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
+    if(sprite.xPos  > 1495 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo )
     {  
         sprite.state = State.STATE_OFF;
         initToro();
@@ -734,7 +734,7 @@ function restartToro(sprite)
 
 function restartZezen(sprite)
 {
-    if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    if(sprite.xPos < 220 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
     {  
         sprite.state = State.STATE_OFF;
         initZezen();

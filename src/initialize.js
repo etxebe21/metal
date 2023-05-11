@@ -244,7 +244,7 @@ function initSprites()
     initZezen();
     initZezen2();
     initToro();
-    initToro2();
+    // initToro2();
     initFresa();
     initManzana();
     initPera();
@@ -254,7 +254,7 @@ function initSprites()
     initBruja2();
     initFire();
     initFire2();
-    initFire3();
+    // initFire3();
 }
 
 function initPlayer()
@@ -294,7 +294,7 @@ function initZezen()
     const hitBox = new HitBox(18, 44, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1650, 247, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2,  Math.round(Math.random()*(1400-250) + 100), 247, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -316,7 +316,7 @@ function initZezen2()
     const hitBox = new HitBox(18, 44, 9, 3);
 
     //Creamos nuestro sprite
-    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2, 1400, 242, imageSet, frames, physics, hitBox);
+    const sprite = new Sprite(SpriteID.ZEZEN, State.LEFT_2,  Math.round(Math.random()*(1400-250) + 50), 242, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -338,7 +338,7 @@ function initToro()
     const hitBox = new HitBox(18, 43, 13, 9);
 
     //Creamos nuestro sprite
-    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2, -400, 239, imageSet, frames, physics, hitBox);
+    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2,  Math.round(Math.random()*(1400-50) + 150), 239, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
@@ -360,7 +360,7 @@ function initToro2()
     const hitBox = new HitBox(18, 43, 13, 9);
 
     //Creamos nuestro sprite
-    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2, -600, 245, imageSet, frames, physics, hitBox);
+    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2,  Math.round(Math.random()*(1400-50) + 250), 245, imageSet, frames, physics, hitBox);
 
     //Añadimos el pirate al array de sprites
     globals.sprites.push(sprite);
