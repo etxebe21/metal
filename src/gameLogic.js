@@ -242,6 +242,7 @@ function updateSprite(sprite)
 //FUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
 {
+    console.log(globals.camera.x);
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
    

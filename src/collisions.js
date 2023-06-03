@@ -25,7 +25,13 @@ export default function detectCollisions()
     {
         const sprite = globals.sprites[i];
         detectCollisionBetweenPlayerAndSprite(sprite);
-    
+        
+        if(sprite.xPos > globals.camera.x &&  globals.canvas.width + globals.camera.x > sprite.xPos 
+            && sprite.yPos > globals.camera.y &&  globals.canvas.height + globals.camera.y > sprite.yPos){
+
+               detectCollisionBetweenEnemyAndMapObstacles(sprite);
+        }
+       
         if (sprite.id === SpriteID.BULLET)
         {
             for ( let j = 1; j < globals.sprites.length; ++j)
@@ -47,7 +53,6 @@ export default function detectCollisions()
     
     //Calculamos colision del player con los obstaculos del mapa
     detectCollisionBetweenPlayerAndMapObstacles();
-    detectCollisionBetweenEnemyAndMapObstacles();
 }
 
 function detectCollisionBetweenPlayerAndSprite (sprite)
@@ -223,9 +228,9 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 }
 
 
-function detectCollisionBetweenEnemyAndMapObstacles()
+function detectCollisionBetweenEnemyAndMapObstacles(sprite)
 {
-    const player = globals.sprites;
+    const player = sprite;
 
     //Reset collision state
     player.isCollidingWithObstacleOntheTop = false;

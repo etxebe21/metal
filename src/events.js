@@ -4,7 +4,8 @@ import globals from "./globals.js";
 
 
 export function keydownHandler(event)
-{   console.log(globals.asciKey);
+{   
+    // console.log(globals.asciKey);
     globals.asciKey = event.keyCode;
     switch(event.keyCode)
     {
