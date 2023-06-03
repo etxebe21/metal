@@ -234,6 +234,9 @@ function detectCollisionBetweenEnemyAndMapObstacles(sprite)
 
     //Reset collision state
     player.isCollidingWithObstacleOntheTop = false;
+    
+    player.isCollidingWithObstacleOnTheBottom = false;
+
 
     //Variables to use
     let xPos;
@@ -295,7 +298,7 @@ function detectCollisionBetweenEnemyAndMapObstacles(sprite)
         if (isColliding)
         {
             //Existe colision abajo
-            player.isCollidingWithObstacleOnTheTop= true;
+            player.isCollidingWithObstacleOnTheBottom= true;
 
             //AJUSTE: Calculamos solapamiento(overlap) y lo eliminamos
             //moviendo el personaje tantos pixeles com overlap

@@ -242,7 +242,7 @@ function updateSprite(sprite)
 //FUNCIÓN QUE ACTUALIZA EL PERSONAJE
 function updatePlayer(sprite)
 {
-    console.log(globals.camera.x);
+    // console.log(globals.camera.x);
     //Lectura de teclado. Asignamos direccion a la tecla
     readKeyboardAndAssignState(sprite);
    
@@ -433,6 +433,7 @@ function updateBruja2(sprite)
 
 function updateFire(sprite)
 {
+console.log(sprite.isCollidingWithObstacleOnTheBottom);
   const amplitude = 250;
   
   sprite.physics.vx = -sprite.physics.vLimit;
@@ -565,6 +566,10 @@ function calculateCollisionWithFourBorders(sprite)
     else if (sprite.yPos < 0)
     {
         sprite.collisionBorder = Collision.BORDER_UP;
+    }
+    else if (sprite.isCollidingWithObstacleOnTheBottom)
+    {
+        sprite.collisionBorder = Collision.BORDER_DOWN;
     }
     else if (sprite.yPos + sprite.imageSet.ySize > globals.canvas.height)
     {
@@ -753,6 +758,9 @@ function restartFire(sprite)
         globals.score += 50;
         initFire3();
         globals.currentSound = Sound.ENEMY;
+    }
+    if(sprite.isCollidingWithObstacleOnTheBottom){
+        sprite.state = State.STATE_OFF; 
     }
 }
 
