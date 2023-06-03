@@ -834,7 +834,7 @@ function updateDied()
         globals.frutas = globals.frutas;
         globals.kills = globals.kills;
         globals.levelTime.value = 0;
-        globals.sprites.splice(0)
+        globals.sprites.splice(0);
         globals.gameState = Game.GAME_OVER;
     } 
 }
