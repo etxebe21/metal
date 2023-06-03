@@ -225,10 +225,10 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 
 function detectCollisionBetweenEnemyAndMapObstacles()
 {
-    const player = globals.sprites[0];
+    const player = globals.sprites;
 
     //Reset collision state
-    player.isCollidingWithObstacleOnTheRight = false;
+    player.isCollidingWithObstacleOntheTop = false;
 
     //Variables to use
     let xPos;
@@ -263,10 +263,10 @@ function detectCollisionBetweenEnemyAndMapObstacles()
 
         if (isColliding)
         {
-            //Existe colision a la derecha
+            //Existe colision arriba
             player.isCollidingWithObstacleOntheTop = true;
             
-            //moviendo el personaje tantos pixeles com overlap a la izd
+            //moviendo el personaje tantos pixeles 
             overlap = (Math.floor(yPos) % brickSize + 1) - brickSize;
             player.yPos -= overlap; 
         }
@@ -289,11 +289,11 @@ function detectCollisionBetweenEnemyAndMapObstacles()
 
         if (isColliding)
         {
-            //Existe colision a la derecha
-            player.isCollidingWithObstacleOnTheBottom = true;
+            //Existe colision abajo
+            player.isCollidingWithObstacleOnTheTop= true;
 
             //AJUSTE: Calculamos solapamiento(overlap) y lo eliminamos
-            //moviendo el personaje tantos pixeles com overlap a la izd
+            //moviendo el personaje tantos pixeles com overlap
 
             overlap = Math.floor(yPos) % brickSize - 1;
             player.yPos -= overlap;

@@ -123,7 +123,6 @@ function playGame()
 
     //Colisiones
     detectCollisions();
-
     //Actualizacion de la camara
     updateCamera();
 
