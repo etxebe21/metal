@@ -245,9 +245,9 @@ function drawGame()
     //Dibujamos el HUD
     renderHUD();
 
-    // drawStats();
+     drawStats();
     
-    if (globals.score > 3000)
+    if (globals.score > 4000)
     {
         drawLevel2();
     }

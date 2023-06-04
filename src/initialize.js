@@ -242,7 +242,7 @@ function initSprites()
 {
     initPlayer();
     initZezen();
-    initZezen2();
+    // initZezen2();
     initToro();
     // initToro2();
     initFresa();
@@ -254,7 +254,7 @@ function initSprites()
     initBruja2();
     initFire();
     initFire2();
-    // initFire3();
+    initFire3();
 }
 
 function initPlayer()
@@ -344,27 +344,27 @@ function initToro()
     globals.sprites.push(sprite);
 }
 
-function initToro2()
-{
-    //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
+// function initToro2()
+// {
+//     //Creamos las propiedades de las imagenes: initFil, initCol, xSize, ySize, gridSize, xOffset, yOffset
 
-    const imageSet = new ImageSet(9, 0, 39, 55, 65, 25, 25);
+//     const imageSet = new ImageSet(9, 0, 39, 55, 65, 25, 25);
 
-    //Creamos los datos de la animación. 8 frames / state
-    const frames = new Frames(8, 8);
+//     //Creamos los datos de la animación. 8 frames / state
+//     const frames = new Frames(8, 8);
 
-    //Creamos objeto physics con vLimit = 40pixels/seconds
-    const physics = new Physics(15);
+//     //Creamos objeto physics con vLimit = 40pixels/seconds
+//     const physics = new Physics(15);
 
-    //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
-    const hitBox = new HitBox(18, 43, 13, 9);
+//     //Creamos nuestro objeto HitBox con xSize, ySize, xOffset, yOffset
+//     const hitBox = new HitBox(18, 43, 13, 9);
 
-    //Creamos nuestro sprite
-    const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2,  Math.round(Math.random()*(1400-50) + 250), 245, imageSet, frames, physics, hitBox);
+//     //Creamos nuestro sprite
+//     const sprite = new  Sprite(SpriteID.TORO, State.LEFT_2,  Math.round(Math.random()*(1400-50) + 250), 245, imageSet, frames, physics, hitBox);
 
-    //Añadimos el pirate al array de sprites
-    globals.sprites.push(sprite);
-}
+//     //Añadimos el pirate al array de sprites
+//     globals.sprites.push(sprite);
+// }
 
 function initFresa()
 {
@@ -534,19 +534,14 @@ function initFire()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    // //Valores inciciales para Physics
-    // const initAngle = 50 * Math.PI / 180;
-    // const omega     = 10;
-    // const yRef      = 20;
-
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(10);
+    const physics = new Physics(40);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
-    const fire = new Sprite(SpriteID.FIRE, State.STILL, 900, 100, imageSet,frames,physics,hitBox);
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 800, 100, imageSet,frames,physics,hitBox);
 
     //Iniciamos velocidades
     fire.physics.vx = -fire.physics.vLimit;
@@ -564,11 +559,6 @@ function initFire2()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    // //Valores inciciales para Physics
-    // const initAngle = 50 * Math.PI / 180;
-    // const omega     = 10;
-    // const yRef      = 20;
-
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
     const physics = new Physics(30);
 
@@ -576,7 +566,7 @@ function initFire2()
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
-    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1400, 100, imageSet,frames,physics,hitBox);
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1300, 100, imageSet,frames,physics,hitBox);
 
     //Iniciamos velocidades
     fire.physics.vx = -fire.physics.vLimit;
@@ -594,11 +584,6 @@ function initFire3()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    // //Valores inciciales para Physics
-    // const initAngle = 50 * Math.PI / 180;
-    // const omega     = 10;
-    // const yRef      = 20;
-
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
     const physics = new Physics(20);
 
@@ -606,7 +591,7 @@ function initFire3()
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
-    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1900, 100, imageSet,frames,physics,hitBox);
+    const fire = new Sprite(SpriteID.FIRE, State.STILL, 1800, 100, imageSet,frames,physics,hitBox);
 
     //Iniciamos velocidades
     fire.physics.vx = -fire.physics.vLimit;
@@ -846,6 +831,7 @@ export {
     initToro,
     initZezen,
     initFire3,
+    initFire2,
     initBruja,
     initAgua
 }

@@ -29,7 +29,8 @@ export const SpriteID = {
     BULLET: 6,
     BRUJA:  7 ,
     FIRE:   8,
-    BRUJA2:   9
+    BRUJA2:   9,
+    FIRE2: 10
 }
 
 //Identificador de estado de sprite ( dirección)

@@ -27,7 +27,8 @@ export default function detectCollisions()
         detectCollisionBetweenPlayerAndSprite(sprite);
         
         if(sprite.xPos > globals.camera.x &&  globals.canvas.width + globals.camera.x > sprite.xPos 
-            && sprite.yPos > globals.camera.y &&  globals.canvas.height + globals.camera.y > sprite.yPos){
+            && sprite.yPos > globals.camera.y &&  globals.canvas.height + globals.camera.y > sprite.yPos 
+            && sprite.id != SpriteID.FRUTA && sprite.id != SpriteID.TORO && sprite.id != SpriteID.ZEZEN && sprite.id != SpriteID.AGUA){
 
                detectCollisionBetweenEnemyAndMapObstacles(sprite);
         }
@@ -146,6 +147,7 @@ function detectCollisionBetweenPlayerAndMapObstacles()
 
     //Reset collision state
     player.isCollidingWithObstacleOnTheRight = false;
+    player.isCollidingWithObstacleOnTheLeft = false;
 
     //Variables to use
     let xPos;
@@ -212,7 +214,7 @@ function detectCollisionBetweenPlayerAndMapObstacles()
             if(isColliding)
             {
                 //Exist colision a la derecha
-                player.isCollidingWithObstacleOnTheRight = true;
+                player.isCollidingWithObstacleOnTheLeft = true;
 
                 //AJUSTE: Calculamos solapamiento (overlap) y lo eliminiamos
                 //moviendo el personaje tantos pixeles como overlap a la izda

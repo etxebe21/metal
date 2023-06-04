@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import {Game, State, SpriteID, Collision,ParticleState,ParticleID, Sound, GRAVITY} from "./constants.js";
 import sprite from "./sprite.js";
-import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initAgua, getDataBase} from "./initialize.js";
+import {initDisparos, initSprites, initParticles, initToro, initZezen, initBruja, initFire3, initFire2, initAgua, getDataBase} from "./initialize.js";
 import detectCollisions from "./collisions.js";
 
 export default function update()
@@ -234,6 +234,10 @@ function updateSprite(sprite)
             updateFire(sprite);
             break;
 
+        case SpriteID.FIRE2:
+            updateFire2(sprite);
+            break;
+
         default:
             break;
     }
@@ -460,6 +464,41 @@ function updateFire(sprite)
     updateAnimationFrame(sprite);
 
     restartFire(sprite);
+
+    quitarLife(sprite);
+
+    calculateCollisionWithFourBorders(sprite);
+}
+
+function updateFire2(sprite)
+{
+    switch(sprite.collisionBorder)
+    {
+        case Collision.BORDER_RIGHT:
+            sprite.physics.vx = -sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_LEFT:
+            sprite.physics.vx = sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_UP:
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_DOWN:
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        default:
+            //Si no hay colision mantenemos velocidades
+    }
+
+    sprite.xPos += sprite.physics.vx * globals.deltaTime;
+    sprite.yPos += sprite.physics.vy * globals.deltaTime;
+    updateAnimationFrame(sprite);
+
+    restartFire2(sprite);
 
     quitarLife(sprite);
 
@@ -775,9 +814,18 @@ function restartFire(sprite)
         initFire3();
         globals.currentSound = Sound.ENEMY;
     }
-    // if(sprite.isCollidingWithObstacleOnTheBottom){
-    //     sprite.state = State.STATE_OFF; 
-    // }
+}
+
+function restartFire2(sprite)
+{
+    if(sprite.xPos < 0 || sprite.isCollidingWithPlayer || sprite.isCollidingWithDisparo)
+    {  
+        sprite.state = State.STATE_OFF;
+        globals.kills += 1;
+        globals.score += 50;
+        initFire2();
+        globals.currentSound = Sound.ENEMY;
+    }
 }
 
 /////////////////////// FUNCIONES PARTICULAS ///////////////////
