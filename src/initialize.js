@@ -534,19 +534,23 @@ function initFire()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    //Valores inciciales para Physics
-    const initAngle = 50 * Math.PI / 180;
-    const omega     = 10;
-    const yRef      = 20;
+    // //Valores inciciales para Physics
+    // const initAngle = 50 * Math.PI / 180;
+    // const omega     = 10;
+    // const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(10, 0.001, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(10);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
     const fire = new Sprite(SpriteID.FIRE, State.STILL, 900, 100, imageSet,frames,physics,hitBox);
+
+    //Iniciamos velocidades
+    fire.physics.vx = -fire.physics.vLimit;
+    fire.physics.vy = -fire.physics.vLimit;
 
     //Añadimos array de sprites
     globals.sprites.push(fire);
@@ -560,19 +564,23 @@ function initFire2()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    //Valores inciciales para Physics
-    const initAngle = 50 * Math.PI / 180;
-    const omega     = 10;
-    const yRef      = 20;
+    // //Valores inciciales para Physics
+    // const initAngle = 50 * Math.PI / 180;
+    // const omega     = 10;
+    // const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(10, 0.002, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(30);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
     const fire = new Sprite(SpriteID.FIRE, State.STILL, 1400, 100, imageSet,frames,physics,hitBox);
+
+    //Iniciamos velocidades
+    fire.physics.vx = -fire.physics.vLimit;
+    fire.physics.vy = -fire.physics.vLimit;
 
     //Añadimos array de sprites
     globals.sprites.push(fire);
@@ -586,19 +594,23 @@ function initFire3()
     //Creamos los datos de la animación. 8 frames / state
     const frames = new Frames(8, 8);
 
-    //Valores inciciales para Physics
-    const initAngle = 50 * Math.PI / 180;
-    const omega     = 10;
-    const yRef      = 20;
+    // //Valores inciciales para Physics
+    // const initAngle = 50 * Math.PI / 180;
+    // const omega     = 10;
+    // const yRef      = 20;
 
     //Creamos nuestro objeto physics con vLimit = 40 pixels/seconds
-    const physics = new Physics(8, 0.003, 1, 0, omega, initAngle, yRef);
+    const physics = new Physics(20);
 
     //Creamos nuestro objeto Hitbox
     const hitBox = new HitBox (29 ,30 ,12 , 12);
 
     //Creamos sprite
     const fire = new Sprite(SpriteID.FIRE, State.STILL, 1900, 100, imageSet,frames,physics,hitBox);
+
+    //Iniciamos velocidades
+    fire.physics.vx = -fire.physics.vLimit;
+    fire.physics.vy = -fire.physics.vLimit;
 
     //Añadimos array de sprites
     globals.sprites.push(fire);

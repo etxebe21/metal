@@ -433,21 +433,37 @@ function updateBruja2(sprite)
 
 function updateFire(sprite)
 {
-console.log(sprite.isCollidingWithObstacleOnTheBottom);
-  const amplitude = 250;
-  
-  sprite.physics.vx = -sprite.physics.vLimit;
-  sprite.physics.angle += sprite.physics.omega + globals.deltaTime;
- 
-  //Calculamos distancia que se mueve ( x = x +vt)
-  sprite.xPos += sprite.physics.vx * globals.deltaTime;
-  sprite.yPos = sprite.physics.yRef + amplitude * Math.sin(sprite.physics.angle); 
-  
-  updateAnimationFrame(sprite);
+    switch(sprite.collisionBorder)
+    {
+        case Collision.BORDER_RIGHT:
+            sprite.physics.vx = -sprite.physics.vLimit;
+            break;
 
-  restartFire(sprite);
+        case Collision.BORDER_LEFT:
+            sprite.physics.vx = sprite.physics.vLimit;
+            break;
 
-  quitarLife(sprite);
+        case Collision.BORDER_UP:
+            sprite.physics.vy = sprite.physics.vLimit;
+            break;
+
+        case Collision.BORDER_DOWN:
+            sprite.physics.vy = -sprite.physics.vLimit;
+            break;
+
+        default:
+            //Si no hay colision mantenemos velocidades
+    }
+
+    sprite.xPos += sprite.physics.vx * globals.deltaTime;
+    sprite.yPos += sprite.physics.vy * globals.deltaTime;
+    updateAnimationFrame(sprite);
+
+    restartFire(sprite);
+
+    quitarLife(sprite);
+
+    calculateCollisionWithFourBorders(sprite);
 }
 
 function updateDisparos(sprite)
@@ -759,9 +775,9 @@ function restartFire(sprite)
         initFire3();
         globals.currentSound = Sound.ENEMY;
     }
-    if(sprite.isCollidingWithObstacleOnTheBottom){
-        sprite.state = State.STATE_OFF; 
-    }
+    // if(sprite.isCollidingWithObstacleOnTheBottom){
+    //     sprite.state = State.STATE_OFF; 
+    // }
 }
 
 /////////////////////// FUNCIONES PARTICULAS ///////////////////
